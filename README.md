@@ -2,6 +2,9 @@
 
 Trick是关注项目过程、轻量易用、模块化、模块拿来即用的后端架构。一人一天能产出20多个接口。
 
+- 最新稳定版本: v1.0
+- 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/#content@content#framework/once/)
+
 ## 编写接口就像画流程图一样
 Once架构是一套后端应用的顶层架构，架构本身只约束了工程结构和开发过程，对后端应用的基础技术无任何改造和深度封装。
 
@@ -21,7 +24,7 @@ Once架构是具备成长性的，A项目积累下来的模块代码，可以直
 - 项目自动构建工具：Gradle 5.6
 - Tomcat版本：[8.5以上](https://tomcat.apache.org/download-80.cgi)
 
-其中，由于Once架构只是一种规则，基础技术甚至是开发语言都是可以替换的，可联系官方打造个性化架构。
+其中，由于Once架构只是一种规则，基础技术甚至是开发语言都是可以替换的，[可联系官方打造个性化架构](https://stoprefactoring.com/#content@content#consult/suport/suport-overview)。
 
 ## 前提知识
 
@@ -43,13 +46,13 @@ Once架构的设计思想可以直白地理解为：所有代码只写一次，�
 - 业务代码：指定该业务请求的步骤，且指定每一步调用的模块，例如：第一步“调用xx模块”、第二步“调用yy模块”；
 - 模块代码：实现某种具体功能的代码块，例如用户鉴权模块、检查必要参数模块等。模块代码与业务功能无关，只关心被使用的场景。
  
- ![](/data/document/framework/once/data/1.1模块与业务分离.png) 
+ ![](https://github.com/YiiGaa/Once/blob/main/design/designconcept1.png) 
 
 这样的话，模块代码是可以只写一次的（所有接口都可以使用）。但是，业务代码部分仍然需要编写大量的代码，而这些代码其实是高度重复的。那么，如果加入“数据池”的话，则可以进一步简化业务代码。
 
 业务代码每次调用模块时，都把“数据池”和模块参数传入模块中，模块代码根据模块参数实现逻辑，模块代码可直接对“数据池”进行处理（可以从“数据池”中获取或更新数据），当模块发生错误时，错误码会被存放到数据池中。模块处理完后，把数据池返回业务代码，业务代码判断是否需要截断下一步逻辑（数据池中是否有错误码）。工作原理如图所示。
  
-![](/data/document/framework/once/data/1.2工作原理.png) 
+![](https://github.com/YiiGaa/Once/blob/main/design/designconcept2.png) 
 
 经过以上规范化后，业务代码可以简化为json的表达形式，如代码所示。简化业务代码后，即可通过代码生成器把业务代码还原成Java代码。这样，即可减少重复代码的编写，又让业务代码更加清晰明了。
 ```
@@ -68,8 +71,8 @@ Once架构的设计思想可以直白地理解为：所有代码只写一次，�
 				{
 					"模块名":"数据库操作",
 					"模块参数":{
-					     "control":"update",				//更新操作
-				          "query":"UPDATE t_blog SET state='pass' WHERE id='@id@'"						        //sql语句，其中@id@会替换成数据池中的id的值
+					     "control":"update",				        //更新操作
+				             "query":"UPDATE t_blog SET state='pass' WHERE id='@id@'"	//sql语句，其中@id@会替换成数据池中的id的值
 				}
 		 ],
 	},
