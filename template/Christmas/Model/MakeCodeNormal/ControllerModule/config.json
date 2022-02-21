@@ -1,0 +1,8 @@
+{
+    "targetDir":"../src/main/java/com",
+    "waitInputParam":"@@",
+    "templ":"templ",
+    "documentPath":{
+        "document":"./Template/ControllerModule/document.templ"
+    }
+}

@@ -1,0 +1,24 @@
+**Please do not modify the following
+
+====== codeTemplate start ======
+######MODULE-CheckHashParam######
+            //STEP: check hash parameters
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ControllerModule.invokeMethod("CheckHashParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-CheckHashParam######
+====== codeTemplate end ======
+
+====== propertiesTemplate start ======
+##ControllerModuel: CheckHashParam
+====== propertiesTemplate end ======
+
+====== propertiesTemplate local start ======
+##ControllerModuel: CheckHashParam
+====== propertiesTemplate local end ======

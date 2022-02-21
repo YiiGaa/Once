@@ -1,0 +1,14 @@
+######MODULE-SERVICEIMPORT######
+    @Resource(name = "@@serviceName@@")
+    private @@serviceName@@ _@@serviceName@@;
+######MODULE-SERVICEIMPORT######
+
+######MODULE-CallService######
+            //STEP call Service
+            moduleMap = _@@serviceName@@.@@functionName@@(moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-CallService######

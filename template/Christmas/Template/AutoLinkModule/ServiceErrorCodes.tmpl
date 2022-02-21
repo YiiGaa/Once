@@ -1,0 +1,67 @@
+/*######FileHead start######*/
+package com.yiigaa.once.servicemodule;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.HashMap;
+
+import com.alibaba.fastjson.JSONObject;
+
+/*
+* Special Note:
+* When using the command "Christmas.rb Menu/MakeEngineeringNormal/AutoLinkModule@Controller/",
+* Everything in this file will be updated.
+* So don't add any code here
+* If you need to modify this file, you need to modify it in /Christmas/Template/AutoLinkModule , and then execute the command "Christmas.rb Menu/MakeEngineeringNormal/AutoLinkModule@Controller/".
+*/
+public class ErrorCodes {
+    public static boolean isErrorHappens(HashMap<String, Object> param){
+        JSONObject checkParam = (JSONObject) param.get("returnParam");
+        if(null == checkParam.get("errorCode") || 0 == ((String)checkParam.get("errorCode")).compareTo("Success") || 0 == ((String)checkParam.get("errorCode")).compareTo("200") || 0 == ((String)checkParam.get("errorCode")).compareTo("0")){
+            return false;
+        }
+        return true;
+    }
+
+    public static String getErrorInfoFromException(Exception e){
+        try {
+            StringWriter strWriter = new StringWriter();
+            PrintWriter printWriter = new PrintWriter(strWriter);
+            e.printStackTrace(printWriter);
+            return "\n\r" + strWriter.toString() + "\n\r";
+        } catch (Exception ee) {
+            return "\n\rbad getErrorInfoFromException!\n\r";
+        }
+    }
+
+    public static HashMap<String, Object> getErrorMessage(HashMap<String, Object> moduleMap){
+        JSONObject param = (JSONObject) (moduleMap.get("returnParam"));
+        if(null != param.get("message")){
+            return moduleMap;
+        }
+
+        if(null == param.get("errorCode") || 0 == (param.get("errorCode").toString()).compareTo("Success")){
+            return moduleMap;
+        }
+        String[] tempStringArr = (String[]) errorCodeMaps.get(param.get("errorCode"));
+        if(tempStringArr == null){
+            param.put("errorCode", "unknown");
+            param.put("message", "unknown");
+        } else {
+            param.put("errorCode", tempStringArr[0]);
+            param.put("message", tempStringArr[1]);
+        }
+
+        moduleMap.put("returnParam", param);
+
+        return moduleMap;
+    }
+
+
+    private static HashMap<String, String[]> errorCodeMaps = new HashMap<String, String[]>(){{
+        put("Serivce_Inner_block", new String[]{"E-SS01(Service)", "Service 崩溃"});
+/*######FileHead end######*/
+/*######FileTail start######*/
+    }};
+}
+/*######FileTail end######*/

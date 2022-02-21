@@ -1,0 +1,9 @@
+{
+    "targetDir":"../src/main/java/com",
+    "path":"",
+    "waitInputParam":"@@",
+    "templ":"templ",
+    "documentPath":{
+        "document":"./Template/ServiceModule/document.templ"
+    }
+}

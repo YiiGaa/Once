@@ -1,0 +1,47 @@
+######MODULE######
+package com.@@group@@.@@projectname@@.servicemodule.@@module@@;
+
+import com.alibaba.fastjson.JSONObject;
+import com.@@group@@.@@projectname@@.servicecommon.COMMON_LOGGER;
+import com.@@group@@.@@projectname@@.servicemodule.ErrorCodes;
+import com.@@group@@.@@projectname@@.servicemodule.Link;
+
+import java.util.HashMap;
+
+public class @@module@@ extends Link {
+    private HashMap<String, Object> doStart(HashMap<String, Object> param){
+        HashMap<String, Object> returnMap = param;
+        JSONObject passParam = (JSONObject) param.get("passParam");
+        String[] moduleParam = (String[]) param.get("moduleParam");
+        JSONObject sessionSave = (JSONObject) param.get("sessionSave");
+        JSONObject returnParam = (JSONObject) param.get("returnParam");
+
+        try {
+
+            //add your own code
+
+            return returnMap;
+        } catch(Exception e){
+            returnParam.put("errorCode", "MODULE_@@module@@_exception");
+            returnMap.put("returnParam", returnParam);
+            
+            COMMON_LOGGER.ERROR(returnMap, ErrorCodes.getErrorInfoFromException(e));
+        } finally {
+            returnMap.put("passParam", passParam);
+            returnMap.put("sessionSave", sessionSave);
+            returnMap.put("returnParam", returnParam);
+        }
+
+        return returnMap;
+    }
+
+    public HashMap<String, Object> start(HashMap<String, Object> param){
+        COMMON_LOGGER.DEBUG(param, "ServiceModule-@@module@@ start");
+        HashMap<String, Object> returnParam = doStart(param);
+        COMMON_LOGGER.DEBUG(returnParam, "ServiceModule-@@module@@ end");
+        return returnParam;
+    }
+}
+
+
+######MODULE######

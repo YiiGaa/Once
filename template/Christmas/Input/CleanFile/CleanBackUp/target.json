@@ -1,0 +1,11 @@
+[
+    {
+        "targetRoot":"/src/main/java/com/yiigaa",
+        "contain":"_bak_",
+        "except":""
+    },{
+        "targetRoot":"/",
+        "contain":"_bak_",
+        "except":""
+    }
+]

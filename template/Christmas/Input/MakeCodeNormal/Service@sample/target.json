@@ -1,0 +1,65 @@
+
+
+  [
+      {
+          "fileName": "SampleService.java",
+          "path":"/yiigaa/once/service",
+          "document": {
+              "templ":"DOCUMENT-SERVICE",
+              "name": "SampleService",
+              "group":"yiigaa",
+              "projectname":"once",
+              "function": [
+                  {
+                      "templ":"FUNCTION-NORMAl",
+                      "functionName":"addData",
+                      "module":[
+                          {
+                              "templ":"MODULE-DAO",
+                              "param_templ":"PARAM-Hash",
+                              "param":[
+                                  {
+                                      "control":"insert",
+                                      "form":"t_test"
+                                  }
+                              ]
+                          }
+                      ]
+                  },{
+                      "templ":"FUNCTION-NORMAl",
+                      "functionName":"getData",
+                      "module":[
+                          {
+                              "templ":"MODULE-DAO",
+                              "param_templ":"PARAM-Hash",
+                              "param":[
+                                  {
+                                      "control":"select",
+                                      "isAsResult":"true",
+                                      "query":"select * from t_test where test_id='@test_id@'"
+                                  }
+                              ]
+                          }
+                      ]
+                  },{
+                      "templ":"FUNCTION-NORMAl",
+                      "functionName":"getDataAll",
+                      "module":[
+                          {
+                              "templ":"MODULE-DAO",
+                              "param_templ":"PARAM-Hash",
+                              "param":[
+                                  {
+                                      "control":"select",
+                                      "form":"t_test",
+                                      "isAsResult":"true",
+                                      "isAllGet":"true"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              ]
+          }
+      }
+  ]

@@ -1,0 +1,94 @@
+######FUNCTION-SERVICEIMPORT######
+@@module@@
+######FUNCTION-SERVICEIMPORT######
+
+
+######FUNCTION-NORMAl######
+	@RequestMapping(value="@@sourcePath@@",method = RequestMethod.@@mode@@)
+    @ResponseBody
+    public JSONObject @@functionName@@(@RequestBody String requestParam, HttpServletRequest request){
+        JSONObject requestJson = JSONObject.parseObject(requestParam);
+        JSONObject returnJson = new JSONObject();
+        HashMap<String, Object> moduleMap = new HashMap<String, Object>();
+        moduleMap.put("passParam", requestJson);
+        moduleMap.put("sessionSave", new JSONObject());
+        moduleMap.put("returnParam", new JSONObject());
+        moduleMap.put("httpRequest", request);
+
+        try {
+
+            COMMON_LOGGER.INIT(moduleMap, "Rest-api start");
+
+@@module@@
+            //STEP set retrunParam
+            returnJson = (JSONObject) moduleMap.get("returnParam");
+        } catch(Exception e){
+            COMMON_LOGGER.ERROR(moduleMap, ErrorCodes.getErrorInfoFromException(e));
+
+            returnJson.put("errorCode", "CONTROLLER_API_block");
+        }  finally {
+            //STEP get errorMessage
+            returnJson = ErrorCodes.getErrorMessage(returnJson);
+
+            //STEP return tempStorage Dump
+            if(requestJson.get("tempStorage")!=null){
+                returnJson.put("tempStorage", requestJson.get("tempStorage"));
+            }
+
+            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true, true);
+        }
+
+        
+        return returnJson;
+    }
+
+######FUNCTION-NORMAl######
+
+######FUNCTION-GET######
+	@RequestMapping(value="@@sourcePath@@",method = RequestMethod.@@mode@@)
+    @ResponseBody
+    public JSONObject @@functionName@@(HttpServletRequest request){
+        JSONObject returnJson = new JSONObject();
+        JSONObject requestJson = new JSONObject();
+        HashMap<String, Object> moduleMap = new HashMap<String, Object>();
+        moduleMap.put("passParam", new JSONObject());
+        moduleMap.put("sessionSave", new JSONObject());
+        moduleMap.put("returnParam", new JSONObject());
+        moduleMap.put("httpRequest", request);
+
+        try {
+			//STEP : ErgodicGetParam
+            moduleMap.put("moduleParam", new String[] {
+            });
+            moduleMap = ControllerModule.invokeMethod("ErgodicGetParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson.put("errorCode", ((JSONObject)moduleMap.get("returnParam")).get("errorCode"));
+                return returnJson;
+            }
+            requestJson = (JSONObject) moduleMap.get("passParam");
+
+            COMMON_LOGGER.INIT(moduleMap, "Rest-api start");
+
+@@module@@
+            //STEP set retrunParam
+            returnJson = (JSONObject) moduleMap.get("returnParam");
+        } catch(Exception e){
+            COMMON_LOGGER.ERROR(moduleMap, ErrorCodes.getErrorInfoFromException(e));
+
+            returnJson.put("errorCode", "CONTROLLER_API_block");
+        }  finally {
+            //STEP get errorMessage
+            returnJson = ErrorCodes.getErrorMessage(returnJson);
+
+            //STEP return tempStorage Dump
+            if(requestJson.get("tempStorage")!=null){
+                returnJson.put("tempStorage", requestJson.get("tempStorage"));
+            }
+
+            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true, true);
+        }
+        
+        return returnJson;
+    }
+
+######FUNCTION-GET######

@@ -1,0 +1,47 @@
+{
+    "configure":{},
+    "control":{
+        "enginneringPath":"*",
+        "generatePath":"*",
+        "directCopy":[
+            {"sourcePath":"*","targetPath":"*","except":""}
+        ],
+        "directMerger":[
+            {
+                "targetPath":"*",
+                "sourcePath":[
+                    {"rootPath":"","contain":"*","except":"*","filter":""}
+                ]
+            }
+        ],
+        "selectiveMerger":[
+            {
+                "targetPath":{},
+                "sourcePath":{
+                    "selector":{"rootPath":"*","contain":"*","filter":""},
+                    "source":{}
+                }
+            }
+        ],
+        "replaceMerger":[
+            {
+                "targetPath":{},
+                "sourcePath":{
+                    "selector":{"rootPath":"*","contain":"*","filter":""},
+                    "source":{}
+                }
+            }
+        ],
+        "targetReplace":[
+            {
+                "tartgetPath":{"rootPath":"*","contain":"","except":""},
+                "codeFine":{
+                    "*":{"sourcePath":"*","listContain":"*","listSpliceDelimiter":"*","strHeader":"","strFooter":"","listEx":"*","filter":"*"}
+                },
+                "replaceStr":[
+                    {"replaceTarget":"*", "replaceSource":"*"}
+                ]
+            }
+        ]
+    }
+}

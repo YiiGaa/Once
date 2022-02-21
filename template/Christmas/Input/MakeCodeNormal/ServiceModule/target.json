@@ -1,0 +1,36 @@
+[
+    {
+        "fileName": "@@.java",
+        "path":"/yiigaa/once/servicemodule/@@",
+        "document": {
+            "templ":"MODULE",
+            "group":"yiigaa",
+            "projectname":"once",
+            "module": "@@"
+        }
+    },{
+        "fileName": "@@Config.java",
+        "path":"/yiigaa/once/servicemodule/@@",
+        "document": {
+            "templ":"CONFIG",
+            "group":"yiigaa",
+            "projectname":"once",
+            "module": "@@"
+        }
+    },{
+        "fileName": "readme.md",
+        "path":"/yiigaa/once/servicemodule/@@",
+        "document": {
+            "templ":"README",
+            "position":"Service",
+            "module": "@@"
+        }
+    },{
+        "fileName": "Templates.tmpl",
+        "path":"/yiigaa/once/servicemodule/@@",
+        "document": {
+            "templ":"TARGETTEMPLATE",
+            "module": "@@"
+        }
+    }
+]

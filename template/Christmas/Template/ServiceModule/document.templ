@@ -1,0 +1,178 @@
+######MODULE######
+package com.@@group@@.@@projectname@@.servicemodule.@@module@@;
+
+import com.alibaba.fastjson.JSONObject;
+import com.@@group@@.@@projectname@@.servicecommon.COMMON_LOGGER;
+import com.@@group@@.@@projectname@@.servicemodule.ErrorCodes;
+import com.@@group@@.@@projectname@@.servicemodule.Link;
+
+import java.util.HashMap;
+
+/*
+**Please do not modify the following
+######LinkpackageImport start######
+import com.yiigaa.once.servicemodule.@@module@@.@@module@@;
+######LinkpackageImport end######
+
+######LinkObjectImport start######
+        put("@@module@@", new @@module@@());
+######LinkObjectImport end######
+
+######GradleImport start######
+//@@module@@
+######GradleImport end######
+
+######ErrorCodes start######
+        //@@module@@
+        put("MODULE_@@module@@_exception", new String[]{"E-SM01(@@module@@)", " @@module@@ 崩溃"});
+######ErrorCodes end######
+*/
+
+
+public class @@module@@ extends Link {
+    private HashMap<String, Object> doStart(HashMap<String, Object> param){
+        HashMap<String, Object> returnMap = param;
+        JSONObject passParam = (JSONObject) param.get("passParam");
+        HashMap<String, String> moduleParam = (HashMap<String, String>) param.get("moduleParam");
+        JSONObject sessionSave = (JSONObject) param.get("sessionSave");
+        JSONObject returnParam = (JSONObject) param.get("returnParam");
+
+        try {
+
+            //add your own code
+
+            return returnMap;
+        } catch(Exception e){
+            returnParam.put("errorCode", "MODULE_@@module@@_exception");
+            returnMap.put("returnParam", returnParam);
+            
+            COMMON_LOGGER.ERROR(returnMap, ErrorCodes.getErrorInfoFromException(e));
+        } finally {
+            returnMap.put("passParam", passParam);
+            returnMap.put("sessionSave", sessionSave);
+            returnMap.put("returnParam", returnParam);
+        }
+
+        return returnMap;
+    }
+
+    public HashMap<String, Object> start(HashMap<String, Object> param){
+        COMMON_LOGGER.DEBUG(param, "ServiceModule-@@module@@ start");
+        HashMap<String, Object> returnParam = doStart(param);
+        COMMON_LOGGER.DEBUG(returnParam, "ServiceModule-@@module@@ end");
+        return returnParam;
+    }
+}
+
+
+######MODULE######
+
+######CONFIG######
+package com.@@group@@.@@projectname@@.servicemodule.@@module@@;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
+public class @@module@@Config {
+    //@Value("${service.setting}")
+    //public void setSetting(String setting) {
+    //    @@module@@Config.setting = setting;
+    //}
+
+    //public static String setting;
+}
+######CONFIG######
+
+######README######
+# @@position@@ 模块：@@module@@
+
+## 1 模块功能简述
+
+@@module@@模块的主要功能包括：
+- xx
+
+
+## 2 Christmas 引入例子
+
+- xx
+
+```
+                        {
+                            "templ":"MODULE-@@module@@",
+                            "param_templ":"PARAM-Hash",
+                            "param":[
+
+                            ]
+                        }
+```
+
+
+## 3 参数配置
+
+生产环境在/config/application.properties文件中配置
+
+本地环境在/config/application-local.properties文件中配置
+
+| 参数                                | 必要 | 默认参数 | 说明                                               |
+| ----------------------------------- | ---- | -------- | -------------------------------------------------- |
+|                                     |      |          |                                                     |
+
+
+## 4 moduleParam参数说明
+
+#### 架构数据池说明：
+- passParam：中间参数，所有模块共享的数据池，API请求时传过来的参数在一开始也会放在里面
+- moduleParam：模块独有参数，模块调用前传入
+- sessionSave：准备存进session的数据池，所有模块共享的数据池，需要之后调用sessionSave模块才能把数据存进session
+- returnParam：接口返回的数据池，所有模块共享的数据池，存进去后，最后会自动返回给请求端
+- httpRequest：HttpServletRequest，接口访问时的原始数据对象
+
+其中passParam，sessionSave，returnParam的数据类型为JsonObject，moduleParam的数据类型为HashMap<String, String> 即字符串的键值对
+
+#### 参数类型说明：
+
+- string：普通的字符串
+- stringX：超级字符串，可以添加多个@xx@在里面，模块会自动把passParam中xx字段的值替换到这个字符串中。如，moduleParam中有{"abc":"@@userid@@"}，模块会自动把passParam中userid字段的值替换进去，如果passParam中不存在userid即不替换。
+- bool：bool型，true/false
+- int：int型，数字类型
+
+`注意：`moduleParam的参数类型是指参数的真实类型，比如isNotNullError的类型为bool，只有true和false，在填入Christmas时，依然以字符串形式（如：{"isNotNullError":"true"}）写入
+### 4.0 通用参数
+
+| 参数    | 必要 | 类型   | 缺省值 | 前提条件 | 说明                                                      |
+| ------- | ---- | ------ | ------ | -------- | --------------------------------------------------------- |
+|        |        |      |        |          |   |
+
+
+## 5 部署依赖
+
+xx，连接信息详见`参数配置`
+
+## 6 SpringBoot(Gradle)依赖
+**详细见@@module@@.java中的GradleImport，一般情况下不要修改
+
+## 7 其他说明
+######README######
+
+######TARGETTEMPLATE######
+**Please do not modify the following
+
+====== codeTemplate start ======
+######MODULE-@@module@@######
+            //STEP: @@module@@
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ServiceModule.invokeMethod("@@module@@", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                return moduleMap;
+            }
+
+######MODULE-@@module@@######
+====== codeTemplate end ======
+
+====== propertiesTemplate start ======
+##ServiceModuel: @@module@@
+====== propertiesTemplate end ======
+######TARGETTEMPLATE######

@@ -1,0 +1,8 @@
+Once framework v1.0
+A modular backend RESful-api framework
+
+gitHub: https://github.com/YiiGaa/Once
+official: https://stoprefactoring.com
+Licensed under MIT
+
+---Designed by Daniel.Leung

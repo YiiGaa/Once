@@ -1,0 +1,23 @@
+**Please do not modify the following
+
+====== codeTemplate start ======
+######MODULE-FillingParam######
+            //STEP: FillingParam
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ServiceModule.invokeMethod("FillingParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                return moduleMap;
+            }
+
+######MODULE-FillingParam######
+====== codeTemplate end ======
+
+====== propertiesTemplate start ======
+##ServiceModuel: FillingParam
+====== propertiesTemplate end ======
+
+====== propertiesTemplate local start ======
+##ServiceModuel: FillingParam
+====== propertiesTemplate local end ======

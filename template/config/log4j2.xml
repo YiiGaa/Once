@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="3600">
+    <properties>
+        <property name="LOG_HOME">/log/once</property>
+        <property name="FILE_NAME">web-info</property>
+    </properties>
+
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd}][%d{HH:mm:ss}][%level]%msg%n"/>
+        </Console>
+
+        <RollingRandomAccessFile name="infoFile" fileName="${LOG_HOME}/${FILE_NAME}.log" immediateFlush="false" filePattern="${LOG_HOME}/${FILE_NAME}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="[%d{yyyy-MM-dd}][%d{HH:mm:ss}][%level]%msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <DefaultRolloverStrategy max="50"/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="errorFile" fileName="${LOG_HOME}/web-error.log" immediateFlush="true" filePattern="${LOG_HOME}/web-error/web-error-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="[%d{yyyy-MM-dd}][%d{HH:mm:ss}][%level]%msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="6" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <DefaultRolloverStrategy max="50"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <!--            <AppenderRef ref="Console" />-->
+            <AppenderRef ref="infoFile" />
+            <AppenderRef ref="errorFile" />
+        </Root>
+    </Loggers>
+</Configuration>

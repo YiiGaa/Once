@@ -1,0 +1,121 @@
+
+  [
+      {
+          "fileName": "Sample.java",
+          "path":"/yiigaa/once/controller",
+          "document": {
+              "templ":"DOCUMENT-API",
+              "importService":"*",
+              "group":"yiigaa",
+              "projectname":"once",
+              "rootPath":"/sample",
+              "className": "Sample",
+              "function": [
+                  {
+                      "templ":"FUNCTION-SERVICEIMPORT",
+                      "module":[
+                          {
+                              "templ":"MODULE-SERVICEIMPORT",
+                              "serviceName":"SampleService"
+                          }
+                      ]
+                  },{
+                      "templ":"FUNCTION-NORMAl",
+                      "mode":"POST",
+                      "sourcePath":"/simple",
+                      "functionName":"simpleSample",
+                      "module":[
+                          {
+                              "templ": "MODULE-CheckNecessaryParam",
+                              "param_templ": "PARAM-Hash",
+                              "param": [
+                                  {
+                                      "module_isClean": "true",
+                                      "test_name": "opt"
+                                  }
+                              ]
+                          },{
+                              "templ": "MODULE-FillingParam",
+                              "param_templ": "PARAM-Hash",
+                              "param": [
+                                  {
+                                      "test_name": "return@@get##test_name"
+                                  }
+                              ]
+                          }
+                      ]
+                  },{
+                      "templ":"FUNCTION-NORMAl",
+                      "mode":"POST",
+                      "sourcePath":"/database",
+                      "functionName":"addData",
+                      "module":[
+                          {
+                              "templ": "MODULE-CheckNecessaryParam",
+                              "param_templ": "PARAM-Hash",
+                              "param": [
+                                  {
+                                      "module_isClean": "true",
+                                      "test_name": "opt"
+                                  }
+                              ]
+                          },{
+                              "templ": "MODULE-FillingParam",
+                              "param_templ": "PARAM-Hash",
+                              "param": [
+                                  {
+                                      "test_id": "abs@@uuid"
+                                  }
+                              ]
+                          },{
+                              "templ":"MODULE-CallService",
+                              "serviceName":"SampleService",
+                              "functionName":"addData"
+                          }
+                      ]
+                  },{
+                      "templ":"FUNCTION-GET",
+                      "mode":"GET",
+                      "sourcePath":"/database",
+                      "functionName":"getData",
+                      "module":[
+                          {
+                              "templ": "MODULE-CheckNecessaryParam",
+                              "param_templ": "PARAM-Hash",
+                              "param": [
+                                  {
+                                      "module_isClean": "true",
+                                      "test_id": "nec"
+                                  }
+                              ]
+                          },{
+                              "templ":"MODULE-CallService",
+                              "serviceName":"SampleService",
+                              "functionName":"getData"
+                          }
+                      ]
+                  },{
+                      "templ":"FUNCTION-GET",
+                      "mode":"GET",
+                      "sourcePath":"/database/all",
+                      "functionName":"getDataAll",
+                      "module":[
+                          {
+                              "templ": "MODULE-CheckNecessaryParam",
+                              "param_templ": "PARAM-Hash",
+                              "param": [
+                                  {
+                                      "module_isClean": "true"
+                                  }
+                              ]
+                          },{
+                              "templ":"MODULE-CallService",
+                              "serviceName":"SampleService",
+                              "functionName":"getDataAll"
+                          }
+                      ]
+                  }
+              ]
+          }
+      }
+  ]

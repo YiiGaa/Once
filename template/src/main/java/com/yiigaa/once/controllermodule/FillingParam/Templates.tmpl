@@ -1,0 +1,24 @@
+**Please do not modify the following
+
+====== codeTemplate start ======
+######MODULE-FillingParam######
+			//STEP: filling param
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ControllerModule.invokeMethod("FillingParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-FillingParam######
+====== codeTemplate end ======
+
+====== propertiesTemplate start ======
+##ControllerModuel: FillingParam
+====== propertiesTemplate end ======
+
+====== propertiesTemplate local start ======
+##ControllerModuel: FillingParam
+====== propertiesTemplate local end ======

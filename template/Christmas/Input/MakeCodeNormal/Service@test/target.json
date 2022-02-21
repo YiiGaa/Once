@@ -1,0 +1,39 @@
+[
+    {
+        "fileName": "TestService.java",
+        "path":"/yiigaa/once/service",
+        "document": {
+            "templ":"DOCUMENT-SERVICE",
+            "name": "TestService",
+            "group":"yiigaa",
+            "projectname":"once",
+            "function": [
+                    {
+                        "templ":"FUNCTION-NORMAl",
+                        "functionName":"createTest",
+                        "module":[
+                                
+                            ]
+                    },{
+                        "templ":"FUNCTION-NORMAl",
+                        "functionName":"deleteTest",
+                        "module":[
+
+                        ]
+                },{
+                        "templ":"FUNCTION-NORMAl",
+                        "functionName":"updateTest",
+                        "module":[
+                            
+                        ]
+                },{
+                        "templ":"FUNCTION-NORMAl",
+                        "functionName":"getTest",
+                        "module":[
+
+                        ]
+                }
+            ]
+        }
+    }
+]

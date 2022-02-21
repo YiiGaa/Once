@@ -1,0 +1,68 @@
+######MODULE######
+package com.@@group@@.@@projectname@@.controllermodule.@@module@@;
+
+import com.alibaba.fastjson.JSONObject;
+import com.@@group@@.@@projectname@@.controllercommon.COMMON_LOGGER;
+import com.@@group@@.@@projectname@@.controllermodule.@@module@@.@@module@@Config;
+import com.@@group@@.@@projectname@@.controllermodule.ErrorCodes;
+import com.@@group@@.@@projectname@@.controllermodule.Link;
+import javax.servlet.http.HttpServletRequest;
+
+import java.util.HashMap;
+
+public class @@module@@ extends Link {
+    private HashMap<String, Object> doStart(HashMap<String, Object> param){
+        HashMap<String, Object> returnMap = param;
+        JSONObject passParam = (JSONObject) param.get("passParam");
+        HashMap<String, String> moduleParam = (HashMap<String, String>) param.get("moduleParam");
+        JSONObject sessionSave = (JSONObject) param.get("sessionSave");
+        JSONObject returnParam = (JSONObject) param.get("returnParam");
+        HttpServletRequest request = (HttpServletRequest)param.get("httpRequest");
+
+        try {
+
+            //add your own code
+
+            return returnMap;
+        } catch(Exception e){
+            COMMON_LOGGER.ERROR(returnMap, ErrorCodes.getErrorInfoFromException(e));
+
+            returnParam.put("errorCode", "MODULE_@@module@@_exception");
+            returnMap.put("returnParam", returnParam);
+        } finally {
+            returnMap.put("passParam", passParam);
+            returnMap.put("sessionSave", sessionSave);
+            returnMap.put("returnParam", returnParam);
+            returnMap.put("httpRequest", request);
+        }
+
+        return returnMap;
+    }
+
+    public HashMap<String, Object> start(HashMap<String, Object> param){
+        COMMON_LOGGER.DEBUG(param, "ControllerModule-@@module@@ start");
+        HashMap<String, Object> returnParam = doStart(param);
+        COMMON_LOGGER.DEBUG(returnParam, "ControllerModule-@@module@@ end");
+        return returnParam;
+    }
+}
+
+
+######MODULE######
+
+######CONFIG######
+package com.@@group@@.@@projectname@@.controllermodule.@@module@@;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
+public class @@module@@Config {
+    //@Value("${controller.setting}")
+    //public void setSetting(String setting) {
+    //    @@module@@Config.setting = setting;
+    //}
+
+    //public static String setting;
+}
+######CONFIG######

@@ -1,0 +1,99 @@
+######PARAM-Hash######
+					put("@@key@@","@@value@@");
+######PARAM-Hash######
+
+######PARAM-Array######
+					"@@value@@",
+######PARAM-Array######
+######MODULE-SERVICEIMPORT######
+    @Resource(name = "@@serviceName@@")
+    private @@serviceName@@ _@@serviceName@@;
+######MODULE-SERVICEIMPORT######
+
+######MODULE-CallService######
+            //STEP call Service
+            moduleMap = _@@serviceName@@.@@functionName@@(moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-CallService######
+######MODULE-CheckHashParam######
+            //STEP: check hash parameters
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ControllerModule.invokeMethod("CheckHashParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-CheckHashParam######
+######MODULE-CheckNecessaryParam######
+            //STEP: check Neccessary parameters
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ControllerModule.invokeMethod("CheckNecessaryParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-CheckNecessaryParam######
+
+######MODULE-FileUpload######
+			//STEP: Fileupload param
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ControllerModule.invokeMethod("FileUpload", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-FileUpload######
+######MODULE-FillingHashParam######
+			//STEP: filling hash param
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ControllerModule.invokeMethod("FillingHashParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-FillingHashParam######
+######MODULE-FillingParam######
+			//STEP: filling param
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ControllerModule.invokeMethod("FillingParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-FillingParam######
+######MODULE-SessionCancel######
+            //STEP: clean session
+            moduleMap.put("moduleParam", new String[] {
+@@param@@
+            });
+            moduleMap = ControllerModule.invokeMethod("SessionCancel", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-SessionCancel######
+######MODULE-SessionSave######
+			//STEP save session
+            ControllerModule.invokeMethod("SessionSave", moduleMap);
+
+######MODULE-SessionSave######

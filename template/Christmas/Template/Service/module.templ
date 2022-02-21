@@ -1,0 +1,40 @@
+######PARAM-Hash######
+					put("@@key@@","@@value@@");
+######PARAM-Hash######
+
+######PARAM-Array######
+					"@@value@@",
+######PARAM-Array######
+######MODULE-DeleteFile######
+            //STEP: DeleteFile
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ServiceModule.invokeMethod("DeleteFile", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                return moduleMap;
+            }
+
+######MODULE-DeleteFile######
+######MODULE-FillingParam######
+            //STEP: FillingParam
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ServiceModule.invokeMethod("FillingParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                return moduleMap;
+            }
+
+######MODULE-FillingParam######
+######MODULE-DAO######
+            //STEP: call DataBase
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = _DataBaseDao.start(moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                return moduleMap;
+            }
+
+######MODULE-DAO######

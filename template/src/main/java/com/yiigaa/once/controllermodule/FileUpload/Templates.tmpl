@@ -1,0 +1,30 @@
+**Please do not modify the following
+
+====== codeTemplate start ======
+######MODULE-FileUpload######
+			//STEP: Fileupload param
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ControllerModule.invokeMethod("FileUpload", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-FileUpload######
+====== codeTemplate end ======
+
+====== propertiesTemplate start ======
+##ControllerModuel: FileUpload
+controller.uploadfile.rootpath=/data/once
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=100MB
+====== propertiesTemplate end ======
+
+====== propertiesTemplate local start ======
+##ControllerModuel: FileUpload
+controller.uploadfile.rootpath=/data/once
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=100MB
+====== propertiesTemplate local end ======

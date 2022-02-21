@@ -1,0 +1,13 @@
+{
+    "waitInputParam":"@@",
+    "isCleanGeneratePath":false,
+    "isBackupWhenNotEmpty":true,
+    "isNotEmptyGeneratePathError":false,
+    "isTargetCover":true,
+    "targetFileName":"{targetFileName}",
+    "selectName":"{selectName}",
+    "filter_Js":{
+        "startStr":"-start@@@@@@*/",
+        "endStr":"-end@@@@@@*/"
+    }
+}

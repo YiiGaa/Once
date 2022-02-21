@@ -1,0 +1,12 @@
+{
+    "targetDir":"../src/main/java/com",
+    "templ":"templ",
+    "endTempl":"param_templ",
+    "documentPath":{
+        "document":"./Template/Service/document.templ",
+	    "function":"./Template/Service/function.templ",
+	    "module":"./Template/Service/module.templ",
+	    "param":"./Template/Service/module.templ"
+    }
+    
+}

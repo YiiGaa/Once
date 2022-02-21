@@ -1,0 +1,43 @@
+/*######FileHead start######*/
+package com.yiigaa.once.controllermodule;
+/*######FileHead end######*/
+
+import com.yiigaa.once.controllermodule.CheckNecessaryParam.CheckNecessaryParam;
+import com.yiigaa.once.controllermodule.ErgodicGetParam.ErgodicGetParam;
+import com.yiigaa.once.controllermodule.FileUpload.FileUpload;
+import com.yiigaa.once.controllermodule.FillingParam.FillingParam;
+import com.yiigaa.once.controllermodule.SessionSave.SessionSave;
+import com.yiigaa.once.controllermodule.SessionCancel.SessionCancel;
+import com.yiigaa.once.controllermodule.CacheOperation.CacheOperation;
+import com.yiigaa.once.controllermodule.CheckIdentity.CheckIdentity;
+
+/*######FileBody start######*/
+import java.util.HashMap;
+
+/* 
+* Special Note: 
+* When using the command "Christmas.rb Menu/MakeEngineeringNormal/AutoLinkModule@Controller/", 
+* Everything in this file will be updated.
+* So don't add any code here
+* If you need to modify this file, you need to modify it in /Christmas/Template/AutoLinkModule , and then execute the command "Christmas.rb Menu/MakeEngineeringNormal/AutoLinkModule@Controller/".
+*/
+public class ControllerModule {
+    public static HashMap<String, Object> invokeMethod(String methodParam, HashMap<String, Object> param){
+        HashMap<String, Object> returnParam =  moduleMaps.get(methodParam).start(param);
+        return returnParam;
+    }
+
+    private static HashMap<String, Link> moduleMaps = new HashMap<String, Link>(){{
+/*######FileBody end######*/
+        put("CheckNecessaryParam", new CheckNecessaryParam());
+        put("FillingParam", new FillingParam());
+        put("SessionSave", new SessionSave());
+        put("ErgodicGetParam", new ErgodicGetParam());
+        put("FileUpload", new FileUpload());
+        put("SessionCancel", new SessionCancel());
+        put("CacheOperation", new CacheOperation());
+        put("CheckIdentity", new CheckIdentity());
+/*######FileTail start######*/
+    }};
+}
+/*######FileTail end######*/

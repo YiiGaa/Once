@@ -1,0 +1,23 @@
+######DOCUMENT-SERVICE######
+package com.@@group@@.@@projectname@@.service.Impl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.@@group@@.@@projectname@@.dao.DataBaseDao;
+import com.@@group@@.@@projectname@@.controllercommon.COMMON_LOGGER;
+import com.@@group@@.@@projectname@@.servicemodule.ServiceModule;
+import com.@@group@@.@@projectname@@.service.@@name@@;
+import org.springframework.stereotype.Service;
+import com.@@group@@.@@projectname@@.servicemodule.ErrorCodes;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+
+@Service("@@name@@")
+public class @@name@@Impl implements @@name@@{
+    @Resource(name = "DataBase")
+    private DataBaseDao _DataBaseDao;
+
+@@function@@
+
+}
+######DOCUMENT-SERVICE######

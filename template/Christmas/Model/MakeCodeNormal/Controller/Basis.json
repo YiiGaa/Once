@@ -1,0 +1,19 @@
+{
+    "fileName": "*",
+    "path":"",
+    "document": {
+        "templ":"*",
+        "function": [
+                {
+                    "templ":"*",
+                    "module":[
+                            {
+                                "templ":"*",
+                                "param_templ":"",
+                                "param":[]
+                            }
+                        ]
+                }
+        ]
+    }
+}
