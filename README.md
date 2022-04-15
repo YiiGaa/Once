@@ -1,6 +1,5 @@
 <img src="https://github.com/YiiGaa/Trick/blob/master/Prop/Common/Img/logo.png" width="300"/>
-
-Trick是关注项目过程、轻量易用、模块化、模块拿来即用的后端架构。一人一天能产出20多个接口。
+Once是关注项目过程、轻量易用、模块化、模块拿来即用的后端架构。一人一天能产出20多个接口。
 
 - 最新稳定版本: v1.0
 - 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/#content@content#framework/once/)
