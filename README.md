@@ -1,4 +1,4 @@
-<img src="https://github.com/YiiGaa/Trick/blob/master/Prop/Common/Img/logo.png" width="300"/>
+<img src="https://raw.githubusercontents.com/YiiGaa/Trick/master/Prop/Common/Img/logo.png" width="300"/>
 Once是关注项目过程、轻量易用、模块化、模块拿来即用的后端架构。一人一天能产出20多个接口。
 
 - 最新稳定版本: v1.0
@@ -45,13 +45,13 @@ Once架构的设计思想可以直白地理解为：所有代码只写一次，�
 - 业务代码：指定该业务请求的步骤，且指定每一步调用的模块，例如：第一步“调用xx模块”、第二步“调用yy模块”；
 - 模块代码：实现某种具体功能的代码块，例如用户鉴权模块、检查必要参数模块等。模块代码与业务功能无关，只关心被使用的场景。
  
- ![](https://github.com/YiiGaa/Once/blob/main/design/designconcept1.png) 
+ ![](https://raw.githubusercontents.com/YiiGaa/Once/main/design/designconcept1.png) 
 
 这样的话，模块代码是可以只写一次的（所有接口都可以使用）。但是，业务代码部分仍然需要编写大量的代码，而这些代码其实是高度重复的。那么，如果加入“数据池”的话，则可以进一步简化业务代码。
 
 业务代码每次调用模块时，都把“数据池”和模块参数传入模块中，模块代码根据模块参数实现逻辑，模块代码可直接对“数据池”进行处理（可以从“数据池”中获取或更新数据），当模块发生错误时，错误码会被存放到数据池中。模块处理完后，把数据池返回业务代码，业务代码判断是否需要截断下一步逻辑（数据池中是否有错误码）。工作原理如图所示。
  
-![](https://github.com/YiiGaa/Once/blob/main/design/designconcept2.png) 
+![](https://raw.githubusercontents.com/YiiGaa/Once/main/design/designconcept2.png) 
 
 经过以上规范化后，业务代码可以简化为json的表达形式，如代码所示。简化业务代码后，即可通过代码生成器把业务代码还原成Java代码。这样，即可减少重复代码的编写，又让业务代码更加清晰明了。
 ```
