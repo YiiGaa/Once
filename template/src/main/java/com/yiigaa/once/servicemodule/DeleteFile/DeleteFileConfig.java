@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DeleteFileConfig {
-    //@Value("${service.setting}")
-    //public void setSetting(String setting) {
-    //    DeleteFileConfig.setting = setting;
-    //}
+    @Value("${service.deletefile.rootpath}")
+    public void setRootpath(String rootpath) {
+       DeleteFileConfig.rootpath = rootpath;
+    }
 
-    //public static String setting;
+    public static String rootpath;
 }

@@ -1,9 +1,10 @@
 **Please do not modify the following
+**If you modify the following contents, please re LinkModule: ruby Christmas.rb ./Menu/MakeEngineeringNormal/AutoLinkModule
 
 ====== codeTemplate start ======
 ######MODULE-FillingParam######
 			//STEP: filling param
-            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+            moduleMap.put("moduleParam", new LinkedHashMap<String, String>(){{
 @@param@@
             }});
             moduleMap = ControllerModule.invokeMethod("FillingParam", moduleMap);

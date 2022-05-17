@@ -1,0 +1,9 @@
+{
+    "url": "https://raw.githubusercontents.com/YiiGaa/Once-Module/main/Service",
+    "module":"@@",
+    "targetAdd":"/yiigaa/once/servicemodule/",
+    "index":"Load.json",
+    "replace":{
+        ".XX.":".once."
+    }
+}

@@ -3,7 +3,7 @@
 ######FUNCTION-SERVICEIMPORT######
 
 
-######FUNCTION-NORMAl######
+######FUNCTION-NORMAL######
 	@RequestMapping(value="@@sourcePath@@",method = RequestMethod.@@mode@@)
     @ResponseBody
     public JSONObject @@functionName@@(@RequestBody String requestParam, HttpServletRequest request){
@@ -11,7 +11,6 @@
         JSONObject returnJson = new JSONObject();
         HashMap<String, Object> moduleMap = new HashMap<String, Object>();
         moduleMap.put("passParam", requestJson);
-        moduleMap.put("sessionSave", new JSONObject());
         moduleMap.put("returnParam", new JSONObject());
         moduleMap.put("httpRequest", request);
         moduleMap.put("moduleParam", new JSONObject());
@@ -36,14 +35,14 @@
                 returnJson.put("tempStorage", requestJson.get("tempStorage"));
             }
 
-            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true, true);
+            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true);
         }
 
         
         return returnJson;
     }
 
-######FUNCTION-NORMAl######
+######FUNCTION-NORMAL######
 
 ######FUNCTION-GET######
 	@RequestMapping(value="@@sourcePath@@",method = RequestMethod.@@mode@@)
@@ -53,7 +52,6 @@
         JSONObject requestJson = new JSONObject();
         HashMap<String, Object> moduleMap = new HashMap<String, Object>();
         moduleMap.put("passParam", new JSONObject());
-        moduleMap.put("sessionSave", new JSONObject());
         moduleMap.put("returnParam", new JSONObject());
         moduleMap.put("httpRequest", request);
 
@@ -86,7 +84,7 @@
                 returnJson.put("tempStorage", requestJson.get("tempStorage"));
             }
 
-            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true, true);
+            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true);
         }
         
         return returnJson;

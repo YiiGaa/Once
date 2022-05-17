@@ -5,8 +5,11 @@ import com.yiigaa.once.servicecommon.COMMON_LOGGER;
 import com.yiigaa.once.servicemodule.ErrorCodes;
 import com.yiigaa.once.servicemodule.Link;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /*
 **Please do not modify the following
@@ -24,52 +27,70 @@ import com.yiigaa.once.servicemodule.DeleteFile.DeleteFile;
 
 ######ErrorCodes start######
         //DeleteFile
-        put("MODULE_DeleteFile_block", new String[]{"E-SM01(DeleteFile)", "删除文件失败"});
+        put("MODULE_DeleteFile_block", new String[]{"E-SM01(DeleteFile)", "非法文件目录"});
         put("MODULE_DeleteFile_exception", new String[]{"E-SM02(DeleteFile)", "删除文件崩溃"});
 ######ErrorCodes end######
 */
 
 
 public class DeleteFile extends Link {
-    public static int deleteFile(String delpath,String name) {
+    private static final ExecutorService DELETE_SERVICE = Executors.newSingleThreadExecutor();
+
+    public static void deleteFileAsync(final File file) {
+        if (file != null) {
+            DELETE_SERVICE.submit(new Runnable() {
+                @Override
+                public void run() {
+                    file.delete();
+                }
+            });
+        }
+    }
+
+    public static int deleteFile(String deletePath, String contain, Boolean investigate) {
         int ret = 0;
-        File file = new File(delpath);
+        File file = new File(deletePath);
         if (!file.isDirectory()) {
-            ret = file.getAbsoluteFile().delete()==true?0:1;
-            if(ret == 1 ){
-                System.out.println("Error,delete file fail:"+delpath);
-            }
+            COMMON_LOGGER.INFO(null, "ServiceModule-DeleteFile delete list: "+deletePath);
+            deleteFileAsync(file);
         } else if (file.isDirectory()) {
             String[] filelist = file.list();
             for (int i = 0; i < filelist.length; i++) {
-                if (filelist[i].contains(name)) {
-                    ret |= deleteFile(delpath + "/" + filelist[i],name);
+                if(!investigate){
+                    if(new File(deletePath+"/"+filelist[i]).isDirectory()){
+                        continue;
+                    }
+                }
+                if (filelist[i].contains(contain)) {
+                    ret |= deleteFile(deletePath + "/" + filelist[i], contain, investigate);
                 }
             }
+            COMMON_LOGGER.INFO(null, "ServiceModule-DeleteFile try delete dir: "+deletePath);
+            deleteFileAsync(file);
         }
         return ret;
-
     }
 
     private HashMap<String, Object> doStart(HashMap<String, Object> param){
         HashMap<String, Object> returnMap = param;
         JSONObject passParam = (JSONObject) param.get("passParam");
         HashMap<String, String> moduleParam = (HashMap<String, String>) param.get("moduleParam");
-        JSONObject sessionSave = (JSONObject) param.get("sessionSave");
         JSONObject returnParam = (JSONObject) param.get("returnParam");
+        HttpServletRequest request = (HttpServletRequest)param.get("httpRequest");
 
         try {
-            String deletepath = (moduleParam.get("deletepath") == null)?"":moduleParam.get("deletepath").toString();
-            String delpath = (passParam.get(deletepath) == null)?deletepath:passParam.get(deletepath).toString();
-            String name = (moduleParam.get("name") == null)?"":moduleParam.get("name").toString();
-            String realname = (passParam.get(name) == null)? name:passParam.get(name).toString();
+            String deletePath = (moduleParam.get("deletePath") == null)?"":moduleParam.get("deletePath").toString();
+            deletePath = (passParam.get(deletePath) == null)?deletePath:passParam.get(deletePath).toString();
+            String contain = (moduleParam.get("contain") == null)?"":moduleParam.get("contain").toString();
+            contain = (passParam.get(contain) == null)? contain:passParam.get(contain).toString();
+            Boolean investigate = (moduleParam.get("investigate") == null)?false:Boolean.parseBoolean(moduleParam.get("investigate").toString());
 
-            COMMON_LOGGER.INFO(param,"ServiceModule-DeleteFile delete file," + "delpath:"+delpath + ",name:" + name);
-            int ret = deleteFile(delpath,realname);
-            if(ret !=0){
-                COMMON_LOGGER.ERROR(param,"DELETE FAIL");
+            if(deletePath.indexOf(DeleteFileConfig.rootpath)!=0){
                 returnParam.put("errorCode", "MODULE_DeleteFile_block");
+                return returnMap;
             }
+            COMMON_LOGGER.INFO(param,"ServiceModule-DeleteFile delete file," + "deletePath:"+deletePath + ",contain:" + contain);
+            deleteFile(deletePath, contain, investigate);
             return returnMap;
         } catch(Exception e){
             returnParam.put("errorCode", "MODULE_DeleteFile_exception");
@@ -78,8 +99,8 @@ public class DeleteFile extends Link {
             COMMON_LOGGER.ERROR(returnMap, ErrorCodes.getErrorInfoFromException(e));
         } finally {
             returnMap.put("passParam", passParam);
-            returnMap.put("sessionSave", sessionSave);
             returnMap.put("returnParam", returnParam);
+            returnMap.put("httpRequest", request);
         }
 
         return returnMap;

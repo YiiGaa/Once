@@ -9,25 +9,25 @@
             "projectname":"once",
             "function": [
                     {
-                        "templ":"FUNCTION-NORMAl",
+                        "templ":"FUNCTION-NORMAL",
                         "functionName":"createTest",
                         "module":[
                                 
                             ]
                     },{
-                        "templ":"FUNCTION-NORMAl",
+                        "templ":"FUNCTION-NORMAL",
                         "functionName":"deleteTest",
                         "module":[
 
                         ]
                 },{
-                        "templ":"FUNCTION-NORMAl",
+                        "templ":"FUNCTION-NORMAL",
                         "functionName":"updateTest",
                         "module":[
                             
                         ]
                 },{
-                        "templ":"FUNCTION-NORMAl",
+                        "templ":"FUNCTION-NORMAL",
                         "functionName":"getTest",
                         "module":[
 

@@ -5,9 +5,9 @@
 =end
 # encoding=UTF-8
 
-# require_relative './MoveCheckCodeTempl/moveCheckCodeTempl.rb'
 require_relative './MoveMakeCodeNormal/moveMakeCodeNormal.rb'
 require_relative './MoveMakeEngineeringNormal/moveMakeEngineeringNormal.rb'
+require_relative './MoveDownloadCode/moveDownloadCode.rb'
 require_relative './MoveMakeMenu/moveMakeMenu.rb'
 require_relative './MoveClean/moveClean.rb'
 
@@ -18,7 +18,7 @@ class CMove
 			"CleanFile" => CMoveClean.new,
 			"MakeCodeNormal" => CMoveMakeCodeNormal.new,
 			"MakeEngineeringNormal" => CMoveMakeEngineeringNormal.new,
-			# "CheckModel" => CMoveCheckCodeTempl.new
+			"DownloadCode" => CMoveDownloadCode.new,
 		}
 	end
 

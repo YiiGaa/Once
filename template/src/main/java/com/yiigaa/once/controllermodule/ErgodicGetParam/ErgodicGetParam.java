@@ -12,7 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /*
+**version: v1.0
 **Please do not modify the following
+**If you modify the following contents, please re LinkModule: ruby Christmas.rb ./Menu/MakeEngineeringNormal/AutoLinkModule
+
 ######LinkpackageImport start######
 import com.yiigaa.once.controllermodule.ErgodicGetParam.ErgodicGetParam;
 ######LinkpackageImport end######
@@ -36,7 +39,6 @@ public class ErgodicGetParam extends Link {
         HashMap<String, Object> returnMap = param;
         JSONObject passParam = (JSONObject) param.get("passParam");
         String[] moduleParam = (String[]) param.get("moduleParam");
-        JSONObject sessionSave = (JSONObject) param.get("sessionSave");
         JSONObject returnParam = (JSONObject) param.get("returnParam");
         HttpServletRequest request = (HttpServletRequest)param.get("httpRequest");
 
@@ -65,7 +67,6 @@ public class ErgodicGetParam extends Link {
             returnMap.put("returnParam", returnParam);
         } finally {
             returnMap.put("passParam", passParam);
-            returnMap.put("sessionSave", sessionSave);
             returnMap.put("returnParam", returnParam);
             returnMap.put("httpRequest", request);
         }

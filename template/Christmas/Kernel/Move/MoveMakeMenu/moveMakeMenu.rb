@@ -11,9 +11,9 @@ class CMoveMakeMenu
 			"CleanFile"=>{
 					"path"=>"#{$InPutPath}/CleanFile"
 				},
-			# "CheckModel"=>{
-			# 		"path"=>"#{$InPutPath}/MakeCodeNormal"
-			# 	},
+			"DownloadCode"=>{
+					"path"=>"#{$InPutPath}/DownloadCode"
+				},
 			"MakeEngineering"=>{
 					"path"=>"#{$InPutPath}/MakeEngineeringNormal"
 				}
@@ -34,6 +34,7 @@ class CMoveMakeMenu
 					end
 					value['fileList'].each do |list_1|
 						@ObjThink.start({"action" => "WriteCreateFile","path"=>$MenuPath+"/"+list+list_1 })
+						@ObjThink.start({"action" => "WriteFile","path" => $MenuPath+"/"+list+list_1+"/.gitkeep","isCover"=>true,"text"=>""})
 					end
 					isNext = true
 					break
@@ -41,6 +42,7 @@ class CMoveMakeMenu
 			end
 			if !isNext
 				@ObjThink.start({"action" => "WriteCreateFile","path"=>$MenuPath+"/"+list })
+				@ObjThink.start({"action" => "WriteFile","path" => $MenuPath+"/"+list+"/.gitkeep","isCover"=>true,"text"=>""})
 			end
 		end
 	end

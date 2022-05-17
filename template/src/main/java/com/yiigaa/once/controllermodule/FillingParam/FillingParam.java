@@ -13,7 +13,10 @@ import java.util.Map;
 import java.util.UUID;
 
 /*
+**version: v1.0
 **Please do not modify the following
+**If you modify the following contents, please re LinkModule: ruby Christmas.rb ./Menu/MakeEngineeringNormal/AutoLinkModule
+
 ######LinkpackageImport start######
 import com.yiigaa.once.controllermodule.FillingParam.FillingParam;
 ######LinkpackageImport end######
@@ -28,7 +31,7 @@ import com.yiigaa.once.controllermodule.FillingParam.FillingParam;
 
 ######ErrorCodes start######
         //FillingParam
-        put("MODULE_FillingParam_SessionGet_block", new String[]{"E-CM01(FillingParam)", "session获取失败"});
+        put("MODULE_FillingParam_sessionGet_block", new String[]{"E-CM01(FillingParam)", "session获取失败"});
         put("MODULE_FillingParam_exception", new String[]{"E-CM02(FillingParam)", "填充参数崩溃"});
 ######ErrorCodes end######
 */
@@ -38,7 +41,6 @@ public class FillingParam extends Link {
         HashMap<String, Object> returnMap = param;
         JSONObject passParam = (JSONObject) param.get("passParam");
         HashMap<String, String> moduleParam = (HashMap<String, String>) param.get("moduleParam");
-        JSONObject sessionSave = (JSONObject) param.get("sessionSave");
         JSONObject returnParam = (JSONObject) param.get("returnParam");
         HttpServletRequest request = (HttpServletRequest)param.get("httpRequest");
 
@@ -79,7 +81,7 @@ public class FillingParam extends Link {
                             break;
                         case "session":
                             if(request.getSession().getAttribute(function[1]) == null) {
-                                returnParam.put("errorCode", "MODULE_FillingParam_SessionGet_block");
+                                returnParam.put("errorCode", "MODULE_FillingParam_sessionGet_block");
                                 return returnMap;
                             }
                             tempValue = request.getSession().getAttribute(function[1]).toString();
@@ -114,6 +116,8 @@ public class FillingParam extends Link {
 
                 if(header.compareTo("return") == 0){
                     returnParam.put(entry.getKey(), targetValue);
+                } else if(header.compareTo("session") == 0){
+                    returnParam.put(entry.getKey(), targetValue);
                 } else {
                     passParam.put(entry.getKey(), targetValue);
                 }
@@ -135,7 +139,6 @@ public class FillingParam extends Link {
             returnMap.put("returnParam", returnParam);
         } finally {
             returnMap.put("passParam", passParam);
-            returnMap.put("sessionSave", sessionSave);
             returnMap.put("returnParam", returnParam);
             returnMap.put("httpRequest", request);
         }

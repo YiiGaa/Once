@@ -10,6 +10,7 @@ require_relative './WriteCleanDir/writeCleanDir.rb'
 require_relative './WriteFile/writeFile.rb'
 require_relative './WriteCleanFile/writeCleanFile.rb'
 require_relative './WriteCopyFile/writeCopyFile.rb'
+require_relative './WriteDownload/writeDownload.rb'
 
 class CWrite
     def initialize()
@@ -18,7 +19,8 @@ class CWrite
                         "WriteCleanDir" => CWriteCleanDir.new,
                         "WriteFile" => CWriteFile.new,
                         "WriteCleanFile" => CWriteCleanFile.new,
-                        "WriteCopyFile" => CWriteCopyFile.new
+                        "WriteCopyFile" => CWriteCopyFile.new,
+                        "WriteDownload" => CWriteDownload.new
                     }
 	end
     def start(param)

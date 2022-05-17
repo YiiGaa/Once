@@ -40,7 +40,6 @@ class CReadDirectoryList
 		tempDirectoryList = []
 		Find.find(path) do |filename|
 			if File.directory?filename and filename != path
-				# tempDirectoryList << "/"+(filename.delete path)
 				if filter(param,filename)
 					tempDirectoryList << filename.gsub(/#{path}/,'')
 				end

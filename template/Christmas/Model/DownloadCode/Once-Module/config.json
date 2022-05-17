@@ -1,0 +1,5 @@
+{
+    "targetDir":"../src/main/java/com",
+    "isJudgeExist":true,
+    "waitInputParam":"@@"
+}

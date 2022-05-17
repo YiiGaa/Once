@@ -19,7 +19,7 @@
                             }
                         ]
                     },{
-                        "templ":"FUNCTION-NORMAl",
+                        "templ":"FUNCTION-NORMAL",
                         "mode":"POST",
                         "sourcePath":"/test",
                         "functionName":"createTest",
@@ -31,7 +31,7 @@
                                 }
                             ]
                     },{
-                        "templ":"FUNCTION-NORMAl",
+                        "templ":"FUNCTION-NORMAL",
                         "mode":"DELETE",
                         "sourcePath":"/test",
                         "functionName":"deleteTest",
@@ -43,7 +43,7 @@
                                 }
                         ]
                     },{
-                        "templ":"FUNCTION-NORMAl",
+                        "templ":"FUNCTION-NORMAL",
                         "mode":"PUT",
                         "sourcePath":"/test",
                         "functionName":"updateTest",
@@ -67,7 +67,7 @@
                                 }
                         ]
                     }
-                ]
+            ]
         }
     }
 ]

@@ -29,8 +29,9 @@ import com.yiigaa.once.controllermodule.FillingHashParam.FillingHashParam;
 
 ######ErrorCodes start######
         //FillingHashParam
-        put("MODULE_FillingHashParam_SessionGet_block", new String[]{"E-CM01(FillingHashParam)", "session获取失败"});
+        put("MODULE_FillingHashParam_sessionGet_block", new String[]{"E-CM01(FillingHashParam)", "session获取失败"});
         put("MODULE_FillingHashParam_exception", new String[]{"E-CM02(FillingHashParam)", "填充参数崩溃"});
+        put("MODULE_FillingHashParam_target_block", new String[]{"E-CM03(FillingHashParam)", "目标key不存在"});
 ######ErrorCodes end######
 */
 
@@ -39,18 +40,17 @@ public class FillingHashParam extends Link {
         HashMap<String, Object> returnMap = param;
         JSONObject passParam = (JSONObject) param.get("passParam");
         HashMap<String, String> moduleParam = (HashMap<String, String>) param.get("moduleParam");
-        JSONObject sessionSave = (JSONObject) param.get("sessionSave");
         JSONObject returnParam = (JSONObject) param.get("returnParam");
         HttpServletRequest request = (HttpServletRequest)param.get("httpRequest");
 
         try {
             String backUpKey = (moduleParam.get("module_backUpPrefix") == null)?null:moduleParam.get("module_backUpPrefix").toString();
             String module_targetKey = (moduleParam.get("module_targetKey") == null)?null:moduleParam.get("module_targetKey").toString();
-            JSONArray jsonArray=null;
-            if (module_targetKey==null){
-                returnParam.put("errorCode", "MODULE_FillingHashParam_exception");
+            JSONArray jsonArray = null;
+            if (module_targetKey == null){
+                returnParam.put("errorCode", "MODULE_FillingHashParam_target_block");
                 return returnMap;
-            }else{
+            } else {
                 jsonArray = passParam.getJSONArray(module_targetKey);
             }
             for (Map.Entry<String, String> entry : moduleParam.entrySet()){
@@ -87,7 +87,7 @@ public class FillingHashParam extends Link {
                         String tempValue = "";
                         switch (function[0]) {
                             case "index":
-                                tempValue=tempValue+String.valueOf(index);
+                                tempValue = tempValue+String.valueOf(index);
                                 break;
                             case "uuid":
                                 String uuid = UUID.randomUUID().toString().replace("-", "");
@@ -95,7 +95,7 @@ public class FillingHashParam extends Link {
                                 break;
                             case "session":
                                 if (request.getSession().getAttribute(function[1]) == null) {
-                                    returnParam.put("errorCode", "MODULE_FillingHashParam_SessionGet_block");
+                                    returnParam.put("errorCode", "MODULE_FillingHashParam_sessionGet_block");
                                     return returnMap;
                                 }
                                 tempValue = request.getSession().getAttribute(function[1]).toString();
@@ -107,10 +107,12 @@ public class FillingHashParam extends Link {
                                 tempValue = formatter.format(date);
                                 break;
                             case "get":
-                                if (null == passParam.get(function[1])) {
-                                    tempValue = "null";
-                                } else {
+                                if (null != valueObject.get(entry.getKey())){
+                                    tempValue = valueObject.get(entry.getKey()).toString();
+                                } else if (null != passParam.get(function[1])) {
                                     tempValue = passParam.get(function[1]).toString();
+                                } else {
+                                    tempValue = "null";
                                 }
                                 break;
                             case "self":
@@ -149,7 +151,6 @@ public class FillingHashParam extends Link {
             returnMap.put("returnParam", returnParam);
         } finally {
             returnMap.put("passParam", passParam);
-            returnMap.put("sessionSave", sessionSave);
             returnMap.put("returnParam", returnParam);
             returnMap.put("httpRequest", request);
         }

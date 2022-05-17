@@ -13,6 +13,7 @@ class CMoveMakeCodeNormal
 		@modelPath = "#{$ModelPath}/MakeCodeNormal/#{tempArr[0]}/Basis.json"
 		@configPath = "#{$ModelPath}/MakeCodeNormal/#{tempArr[0]}/config.json"
 		@outPutPath = "#{$OutPutPath}/#{param}/#{today.strftime("%Y-%m-%d")}"
+		@comfirmDir = []
 	end
 	
 	def step1(param)
@@ -104,10 +105,7 @@ class CMoveMakeCodeNormal
 						elsif
 							param[key] = step2_ergodicTempl(param[key], value, key)
 						end
-						
-						# if isIncludeTemp
-						# 	return @ObjThink.start({"action" => "DealRegExReplace","temlp"=>param[@Config['templ']],"substitutionParameter"=>param})
-						# end
+
 					elsif value.class == Array
 						if param[key].class != Hash and param[key].class != Array and param[key]!=nil
 							errorLog("  #{key}: value is not a Hash or Array")
@@ -125,9 +123,6 @@ class CMoveMakeCodeNormal
 						elsif
 							param[key] = step2_ergodicTempl(param[key], value[0], key)
 						end
-						# if isIncludeTemp
-						# 	return @ObjThink.start({"action" => "DealRegExReplace","temlp"=>param[@Config['templ']],"substitutionParameter"=>param})
-						# end
 					end
 				end
 				if isIncludeTemp
@@ -161,6 +156,28 @@ class CMoveMakeCodeNormal
 			@Deal << {"fileName"=>@input['fileName'],"text"=>@input['document'],"pathAdd"=>tempStr}
 		end
 	end
+
+	def step3_IsExists(param)
+		if !@Config['isJudgeExist']
+			@Config['isJudgeExist'] = false
+		end
+		if @comfirmDir.include? param or @Config['isJudgeExist'] == false
+
+		elsif File.exist?(param)
+			puts ""
+			puts "**warning: #{param} already exists, continue generating?(yes/no)"
+			tempKeys = STDIN.gets.chomp()
+			
+			if tempKeys == "yes"
+				@comfirmDir << param
+			else
+				puts "Generation has been interrupted"
+				exit
+			end
+		else
+			@comfirmDir << param
+		end
+	end
 	
 	def step3()
 		puts "	outPutPath:"
@@ -168,6 +185,8 @@ class CMoveMakeCodeNormal
 			if @Config['targetDir']
 				@outPutPath = @Config['targetDir']
 			end
+
+			step3_IsExists(@outPutPath+list["pathAdd"])
 
 			@ObjThink.start({"action" => "WriteCreateFile","path"=>@outPutPath+list["pathAdd"] })
 			tmpStr = @outPutPath+list["pathAdd"]+"/"+list['fileName']

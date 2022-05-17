@@ -1,6 +1,7 @@
 {
     "targetDir":"../src/main/java/com",
     "templ":"templ",
+    "isJudgeExist":false,
     "endTempl":"param_templ",
     "documentPath":{
         "document":"./Template/Service/document.templ",

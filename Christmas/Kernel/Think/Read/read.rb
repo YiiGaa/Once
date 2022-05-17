@@ -12,6 +12,7 @@ require_relative './ReadTemplInLine/readTemplInLine.rb'
 require_relative './ReadTxt/readTxt.rb'
 require_relative './ReadDirectoryList/readDirectoryList.rb'
 require_relative './ReadFileList/readFileList.rb'
+require_relative './ReadHttp/readHttp.rb'
 
 class CRead
     def initialize()
@@ -22,7 +23,8 @@ class CRead
                     "ReadTemplInLine" => CReadTemplInLine.new,
                     "ReadTxt" => CReadTxt.new,
                     "ReadDirectoryList" => CReadDirectoryList.new,
-                    "ReadFileList" => CReadFileList.new
+                    "ReadFileList" => CReadFileList.new,
+                    "ReadHttp" => CReadHttp.new
                 }
 	end
 	def start(param)

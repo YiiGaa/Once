@@ -16,7 +16,6 @@
             {"sourcePath":"/build.gradle","targetPath":"/"},
             {"sourcePath":"/gradlew","targetPath":"/"},
             {"sourcePath":"/gradlew.bat","targetPath":"/"},
-            {"sourcePath":"/HELP.md","targetPath":"/"},
             {"sourcePath":"/settings.gradle","targetPath":"/"},
             {"sourcePath":"@codeRoot@/yiigaa/once/controller", "targetPath":"@codeRoot@/@targetGroup@/@@/controller"},
             {"sourcePath":"@codeRoot@/yiigaa/once/controllercommon", "targetPath":"@codeRoot@/@targetGroup@/@@/controllercommon"},
@@ -60,7 +59,8 @@
                 "targetPath":{"rootPath":"/Christmas/Input","contain":".json"},
                 "replaceStr":{
                     "yiigaa":"@targetGroup@",
-                    "once":"@@"
+                    "once":"@@",
+                    ".XX.":".once."
                 }
             },
             {

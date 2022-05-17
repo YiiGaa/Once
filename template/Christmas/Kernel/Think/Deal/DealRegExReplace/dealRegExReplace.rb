@@ -1,8 +1,8 @@
 =begin
  param = {
-	 "temlp" => "*",                   	//需要代入的模板，string
+	 "temlp" => "*",                   				//需要代入的模板，string
 	 "startStr"=>"",								//默认为@@
-	 "endStr"=>"",                                 //默认为@@
+	 "endStr"=>"",                                 	//默认为@@
      "substitutionParameter" => "",                 //代入参数，json
  }
  retrunParam = {

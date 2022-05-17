@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -223,7 +221,7 @@ public class DataBaseDao {
                 sqlValueStringBuilder.deleteCharAt(sqlValueStringBuilder.length() - 1);
                 query = "INSERT INTO " + form_String + sqlKeyStringBuilder.toString() + " VALUES" + sqlValueStringBuilder;
             } else {
-                StringBuilder valueSB = new StringBuilder();
+                StringBuilder valueBatch = new StringBuilder();
                 int indexOf = query.indexOf("#");
                 int lastIndexOf = query.lastIndexOf("#");
                 String subValue = query.substring(indexOf + 1, lastIndexOf);
@@ -236,11 +234,11 @@ public class DataBaseDao {
                     for (String key : firstKeys) {
                         tempSql = tempSql.replace("@" + key + "@", values.getString(key).replace("'", "\\'"));
                     }
-                    valueSB.append("(").append(tempSql).append("),");
+                    valueBatch.append("(").append(tempSql).append("),");
                 }
 
-                valueSB.deleteCharAt(valueSB.length() - 1);
-                query = subQuery + valueSB.toString();
+                valueBatch.deleteCharAt(valueBatch.length() - 1);
+                query = subQuery + valueBatch.toString();
             }
 
             HashMap<String, Object> excuteResult = updateDb(query);
@@ -494,7 +492,8 @@ public class DataBaseDao {
 
         try {
             int page = (passParam.get("page") == null)?1:Integer.parseInt(passParam.get("page").toString());
-            int per_page = (passParam.get("per_page") == null)?1:Integer.parseInt(passParam.get("per_page").toString());
+            int per_page = (moduleParam.get("per_page") == null)?1:Integer.parseInt(moduleParam.get("per_page").toString());
+            per_page = (passParam.get("per_page") == null)?per_page:Integer.parseInt(passParam.get("per_page").toString());
             boolean isNullError = (moduleParam.get("isNullError") == null)?false:Boolean.parseBoolean(moduleParam.get("isNullError").toString());
             boolean isNotNullError = (moduleParam.get("isNotNullError") == null)?false:Boolean.parseBoolean(moduleParam.get("isNotNullError").toString());
             boolean isAsResult = (moduleParam.get("isAsResult") == null)?false:Boolean.parseBoolean(moduleParam.get("isAsResult").toString());
@@ -727,6 +726,7 @@ public class DataBaseDao {
                 break;
             case "batchInsert":
                 returnParam = batchInsertInDb(param);
+                break;
             default:
                 break;
         }

@@ -1,6 +1,7 @@
 {
     "targetDir":"../src/main/java/com",
     "path":"",
+    "isJudgeExist":true,
     "waitInputParam":"@@",
     "templ":"templ",
     "documentPath":{

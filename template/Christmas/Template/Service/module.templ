@@ -16,17 +16,17 @@
             }
 
 ######MODULE-DeleteFile######
-######MODULE-FillingParam######
-            //STEP: FillingParam
-            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+######MODULE-FillingParams######
+            //STEP: FillingParams
+            moduleMap.put("moduleParam", new LinkedHashMap<String, String>(){{
 @@param@@
             }});
-            moduleMap = ServiceModule.invokeMethod("FillingParam", moduleMap);
+            moduleMap = ServiceModule.invokeMethod("FillingParams", moduleMap);
             if(ErrorCodes.isErrorHappens(moduleMap)){
                 return moduleMap;
             }
 
-######MODULE-FillingParam######
+######MODULE-FillingParams######
 ######MODULE-DAO######
             //STEP: call DataBase
             moduleMap.put("moduleParam", new HashMap<String, String>(){{

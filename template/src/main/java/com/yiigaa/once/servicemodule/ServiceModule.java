@@ -1,6 +1,7 @@
 package com.yiigaa.once.servicemodule;
 import com.yiigaa.once.servicemodule.DeleteFile.DeleteFile;
-import com.yiigaa.once.servicemodule.FillingParam.FillingParam;
+
+import com.yiigaa.once.servicemodule.FillingParams.FillingParams;
 import java.util.HashMap;
 
 /*
@@ -18,6 +19,7 @@ public class ServiceModule {
 
     private static HashMap<String, Link> moduleMaps = new HashMap<String, Link>(){{
         put("DeleteFile", new DeleteFile());
-        put("FillingParam", new FillingParam());
+
+        put("FillingParams", new FillingParams());
     }};
 }

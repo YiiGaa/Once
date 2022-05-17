@@ -12,7 +12,10 @@ import java.util.Map;
 import java.util.Set;
 
 /*
+**version: v1.0
 **Please do not modify the following
+**If you modify the following contents, please re LinkModule: ruby Christmas.rb ./Menu/MakeEngineeringNormal/AutoLinkModule
+
 ######LinkpackageImport start######
 import com.yiigaa.once.controllermodule.CheckHashParam.CheckHashParam;
 ######LinkpackageImport end######
@@ -38,9 +41,9 @@ public class CheckHashParam extends Link {
         try {
             JSONObject passParam = (JSONObject) param.get("passParam");
             HashMap<String, String> moduleParam = (HashMap<String, String>) param.get("moduleParam");
-            JSONObject sessionSave = (JSONObject) param.get("sessionSave");
             JSONObject returnParam = (JSONObject) param.get("returnParam");
             HttpServletRequest request = (HttpServletRequest)param.get("httpRequest");
+            
             boolean module_isClean = (moduleParam.get("module_isClean") == null)?true:Boolean.parseBoolean(moduleParam.get("module_isClean").toString());
             String module_targetKey = (moduleParam.get("module_targetKey") == null)?null:moduleParam.get("module_targetKey").toString();
             JSONArray jsonArray=null;
@@ -94,10 +97,7 @@ public class CheckHashParam extends Link {
                 passParam.put(module_targetKey,newJsonArray);
             }
 
-
-
             returnMap.put("passParam", passParam);
-            returnMap.put("sessionSave", sessionSave);
             returnMap.put("returnParam", returnParam);
             returnMap.put("httpRequest", request);
         } catch(Exception e){

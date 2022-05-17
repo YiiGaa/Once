@@ -71,9 +71,11 @@ public class ErrorCodes {
         put("DAO_ExcuteSearch_Exception", new String[]{"E-SD08(Dao)", "数据库执行更新崩溃"});
         put("DAO_Order_Block", new String[]{"E-SD09(Dao)", "非法Order"});
         //DeleteFile
-        put("MODULE_DeleteFile_block", new String[]{"E-SM01(DeleteFile)", "删除文件失败"});
+        put("MODULE_DeleteFile_block", new String[]{"E-SM01(DeleteFile)", "非法文件目录"});
         put("MODULE_DeleteFile_exception", new String[]{"E-SM02(DeleteFile)", "删除文件崩溃"});
-        //FillingParam
-        put("MODULE_FillingParam_exception", new String[]{"E-SM01(FillingParam)", "填充参数崩溃"});
+
+        //FillingParams
+        put("MODULE_FillingParams_sessionGet_block", new String[]{"E-SM01(FillingParams)", "session获取失败"});
+        put("MODULE_FillingParams_exception", new String[]{"E-SM02(FillingParams)", "填充参数崩溃"});
     }};
 }

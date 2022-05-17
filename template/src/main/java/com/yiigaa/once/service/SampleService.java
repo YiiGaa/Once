@@ -12,6 +12,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 @Service("SampleService")
 public class SampleService {
@@ -48,6 +49,37 @@ public class SampleService {
         return moduleMap;
     }
 
+    public HashMap<String, Object> addDataBatch(HashMap<String, Object> moduleMap) {
+        COMMON_LOGGER.DEBUG(moduleMap, "Service start");
+
+        try {
+            //STEP: call DataBase
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+					put("control","batchInsert");
+					put("targetKey","temp_insert");
+					put("query","INSERT INTO t_test (test_id, test_name) VALUES #'@test_id@', '@test_name@'#");
+
+            }});
+            moduleMap = _DataBaseDao.start(moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                return moduleMap;
+            }
+
+
+           
+        } catch(Exception e){
+            COMMON_LOGGER.ERROR(moduleMap, ErrorCodes.getErrorInfoFromException(e));
+            ((JSONObject)moduleMap.get("returnParam")).put("errorCode", "Serivce_Inner_block");
+
+        }  finally {
+            //STEP get errorMessage
+            moduleMap = ErrorCodes.getErrorMessage(moduleMap);
+        }
+
+        COMMON_LOGGER.DEBUG(moduleMap, "Service end");
+        return moduleMap;
+    }
+
     public HashMap<String, Object> getData(HashMap<String, Object> moduleMap) {
         COMMON_LOGGER.DEBUG(moduleMap, "Service start");
 
@@ -56,6 +88,7 @@ public class SampleService {
             moduleMap.put("moduleParam", new HashMap<String, String>(){{
 					put("control","select");
 					put("isAsResult","true");
+					put("per_page","3");
 					put("query","select * from t_test where test_id='@test_id@'");
 
             }});

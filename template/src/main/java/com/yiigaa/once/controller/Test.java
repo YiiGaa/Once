@@ -17,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 @Controller
 @RequestMapping("/test")
@@ -32,7 +33,6 @@ public class Test {
         JSONObject returnJson = new JSONObject();
         HashMap<String, Object> moduleMap = new HashMap<String, Object>();
         moduleMap.put("passParam", requestJson);
-        moduleMap.put("sessionSave", new JSONObject());
         moduleMap.put("returnParam", new JSONObject());
         moduleMap.put("httpRequest", request);
         moduleMap.put("moduleParam", new JSONObject());
@@ -64,7 +64,7 @@ public class Test {
                 returnJson.put("tempStorage", requestJson.get("tempStorage"));
             }
 
-            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true, true);
+            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true);
         }
 
         
@@ -78,7 +78,6 @@ public class Test {
         JSONObject returnJson = new JSONObject();
         HashMap<String, Object> moduleMap = new HashMap<String, Object>();
         moduleMap.put("passParam", requestJson);
-        moduleMap.put("sessionSave", new JSONObject());
         moduleMap.put("returnParam", new JSONObject());
         moduleMap.put("httpRequest", request);
         moduleMap.put("moduleParam", new JSONObject());
@@ -110,7 +109,7 @@ public class Test {
                 returnJson.put("tempStorage", requestJson.get("tempStorage"));
             }
 
-            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true, true);
+            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true);
         }
 
         
@@ -124,7 +123,6 @@ public class Test {
         JSONObject returnJson = new JSONObject();
         HashMap<String, Object> moduleMap = new HashMap<String, Object>();
         moduleMap.put("passParam", requestJson);
-        moduleMap.put("sessionSave", new JSONObject());
         moduleMap.put("returnParam", new JSONObject());
         moduleMap.put("httpRequest", request);
         moduleMap.put("moduleParam", new JSONObject());
@@ -156,7 +154,7 @@ public class Test {
                 returnJson.put("tempStorage", requestJson.get("tempStorage"));
             }
 
-            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true, true);
+            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true);
         }
 
         
@@ -170,7 +168,6 @@ public class Test {
         JSONObject requestJson = new JSONObject();
         HashMap<String, Object> moduleMap = new HashMap<String, Object>();
         moduleMap.put("passParam", new JSONObject());
-        moduleMap.put("sessionSave", new JSONObject());
         moduleMap.put("returnParam", new JSONObject());
         moduleMap.put("httpRequest", request);
 
@@ -210,7 +207,7 @@ public class Test {
                 returnJson.put("tempStorage", requestJson.get("tempStorage"));
             }
 
-            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true, true);
+            COMMON_LOGGER.INFO(moduleMap, "Rest-api end", false, true);
         }
         
         return returnJson;

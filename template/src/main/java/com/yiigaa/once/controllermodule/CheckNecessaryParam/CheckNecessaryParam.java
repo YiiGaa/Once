@@ -13,7 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 /*
+**version: v1.0
 **Please do not modify the following
+**If you modify the following contents, please re LinkModule: ruby Christmas.rb ./Menu/MakeEngineeringNormal/AutoLinkModule
+
 ######LinkpackageImport start######
 import com.yiigaa.once.controllermodule.CheckNecessaryParam.CheckNecessaryParam;
 ######LinkpackageImport end######
@@ -30,6 +33,8 @@ import com.yiigaa.once.controllermodule.CheckNecessaryParam.CheckNecessaryParam;
         //CheckNecessaryParam
         put("MODULE_CheckNecessaryParam_block", new String[]{"E-CM01(CheckNecessaryParam)", "缺少必要参数"});
         put("MODULE_CheckNecessaryParam_exception", new String[]{"E-CM02(CheckNecessaryParam)", "检查必要参数崩溃"});
+        put("MODULE_CheckNecessaryParam_array_block", new String[]{"E-CM03(CheckNecessaryParam)", "存在参数的值为非数组"});
+        put("MODULE_CheckNecessaryParam_arrayEmpty_block", new String[]{"E-CM04(CheckNecessaryParam)", "存在参数的值为空数组"});
 ######ErrorCodes end######
 */
 
@@ -39,7 +44,6 @@ public class CheckNecessaryParam extends Link {
         try {
             JSONObject passParam = (JSONObject) param.get("passParam");
             HashMap<String, String> moduleParam = (HashMap<String, String>) param.get("moduleParam");
-            JSONObject sessionSave = (JSONObject) param.get("sessionSave");
             JSONObject returnParam = (JSONObject) param.get("returnParam");
             HttpServletRequest request = (HttpServletRequest)param.get("httpRequest");
 
@@ -61,16 +65,24 @@ public class CheckNecessaryParam extends Link {
                     case "nec@@list":
                         if (entryValue == null){
                             returnParam.put("errorCode", "MODULE_CheckNecessaryParam_block");
+                            break;
                         }
                         if (!(entryValue instanceof JSONArray)){
-                            returnParam.put("errorCode", "MODULE_CheckNecessaryParam_block");
+                            returnParam.put("errorCode", "MODULE_CheckNecessaryParam_array_block");
+                            break;
                         }
                         if(((JSONArray) JSONArray.parse(entryValue.toString())).size()==0){
-                            returnParam.put("errorCode", "MODULE_CheckNecessaryParam_block");
+                            returnParam.put("errorCode", "MODULE_CheckNecessaryParam_arrayEmpty_block");
+                            break;
                         }
                         break;
                     case "opt":
+                        break;
                     case "opt@@list":
+                        if (entryValue != null && !(entryValue instanceof JSONArray)){
+                            returnParam.put("errorCode", "MODULE_CheckNecessaryParam_array_block");
+                        }
+                        break;
                 }
                 if(module_isClean){
                     if(entryValue != null) {
@@ -89,7 +101,6 @@ public class CheckNecessaryParam extends Link {
             }
 
             returnMap.put("passParam", passParam);
-            returnMap.put("sessionSave", sessionSave);
             returnMap.put("returnParam", returnParam);
             returnMap.put("httpRequest", request);
         } catch(Exception e){

@@ -1,64 +1,77 @@
 # Controller 模块：ErgodicGetParam
 
-## 1 模块功能简述
+## 模块功能简述
 
-ErgodicGetParam模块的主要功能包括：
-- 把GET请求方式的参数存进passParam
+ErgodicGetParam的主要功能包括：
+
+> 把Url或form表单的参数转换为Json格式，存放到passParam数据池中。
+
+- 获取Url中的参数；
+- 获取form表单中的参数；
 
 
-## 2 Christmas 引入例子
+| 模块名          | 最新版本 | 模块位置   | 依赖服务 |
+| --------------- | -------- | ---------- | -------- |
+| ErgodicGetParam | v1.0     | Controller | 无       |
 
-- 无需引入模块，在配置function时把templ配置为FUNCTION-GET会自动引入
+## Christmas 使用例子
+
+使用此模块，在/Christmas/Input/MakeCodeNormal/Controller@xxx/target.json中使用。
+
+- 此模块无需引入，在配置一个接口的function时把templ配置为FUNCTION-GET会自动引入
 
 ```
                         "function":[{
-                        	"templ":"FUNCTION-GET",
-                        	"mode":"GET",
+                        	"templ":"FUNCTION-GET"
                         }]
 ```
 
+## 配置文件设置
 
-## 3 参数配置
+| 参数 | 必要 | 缺省值 | 说明 |
+| ---- | ---- | ------ | ---- |
+|      |      |        |      |
 
-生产环境在/config/application.properties文件中配置
+配置文件配置项在ErgodicGetParam/Templates.tmpl中，修改配置后，需要重新[连接模块](https://stoprefactoring.com/#content@content#framework/once/module-link)才能让配置生效。
 
-本地环境在/config/application-local.properties文件中配置
+- 生产环境的配置在propertiesTemplate中，连接模块后，会自动生成到/config/application.properties文件中；
+- 开发环境的配置在propertiesTemplate local中，连接模块后，会自动生成到/config/application-local.properties文件中；
 
-| 参数                                | 必要 | 默认参数 | 说明                                               |
-| ----------------------------------- | ---- | -------- | -------------------------------------------------- |
-|                                     |      |          |                                                     |
+## moduleParam参数说明
 
+### 通用参数
 
-## 4 moduleParam参数说明
+| 参数 | 必要 | 类型 | 缺省值 | 取值范围 | 说明 |
+| ---- | ---- | ---- | ------ | -------- | ---- |
+|      |      |      |        |          |      |
 
-#### 架构数据池说明：
-- passParam：中间参数，所有模块共享的数据池，API请求时传过来的参数在一开始也会放在里面
-- moduleParam：模块独有参数，模块调用前传入
-- sessionSave：准备存进session的数据池，所有模块共享的数据池，需要之后调用sessionSave模块才能把数据存进session
-- returnParam：接口返回的数据池，所有模块共享的数据池，存进去后，最后会自动返回给请求端
-- httpRequest：HttpServletRequest，接口访问时的原始数据对象
-其中passParam，sessionSave，returnParam的数据类型为JsonObject，moduleParam的数据类型为HashMap<String, String> 即字符串的键值对
+#### 模块参数参数类型说明：
 
-#### 参数类型说明：
+- String：普通的字符串
+- StringX：超级字符串，可以添加多个@xx@在里面，模块会自动把passParam中xx字段的值替换到这个字符串中。如，moduleParam中有{"abc":"@userid@"}，模块会自动把passParam中userid字段的值替换进去，如果passParam中不存在userid则保留原状。
+- Bool：Bool型，true/false
+- Int：Int型，数字类型
 
-- string：普通的字符串
-- stringX：超级字符串，可以添加多个@xx@在里面，模块会自动把passParam中xx字段的值替换到这个字符串中。如，moduleParam中有{"abc":"@@userid@@"}，模块会自动把passParam中userid字段的值替换进去，如果passParam中不存在userid即不替换。
-- bool：bool型，true/false
-- int：int型，数字类型
+>注意：moduleParam的参数类型是指参数的真实类型，比如isNotNullError的类型为bool（true/false），但是在填入Christmas时，依然以字符串形式（如：{"isNotNullError":"true"}）写入，另外，int类型也需要写成字符串的形式如（如：{"maxFileSize":"20000"}）。
 
-`注意：`moduleParam的参数类型是指参数的真实类型，比如isNotNullError的类型为bool，只有true和false，在填入Christmas时，依然以字符串形式（如：{"isNotNullError":"true"}）写入
-### 4.0 通用参数
+#### Once架构数据池说明：
 
-| 参数    | 必要 | 类型   | 缺省值 | 前提条件 | 说明                                                      |
-| ------- | ---- | ------ | ------ | -------- | --------------------------------------------------------- |
-|        |        |      |        |          |   |
+- passParam：中间参数，所有模块共享的数据池，API请求时传过来的参数在会自动放在里面；
 
+- moduleParam：模块独有参数，模块调用时传入，Christmas使用例子中的param实际上就是模块参数；
 
-## 5 部署依赖
+- returnParam：接口返回的数据池，所有模块共享的数据池，存进去后，最后会自动返回给请求端；
 
-xx，连接信息详见`参数配置`
+- httpRequest：HttpServletRequest，接口访问时的原始数据对象；
 
-## 6 SpringBoot(Gradle)依赖
-**详细见ErgodicGetParam.java中的GradleImport，一般情况下不要修改
+> passParam，sessionSave，returnParam的数据类型为JsonObject，moduleParam的数据类型为HashMap<String, String> 即字符串的键值对。
 
-## 7 其他说明
+## 报错说明
+
+报错说明详细见ErgodicGetParam.java中的ErrorCodes。
+
+## SpringBoot(Gradle)依赖
+
+依赖包详细见ErgodicGetParam.java中的GradleImport。
+
+## 其他说明
