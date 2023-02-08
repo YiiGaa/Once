@@ -54,6 +54,8 @@ public class ErgodicGetParam extends Link {
                    if (!subParameter.equals("")){
                        String[] split = subParameter.split(",");
                        parameter= JSONObject.toJSON(split);
+                   }else{
+                        parameter = new JSONArray();
                    }
                }
                 passParam.put(tempKey, parameter);
