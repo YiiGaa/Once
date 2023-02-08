@@ -1,0 +1,25 @@
+**Please do not modify the following
+
+====== codeTemplate start ======
+######MODULE-DeleteFile######
+            //STEP: DeleteFile
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ServiceModule.invokeMethod("DeleteFile", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                return moduleMap;
+            }
+
+######MODULE-DeleteFile######
+====== codeTemplate end ======
+
+====== propertiesTemplate start ======
+##ServiceModuel: DeleteFile
+service.deletefile.rootpath=/data
+====== propertiesTemplate end ======
+
+====== propertiesTemplate local start ======
+##ServiceModuel: DeleteFile
+service.deletefile.rootpath=/data
+====== propertiesTemplate local end ======

@@ -1,0 +1,24 @@
+**Please do not modify the following
+
+====== codeTemplate start ======
+######MODULE-FillingHashParam######
+			//STEP: filling hash param
+            moduleMap.put("moduleParam", new LinkedHashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = ControllerModule.invokeMethod("FillingHashParam", moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                returnJson = (JSONObject) moduleMap.get("returnParam");
+                return returnJson;
+            }
+
+######MODULE-FillingHashParam######
+====== codeTemplate end ======
+
+====== propertiesTemplate start ======
+##ControllerModuel: FillingHashParam
+====== propertiesTemplate end ======
+
+====== propertiesTemplate local start ======
+##ControllerModuel: FillingHashParam
+====== propertiesTemplate local end ======

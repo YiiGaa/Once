@@ -1,0 +1,41 @@
+**Please do not modify the following
+
+====== codeTemplate start ======
+######MODULE-DAO######
+            //STEP: call DataBase
+            moduleMap.put("moduleParam", new HashMap<String, String>(){{
+@@param@@
+            }});
+            moduleMap = _DataBaseDao.start(moduleMap);
+            if(ErrorCodes.isErrorHappens(moduleMap)){
+                return moduleMap;
+            }
+
+######MODULE-DAO######
+====== codeTemplate end ======
+
+====== propertiesTemplate start ======
+##ServiceModuel: DataSourceDao
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+spring.datasource.username=root
+spring.datasource.password=YiiGaa#00
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.max-active=20
+spring.datasource.max-idle=8
+spring.datasource.min-idle=8
+spring.datasource.initial-size=10
+====== propertiesTemplate end ======
+
+====== propertiesTemplate local start ======
+##ServiceModuel: DataSourceDao
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+spring.datasource.username=root
+spring.datasource.password=YiiGaa#00
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.max-active=20
+spring.datasource.max-idle=8
+spring.datasource.min-idle=8
+spring.datasource.initial-size=10
+====== propertiesTemplate local end ======
