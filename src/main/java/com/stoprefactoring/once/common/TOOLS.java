@@ -271,4 +271,15 @@ public class TOOLS {
             return "\n\rbad getErrorInfoFromException!\n\r";
         }
     }
+
+    public static String ReadPassParam(String key, String defaultValue, HashMap<String, Object> dataPool){
+        String keyPass = JsonPathChangeReal(key);
+        JSONObject passParam = (JSONObject) dataPool.get("passParam");
+        Object returnValue = passParam.getByPath(keyPass);
+        if(returnValue instanceof String){
+            return returnValue.toString();
+        }
+
+        return defaultValue;
+    }
 }

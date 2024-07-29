@@ -57,14 +57,15 @@ class ReplaceTemplate:
         if isinstance(param, list):
             isContract = False
             for index in range(len(param)):
-                param[index] = ReplaceTemplate.Traverse(param[index], frontKey, templateKey)
-                if isinstance(param[index], str):
-                    isContract = True
+                if isinstance(param[index], dict) or isinstance(param[index], list):
+                    param[index] = ReplaceTemplate.Traverse(param[index], frontKey, templateKey)
+                    if isinstance(param[index], str):
+                        isContract = True
             if isContract == True:
                 content = ''
                 for value in param:
                     if isinstance(value, dict) or isinstance(value, list):
-                        value = json.dumps(list)
+                        value = json.dumps(value)
                     elif isinstance(value, int):
                         value = str(value)
                     elif isinstance(value, bool):

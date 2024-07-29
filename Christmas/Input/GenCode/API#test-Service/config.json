@@ -1,0 +1,15 @@
+{
+    "inputSign":"?",
+    "rewaitInput":"[move name]",
+    "isJudgeExist":false,
+    "isExistBackup":false,
+    "isFillLack":true,
+    "templatePath":{
+        "file":"./Template/Init-Move/Move-Service.templ",
+        "function":"./Template/Init-Move/Function-Service.templ",
+        "module":"./Template/Init-Move/Module.templ",
+        "moduleError":"./Template/Init-Move/Module.templ",
+        "skip":"./Template/Init-Move/Module-Skip.templ",
+        "switch":"./Template/Init-Move/Module-Switch.templ"
+    }
+}

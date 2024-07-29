@@ -97,6 +97,7 @@ public enum ERRORCODE {
     ERR_Module__DataCheck_Check_Block,
     ERR_Module__DataCheck_Lack_Block,
     ERR_Module__DataCheck_LensLimit_Over,
+    ERR_Module__DataCheck_List_Empty,
     ERR_Module__DataCheck_JsonPath_Illegal,
     //_OperSession
     ERR_Module__OperSession_Exception,
@@ -180,6 +181,7 @@ public enum ERRORCODE {
         put(ERR_Module__DataCheck_Check_Block, new String[]{"E-WS(_DataCheck)", "_DataCheck Check block"});
         put(ERR_Module__DataCheck_Lack_Block, new String[]{"E-WS(_DataCheck)", "_DataCheck Check lack param"});
         put(ERR_Module__DataCheck_LensLimit_Over, new String[]{"E-WS(_DataCheck)", "_DataCheck Check list over length limit"});
+        put(ERR_Module__DataCheck_List_Empty, new String[]{"E-WS(_DataCheck)", "_DataCheck Check list is empty"});
         put(ERR_Module__DataCheck_JsonPath_Illegal, new String[]{"E-WS(_DataCheck)", "_DataCheck Check json path is illegal"});
         //_OperSession
         put(ERR_Module__OperSession_Exception, new String[]{"E-WS(_OperSession)", "_OperSession exception"});

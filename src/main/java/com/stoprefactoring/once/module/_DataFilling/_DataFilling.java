@@ -342,7 +342,8 @@ public class _DataFilling extends Link {
             LOGGER.DEBUG("Module-_DataFilling DoStart param, _setting:" + _setting.toString());
 
             //STEP::Traverse for filling data
-            Object resultObject = TraverseJson(_setting, new JSONObject(), false, passParam, request, _isSessionNullError);
+            JSONObject targetJson = _isSetReturnParam? returnParam.clone(): passParam.clone();
+            Object resultObject = TraverseJson(_setting, targetJson, false, passParam, request, _isSessionNullError);
             if(resultObject instanceof ERRORCODE){
                 return (ERRORCODE)resultObject;
             }

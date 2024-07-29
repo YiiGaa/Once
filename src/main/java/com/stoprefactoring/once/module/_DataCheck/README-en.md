@@ -106,6 +106,8 @@ Supplementary description of module parameters:
 
 - The value of the template Json can add `int##`, `str##`, `double` as prefixes to check the value type, `int#` as the number (including bool type, true for 1, false for 0), and `str##` as the string (mute Recognize), `double##` is a floating point type, `long##` is a long integer. For example, `double##3.5/8.3` indicates that the value requirement is 3.5 or 8.3
 
+- The value of the template Json, if it only contains type restrictions, such as `int##`, `str##`, the module only makes type judgment and does not limit the specific value
+
 - The value of the template Json can add `reg##` as a prefix to check values in the form of regular expressions, such as `reg##[a-z]`, where `[a-z]` is a regular expression. It should be noted that when verifying in the form of regular expressions, it defaults to the string type. If you need to check the number type, set it to `int##reg##[0-9]`, which means `0-9`
 
 - The value of the template Json can add `not##` as the prefix, indicating that the check result is reversed.
@@ -118,7 +120,7 @@ Supplementary description of module parameters:
 
 - The value of the template Json is `[]`, which means that the value type is limited to the Json array. If it is empty `[]`, it means that the internal data is not limited
 
-- The value of the template Json is `[]`, and the value range can be set internally, such as `["1","2",{"key":"value"}]`. As long as it meets an element setting, it can be checked
+- The value of the template Json is `[]`, and the value range can be set internally, such as `["1","2",{"key":"value"}]`. As long as it meets an element setting, it can be checked.If the value range is set, the Json array cannot be empty.
 
 # ◎ Module test separately
 

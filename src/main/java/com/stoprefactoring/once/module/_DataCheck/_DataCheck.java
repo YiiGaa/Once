@@ -65,13 +65,7 @@ public class _DataCheck extends Link {
     private Boolean TraverseJson_CheckValue(Object require, Object passParam){
         String requireValue = (String)require;
 
-        //WHEN::Allow anything
-        if(requireValue.equals("")){
-            return true;
-        }
-
-        //STEP::Get judge value
-        String judgeValue = "";
+        //STEP::Remove type setting
         if(requireValue.startsWith("str##")){
             requireValue = requireValue.substring("str##".length());
         } else if(requireValue.startsWith("int##")){
@@ -81,6 +75,14 @@ public class _DataCheck extends Link {
         } else if(requireValue.startsWith("long##")){
             requireValue = requireValue.substring("long##".length());
         }
+
+        //WHEN::Allow anything
+        if(requireValue.equals("")){
+            return true;
+        }
+
+        //STEP::Get judge value
+        String judgeValue = "";
         if(passParam instanceof String){
             judgeValue = (String)passParam;
         }
@@ -304,6 +306,11 @@ public class _DataCheck extends Link {
                     }
                 }
                 return ERRORCODE.ERR_OK;
+            }
+
+            if(((JSONArray)passParam).isEmpty()){
+                LOGGER.DEBUG("Module-_DataCheck list is empty");
+                return ERRORCODE.ERR_Module__DataCheck_List_Empty;
             }
 
             //WHEN-IN::Not empty[] will check every item

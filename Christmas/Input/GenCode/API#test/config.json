@@ -1,0 +1,16 @@
+{
+    "inputSign":"?",
+    "rewaitInput":"[move name]",
+    "isJudgeExist":false,
+    "isExistBackup":false,
+    "isFillLack":true,
+    "templatePath":{
+        "file":"./Template/Init-Move/Move-API.templ",
+        "api":"./Template/Init-Move/Function-API.templ",
+        "module":"./Template/Init-Move/Module.templ",
+        "moduleError":"./Template/Init-Move/Module.templ",
+        "switchService":"./Template/Init-Move/Module-Piece.templ",
+        "skip":"./Template/Init-Move/Module-Skip.templ",
+        "switch":"./Template/Init-Move/Module-Switch.templ"
+    }
+}

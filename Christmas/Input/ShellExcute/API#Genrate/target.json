@@ -1,5 +1,14 @@
 [   
-    
+    {
+        "Xmas_shell":"python3 Christmas.py Input/GenCode/API#test",
+        "Xmas_cwd":".",
+        "Xmas_judge":true
+    },
+    {
+        "Xmas_shell":"python3 Christmas.py Input/GenCode/API#test-Service",
+        "Xmas_cwd":".",
+        "Xmas_judge":true
+    },
     {
         "Xmas_shell":"python3 Christmas.py Input/MergeCode/LinkModule",
         "Xmas_cwd":".",
