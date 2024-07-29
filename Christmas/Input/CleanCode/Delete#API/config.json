@@ -1,4 +1,4 @@
 {
     "inputSign":"?",
-    "rewaitInput":"[move name]"
+    "rewaitInput":"[api group name]"
 }

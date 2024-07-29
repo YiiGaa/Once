@@ -1,6 +1,6 @@
 {
     "inputSign":"?",
-    "rewaitInput":"[move name]",
+    "rewaitInput":"[api group name]",
     "isJudgeExist":true,
     "isExistBackup":true,
     "templatePath":{
