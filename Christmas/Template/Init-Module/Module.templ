@@ -1,0 +1,51 @@
+######DEFAULT######
+package com.stoprefactoring.once.module.@@name@@;
+
+import com.alibaba.fastjson2.JSONObject;
+import com.stoprefactoring.once.common.ERRORCODE;
+import com.stoprefactoring.once.common.LOGGER;
+import com.stoprefactoring.once.common.TOOLS;
+import com.stoprefactoring.once.module.Link;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+
+public class @@name@@ extends Link {
+    private ERRORCODE DoStart(JSONObject moduleParam, HashMap<String, Object> dataPool, ERRORCODE result){
+        JSONObject passParam = (JSONObject) dataPool.get("passParam");
+        JSONObject returnParam = (JSONObject) dataPool.get("returnParam");
+        HttpServletRequest request = (HttpServletRequest)dataPool.get("httpRequest");
+        HttpServletResponse response = (HttpServletResponse)dataPool.get("httpResponse");
+
+        try{
+            //Write code
+
+        } catch (Exception e) {
+            LOGGER.ERROR("Module-@@name@@ exception:"+TOOLS.GetExceptionInfo(e), moduleParam, dataPool);
+            result = ERRORCODE.ERR_Module_@@name@@_Exception;
+        }
+
+        return result;
+    }
+
+    @Override
+    public ERRORCODE Start(JSONObject moduleParam, HashMap<String, Object> dataPool){
+        LOGGER.DEBUG("Module-@@name@@ start", moduleParam, dataPool);
+        ERRORCODE result = ERRORCODE.ERR_OK;
+        result = DoStart(moduleParam, dataPool, result);
+        LOGGER.DEBUG("Module-@@name@@ end", moduleParam, dataPool);
+        return result;
+    }
+
+    @Override
+    public ERRORCODE End(HashMap<String, Object> dataPool, ERRORCODE result){
+        LOGGER.DEBUG("Module-@@name@@ End start", dataPool);
+        try{
+            //Some work of cleaning up the module（When Controller end or Service end）
+            //You need to set "Module.moduleNeedCallEnd.put("@@name@@",true)" in @@name@@Config.Init() to take effect
+        }catch (Exception e){LOGGER.ERROR("Module-@@name@@ End for clean exception:"+ TOOLS.GetExceptionInfo(e), dataPool);}
+        LOGGER.DEBUG("Module-@@name@@ End end", dataPool);
+        return result;
+    }
+}
+######DEFAULT######

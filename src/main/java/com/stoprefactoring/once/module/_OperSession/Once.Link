@@ -1,0 +1,21 @@
+######Config for application-check.properties######
+#_OperSession
+######Config for application-check.properties######
+
+######Dependencies######
+    //implementation 'xx:xx:xx'
+######Dependencies######
+
+######ErrorCode enum######
+    //_OperSession
+    ERR_Module__OperSession_Exception,
+    ERR_Module__OperSession_Action_Illegal,
+    ERR_Module__OperSession_Save_Empty,
+######ErrorCode enum######
+
+######ErrorCode######
+    //_OperSession
+    put(ERR_Module__OperSession_Exception, new String[]{"E-WS(_OperSession)", "_OperSession exception"});
+    put(ERR_Module__OperSession_Action_Illegal, new String[]{"E-WS(_OperSession)", "_OperSession Action illegal"});
+    put(ERR_Module__OperSession_Save_Empty, new String[]{"E-WS(_OperSession)", "_OperSession Save value is empty"});
+######ErrorCode######

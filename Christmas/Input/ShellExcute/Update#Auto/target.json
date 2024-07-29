@@ -1,0 +1,19 @@
+[
+    {
+        "Xmas_shell":"python3 Christmas.py Input/DownloadCode/Update#Christmas",
+        "Xmas_cwd":".",
+        "Xmas_judge":true
+    },{
+        "Xmas_shell":"python3 Christmas.py Input/DownloadCode/Update#Once",
+        "Xmas_cwd":".",
+        "Xmas_judge":true
+    },{
+        "Xmas_shell":"python3 Christmas.py Input/DownloadCode/Update#Module",
+        "Xmas_cwd":".",
+        "Xmas_judge":true
+    },{
+        "Xmas_shell":"python3 Christmas.py Input/MergeCode/LinkModule",
+        "Xmas_cwd":".",
+        "Xmas_judge":true
+    }
+]

@@ -1,0 +1,26 @@
+######DEFAULT######
+
+public ERRORCODE @@name@@(HashMap<String, Object> dataPool) {
+    LOGGER.DEBUG("SERVICE @@name@@ start", dataPool);
+    List<HashMap<String, Object>> selectorRetryData = new ArrayList<>();
+    ERRORCODE result = ERRORCODE.ERR_OK;
+    LOGGER.ChangePosition("SERVICE");
+    JSONObject moduleParam;
+
+    try {
+        //STEP::Run task
+        do{
+
+            @@module@@
+        }while (false);
+    } catch(Exception e){
+        result = ERRORCODE.ERR_Service_Exception;
+        LOGGER.ERROR("SERVICE exception:"+ TOOLS.GetExceptionInfo(e), dataPool);
+    } finally{
+        Module.End(dataPool, result);
+    }
+
+    LOGGER.DEBUG("SERVICE @@name@@ end", dataPool);
+    return result;
+}
+######DEFAULT######

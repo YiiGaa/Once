@@ -1,0 +1,85 @@
+######CONFIG-API######
+{
+    "inputSign":"?",
+    "rewaitInput":"[move name]",
+    "isJudgeExist":false,
+    "isExistBackup":false,
+    "isFillLack":true,
+    "templatePath":{
+        "file":"./Template/Init-Move/Move-API.templ",
+        "api":"./Template/Init-Move/Function-API.templ",
+        "module":"./Template/Init-Move/Module.templ",
+        "moduleError":"./Template/Init-Move/Module.templ",
+        "switchService":"./Template/Init-Move/Module-Piece.templ",
+        "skip":"./Template/Init-Move/Module-Skip.templ",
+        "switch":"./Template/Init-Move/Module-Switch.templ"
+    }
+}
+######CONFIG-API######
+
+######CONFIG-Service######
+{
+    "inputSign":"?",
+    "rewaitInput":"[move name]",
+    "isJudgeExist":false,
+    "isExistBackup":false,
+    "isFillLack":true,
+    "templatePath":{
+        "file":"./Template/Init-Move/Move-Service.templ",
+        "function":"./Template/Init-Move/Function-Service.templ",
+        "module":"./Template/Init-Move/Module.templ",
+        "moduleError":"./Template/Init-Move/Module.templ",
+        "skip":"./Template/Init-Move/Module-Skip.templ",
+        "switch":"./Template/Init-Move/Module-Switch.templ"
+    }
+}
+######CONFIG-Service######
+
+######TARGET-API######
+[
+    {
+        "Xmas_path":"../src/main/java/com/stoprefactoring/once/api/@@name@@.java",
+        "file": {
+            "name":"@@name@@",
+            "api":[
+                {
+                    "name":"API_name",
+                    "method":"POST",
+                    "module":[
+                        {
+                            "name":"Module_name",
+                            "param":{
+                                "param_key":"param_value"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]
+######TARGET-API######
+
+######TARGET-Service######
+[
+    {
+        "Xmas_path":"../src/main/java/com/stoprefactoring/once/api/@@name@@Service.java",
+        "file": {
+            "name":"@@name@@",
+            "function":[
+                {
+                    "name":"Function_name",
+                    "module":[
+                        {
+                            "name":"Module_name",
+                            "param":{
+                                "param_key":"param_value"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]
+######TARGET-Service######

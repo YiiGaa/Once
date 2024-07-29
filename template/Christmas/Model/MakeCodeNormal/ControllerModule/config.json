@@ -1,9 +1,0 @@
-{
-    "targetDir":"../src/main/java/com",
-    "waitInputParam":"@@",
-    "isJudgeExist":true,
-    "templ":"templ",
-    "documentPath":{
-        "document":"./Template/ControllerModule/document.templ"
-    }
-}

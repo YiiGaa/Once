@@ -1,0 +1,72 @@
+######DEFAULT######
+
+@RequestMapping(value="/@@name@@", method=RequestMethod.@@method@@)
+@ResponseBody
+public JSONObject @@name@@@@method@@(HttpServletRequest request, HttpServletResponse response, @RequestBody(required = false) String requestParam){
+    List<HashMap<String, Object>> selectorRetryData = new ArrayList<>();
+    HashMap<String, Object> dataPool = new HashMap<>();
+    ERRORCODE result = ERRORCODE.ERR_OK;
+    JSONObject moduleParam;
+
+    try {
+        //STEP::Init data pool
+        result = APIINIT.InitDataPool(dataPool, request, response, requestParam);
+        LOGGER.INIT("API", "API start", dataPool);
+        if(ERRORCODE.IsError(result)){
+            return null;
+        }
+
+        //STEP::Run task
+        do{
+
+            @@module@@
+        }while (false);
+
+    } catch(Exception e){
+        result = ERRORCODE.ERR_Api_Exception;
+        LOGGER.ERROR("API exception:"+ TOOLS.GetExceptionInfo(e), dataPool);
+    } finally {
+        Module.End(dataPool, result);
+        JSONObject returnJson = (JSONObject) dataPool.get("returnParam");
+        returnJson = ERRORCODE.GetErrorCode(result, returnJson);
+        LOGGER.END("API end", returnJson);
+        return returnJson;
+    }
+}
+######DEFAULT######
+
+######TIMER######
+
+@Scheduled(cron="@@time@@")
+public JSONObject @@name@@Scheduled(){
+    List<HashMap<String, Object>> selectorRetryData = new ArrayList<>();
+    HashMap<String, Object> dataPool = new HashMap<>();
+    ERRORCODE result = ERRORCODE.ERR_OK;
+    JSONObject moduleParam;
+
+    try {
+        //STEP::Init data pool
+        result = APIINIT.InitDataPool(dataPool, null, null, null);
+        LOGGER.INIT("API", "API start", dataPool);
+        if(ERRORCODE.IsError(result)){
+            return null;
+        }
+
+        //STEP::Run task
+        do{
+
+            @@module@@
+        }while (false);
+
+    } catch(Exception e){
+        result = ERRORCODE.ERR_Api_Exception;
+        LOGGER.ERROR("API exception:"+ TOOLS.GetExceptionInfo(e), dataPool);
+    } finally {
+        Module.End(dataPool, result);
+        JSONObject returnJson = (JSONObject) dataPool.get("returnParam");
+        returnJson = ERRORCODE.GetErrorCode(result, returnJson);
+        LOGGER.END("API end", returnJson);
+        return returnJson;
+    }
+}
+######TIMER######

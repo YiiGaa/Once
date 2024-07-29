@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
+class GetTemplate:
+        def Start(targetParam, moduleParam):
+        return GetTemplate.DoStart(targetParam, moduleParam)
+

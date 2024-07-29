@@ -1,0 +1,83 @@
+######Config for application-check.properties######
+#_OperFile
+spring.servlet.multipart.max-file-size=@opt@
+spring.servlet.multipart.max-request-size=@opt@
+module._OperFile.rootPath=@nec@
+module._OperFile.checkPath=@opt@
+module._OperFile.poolSize=@opt@
+module._OperFile.poolQueue=@opt@
+######Config for application-check.properties######
+
+######Dependencies######
+    //implementation 'xx:xx:xx'
+######Dependencies######
+
+######ErrorCode enum######
+    //_OperFile
+    ERR_Module__OperFile_Exception,
+    ERR_Module__OperFile_Action_Illegal,
+    ERR_Module__OperFile_Upload_File_Lack,
+    ERR_Module__OperFile_Upload_FileCount_Limit,
+    ERR_Module__OperFile_Upload_FileSize_Limit,
+    ERR_Module__OperFile_Upload_File_Empty,
+    ERR_Module__OperFile_Upload_File_FilePreCheck_Empty,
+    ERR_Module__OperFile_Upload_FileName_Illegal,
+    ERR_Module__OperFile_Upload_FileSuffix_Block,
+    ERR_Module__OperFile_Upload_File_Exist,
+    ERR_Module__OperFile_Upload_FilePreCheck_Exist,
+    ERR_Module__OperFile_Upload_UploadListSize_Incorrect,
+    ERR_Module__OperFile_Upload_CreateParentDirs_Fail,
+    ERR_Module__OperFile_Upload_Exception,
+    ERR_Module__OperFile_Delete_Path_Empty,
+    ERR_Module__OperFile_Delete_Path_Illegal,
+    ERR_Module__OperFile_Delete_Path_Lack,
+    ERR_Module__OperFile_Delete_Exception,
+    ERR_Module__OperFile_Delete_File_Fail,
+    ERR_Module__OperFile_Delete_Directory_Fail,
+    ERR_Module__OperFile_UploadRollBack_Exception,
+    ERR_Module__OperFile_Move_SourcePath_Empty,
+    ERR_Module__OperFile_Move_SourcePath_Illegal,
+    ERR_Module__OperFile_Move_TargetPath_Empty,
+    ERR_Module__OperFile_Move_TargetSource_Same,
+    ERR_Module__OperFile_Move_TargetPath_Illegal,
+    ERR_Module__OperFile_Move_SourcePath_Lack,
+    ERR_Module__OperFile_Move_TargetPath_Exist,
+    ERR_Module__OperFile_Move_TargetPath_CoverDirs_Fail,
+    ERR_Module__OperFile_Move_Exception,
+    ERR_Module__OperFile_End_Exception,
+######ErrorCode enum######
+
+######ErrorCode######
+    //_OperFile
+    put(ERR_Module__OperFile_Exception, new String[]{"E-WS(_OperFile)", "_OperFile exception"});
+    put(ERR_Module__OperFile_Action_Illegal, new String[]{"E-WS(_OperFile)", "_OperFile Action illegal"});
+    put(ERR_Module__OperFile_Upload_File_Lack, new String[]{"E-WS(_OperFile)", "_OperFile Upload file lack"});
+    put(ERR_Module__OperFile_Upload_FileCount_Limit, new String[]{"E-WS(_OperFile)", "_OperFile Upload file count over limit"});
+    put(ERR_Module__OperFile_Upload_FileSize_Limit, new String[]{"E-WS(_OperFile)", "_OperFile Upload file size over limit"});
+    put(ERR_Module__OperFile_Upload_File_Empty, new String[]{"E-WS(_OperFile)", "_OperFile Upload file is empty"});
+    put(ERR_Module__OperFile_Upload_File_FilePreCheck_Empty, new String[]{"E-WS(_OperFile)", "_OperFile Upload file is empty(pre-check)"});
+    put(ERR_Module__OperFile_Upload_FileName_Illegal, new String[]{"E-WS(_OperFile)", "_OperFile Upload file name is illegal, contain '\\' or '/'"});
+    put(ERR_Module__OperFile_Upload_FileSuffix_Block, new String[]{"E-WS(_OperFile)", "_OperFile Upload file suffix is not allow"});
+    put(ERR_Module__OperFile_Upload_File_Exist, new String[]{"E-WS(_OperFile)", "_OperFile Upload file is already exist"});
+    put(ERR_Module__OperFile_Upload_FilePreCheck_Exist, new String[]{"E-WS(_OperFile)", "_OperFile Upload file(pre-check) is already exist"});
+    put(ERR_Module__OperFile_Upload_UploadListSize_Incorrect, new String[]{"E-WS(_OperFile)", "_OperFile Upload length of uploadList is incorrect"});
+    put(ERR_Module__OperFile_Upload_CreateParentDirs_Fail, new String[]{"E-WS(_OperFile)", "_OperFile Upload create parent dirs fail"});
+    put(ERR_Module__OperFile_Upload_Exception, new String[]{"E-WS(_OperFile)", "_OperFile Upload file exception"});
+    put(ERR_Module__OperFile_Delete_Path_Empty, new String[]{"E-WS(_OperFile)", "_OperFile Delete path empty"});
+    put(ERR_Module__OperFile_Delete_Path_Illegal, new String[]{"E-WS(_OperFile)", "_OperFile Delete path illegal"});
+    put(ERR_Module__OperFile_Delete_Path_Lack, new String[]{"E-WS(_OperFile)", "_OperFile Delete path is not exists"});
+    put(ERR_Module__OperFile_Delete_Exception, new String[]{"E-WS(_OperFile)", "_OperFile Delete exception"});
+    put(ERR_Module__OperFile_Delete_File_Fail, new String[]{"E-WS(_OperFile)", "_OperFile Delete file fail"});
+    put(ERR_Module__OperFile_Delete_Directory_Fail, new String[]{"E-WS(_OperFile)", "_OperFile Delete directory fail"});
+    put(ERR_Module__OperFile_UploadRollBack_Exception, new String[]{"E-WS(_OperFile)", "_OperFile UploadRollBack file rollback exception(queue full)"});
+    put(ERR_Module__OperFile_Move_SourcePath_Empty, new String[]{"E-WS(_OperFile)", "_OperFile Move source path empty"});
+    put(ERR_Module__OperFile_Move_SourcePath_Illegal, new String[]{"E-WS(_OperFile)", "_OperFile Move source path illegal"});
+    put(ERR_Module__OperFile_Move_TargetPath_Empty, new String[]{"E-WS(_OperFile)", "_OperFile Move target path empty"});
+    put(ERR_Module__OperFile_Move_TargetSource_Same, new String[]{"E-WS(_OperFile)", "_OperFile Move target/source path is same"});
+    put(ERR_Module__OperFile_Move_TargetPath_Illegal, new String[]{"E-WS(_OperFile)", "_OperFile Move target path illegal"});
+    put(ERR_Module__OperFile_Move_SourcePath_Lack, new String[]{"E-WS(_OperFile)", "_OperFile Move source path is not exists"});
+    put(ERR_Module__OperFile_Move_TargetPath_Exist, new String[]{"E-WS(_OperFile)", "_OperFile Move target path is exists"});
+    put(ERR_Module__OperFile_Move_TargetPath_CoverDirs_Fail, new String[]{"E-WS(_OperFile)", "_OperFile Move target path is exists, and directory can not be covered"});
+    put(ERR_Module__OperFile_Move_Exception, new String[]{"E-WS(_OperFile)", "_OperFile Move exception"});
+    put(ERR_Module__OperFile_End_Exception, new String[]{"E-WS(_OperFile)", "_OperFile End file rollback exception(queue full)"});
+######ErrorCode######

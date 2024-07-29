@@ -1,0 +1,11 @@
+{
+    "inputSign":"?",
+    "rewaitInput":"[move name]",
+    "isJudgeExist":true,
+    "isExistBackup":true,
+    "templatePath":{
+        "apiFile":"./Template/Init-Move/Move-API.templ",
+        "serviceFile":"./Template/Init-Move/Move-Service.templ",
+        "XmasFile":"./Template/Init-Move/Xmas.templ"
+    }
+}

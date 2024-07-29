@@ -1,0 +1,20 @@
+{
+    "version": "1.0=2024.06.20",
+    "publish": "2024.07.27",
+    "file": [
+        "_ServeDaoGenerateMap.java",
+        "_ServeDaoConfig.java",
+        "_ServeDaoConnect.java",
+        "Once.Config",
+        "Once.Link",
+        "_ServeDao.java",
+        "README.md",
+        "Sample.java",
+        "README-en.md",
+        "Load.json"
+    ],
+    "skip": [
+        "Once.Config"
+    ],
+    "customSkip": []
+}

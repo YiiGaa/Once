@@ -1,0 +1,18 @@
+{
+    "version": "1.0=2024.07.10",
+    "publish": "2024.07.27",
+    "file": [
+        "Once.Config",
+        "Once.Link",
+        "_OperSessionConfig.java",
+        "README.md",
+        "Sample.java",
+        "README-en.md",
+        "_OperSession.java",
+        "Load.json"
+    ],
+    "skip": [
+        "Once.Config"
+    ],
+    "customSkip": []
+}

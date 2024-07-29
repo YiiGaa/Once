@@ -1,0 +1,181 @@
+######README######
+# @@name@@-说明
+
+主要功能包括：
+
+- action-说明
+
+模块参数的值说明：
+
+- 如果希望设置的值为固定值，则直接设置对应类型的值即可
+- 如果希望从`passParam`中动态获取值作为设置的值，则请以`get##key`作为模块参数的设置值
+- 如果想要获取的值在passParam的里层（嵌套json），则请以`>>`定位，如`get##key_1>>key_2`
+
+# ※ action-说明
+- 组入版本：1.0=0000.00.00
+
+```json
+{
+	"name":"@@name@@",
+	"param":{
+		"_xx":""
+	}
+}
+```
+
+| key | 说明 | 是否必要 | 默认值 | 类型 | 组入/更新版本 |
+| --- | --- | --- | --- | --- | --- |
+| _xx | 说明 | 是 |  | String | 1.0=0000.00.00 |
+
+模块参数补充说明：
+
+### > _xx
+
+- 说明
+- 补充说明
+
+# ◎ 配置说明
+
+模块配置在`@@name@@/Once.Config`中设置，通过Christmas运行应用时，会自动拼接到`config/application.properties`
+
+| key | 说明 | 是否必要 | 默认值 | 类型 | 组入/更新版本 |
+| --- | --- | --- | --- | --- | --- |
+| @@name@@.xx | 说明 | 是 |  | String | 1.0=0000.00.00 |
+
+### > @@name@@.xx
+
+- 说明
+- 补充说明
+
+
+# ◎ 模块单独测试
+
+在工程根目录，运行shell指令
+
+```
+python3 Christmas/Christmas.py ShellExcute/Compile#TestModule @@name@@
+```
+
+也可以通过`Christmas插件`运行`ShellExcute>>Compile#TestModule`，并在插件打开的终端中输入`@@name@@`
+
+### > 测试例子
+
+- URL：http://127.0.0.1:8080/once/module/sample
+
+- 请求方式：POST
+
+- 请求体类型：application/json
+
+    ```
+    {
+
+    }
+    ```
+- 期待结果：请求返回：
+
+    ```
+    {
+        "code": "200",
+        "message": "OK"
+    }
+    ```
+
+# ◎ 更新列表
+
+**1.0=0000.00.00**
+
+- 模块建立
+######README######
+
+######README-en######
+# @@name@@-explain
+
+The main functions include:
+
+- action-explain
+
+Description of the value of module parameters:
+
+- If the value you want to set is a fixed value, you can directly set the value of the corresponding type.
+
+- If you want to dynamically obtain the value from `passParam` as the set value, please use `get##key` as the setting value of the module parameter.
+
+- If the value you want to get is in the inner layer of passParam (nested json), please locate it with `>>`, such as `get##key_1>>key_2`
+
+# ※ action-explain
+
+- Add version: 1.0=0000.00.00
+
+```json
+{
+	"name":"@@name@@",
+	"param":{
+		"_xx":""
+	}
+}
+```
+
+| Key    | Description                           | Necessary | Default | Type   | Add/Update     |
+| ------ | ------------------------------------- | --------- | ------- | ------ | -------------- |
+| _xx | explain | Yes       |         | String | 1.0=0000.00.00 |
+
+Supplementary description of module parameters:
+
+### > _xx
+
+- Description
+- Supplementary description
+
+# ◎ Configuration Notes
+
+The module configuration is set in `@@name@@/Once.Config`. When the application is run through Christmas, it will be automatically spliced to `config/application.properties`
+
+| Key    | Description                           | Necessary | Default | Type   | Add/Update     |
+| ------ | ------------------------------------- | --------- | ------- | ------ | -------------- |
+| @@name@@.xx | explain | Yes       |         | String | 1.0=0000.00.00 |
+
+Supplementary description of module parameters:
+
+### > _xx
+
+- Description
+- Supplementary description
+
+# ◎ Module test separately
+
+In the project root directory, run the shell instruction
+
+```
+python3 Christmas/Christmas.py ShellExcute/Compile#TestModule @@name@@
+```
+
+You can also run ShellExcute>>Compile#TestModule through the Christmas plug-in, and enter `@@name@@` in the terminal opened by the plug-in.
+
+### > Sample
+
+- URL：http://127.0.0.1:8080/once/module/sample
+
+- Request method：POST
+
+- Content type: application/json
+
+    ```
+    {
+
+	}
+    ```
+- Expected results: Request return:
+
+    ```
+    {
+        "code": "200",
+        "message": "OK"
+    }
+    ```
+
+# ◎ Update list
+
+**1.0=0000.00.00**
+
+- Module create
+######README-en######

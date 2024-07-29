@@ -1,0 +1,31 @@
+######DEFAULT######
+package com.stoprefactoring.once.api;
+
+import com.stoprefactoring.once.common.APIINIT;
+import com.stoprefactoring.once.common.LOGGER;
+import com.stoprefactoring.once.common.TOOLS;
+import com.stoprefactoring.once.common.ERRORCODE;
+import com.stoprefactoring.once.module.Module;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.scheduling.annotation.Scheduled;
+import com.alibaba.fastjson2.JSONObject;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+@RestController
+@RequestMapping("/@@name@@")
+public class @@name@@ {
+    @Resource(name = "@@name@@Service")
+    private @@name@@Service _apiService;
+    @@api@@
+
+}
+######DEFAULT######

@@ -1,9 +1,0 @@
-{
-    "url": "https://raw.githubusercontents.com/YiiGaa/Once-Module/main/Controller",
-    "module":"@@",
-    "targetAdd":"/yiigaa/once/controllermodule/",
-    "index":"Load.json",
-    "replace":{
-        ".XX.":".once."
-    }
-}

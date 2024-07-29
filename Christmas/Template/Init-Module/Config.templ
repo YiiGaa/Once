@@ -1,0 +1,35 @@
+######DEFAULT######
+package com.stoprefactoring.once.module.@@name@@;
+
+import org.springframework.beans.factory.annotation.Value;
+import com.stoprefactoring.once.common.LOGGER;
+import com.stoprefactoring.once.module.Module;
+import org.springframework.stereotype.Component;
+import jakarta.annotation.PostConstruct;
+
+@Component
+public class @@name@@Config {
+    public @@name@@Config(){
+        LOGGER.StraightInfo("Module-@@name@@: Load configuration");
+    }
+
+    @PostConstruct
+    //This function will be called, after this module's config has been loaded
+    public void Init() {
+        //STEP::Register module
+        LOGGER.StraightInfo("Module-@@name@@: Register module");
+        Module.moduleMaps.put("@@name@@", new @@name@@());
+        Module.moduleNeedCallEnd.put("@@name@@", false);
+
+        //STEP::Init module
+        LOGGER.StraightInfo("Module-@@name@@: Init module");
+    }
+
+    //@Value("${module.@@name@@.value}")
+    //public void _value(String value) {
+    //    @@name@@Config.value = value;
+    //}
+    //public static String value;
+
+}
+######DEFAULT######

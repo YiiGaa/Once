@@ -1,0 +1,98 @@
+######DEFAULT######
+//STEP-IN::Call Module-@@name@@
+moduleParam = JSONObject.parseObject("""
+    @@param@@
+""");
+result = Module.Start("@@name@@", moduleParam, dataPool);
+if(ERRORCODE.IsError(result, new ERRORCODE[]{@@skip@@})){
+    continue;
+}
+result = ERRORCODE.ERR_OK;
+
+######DEFAULT######
+
+######SERVICE######
+//STEP-IN::Call Service
+result = _apiService.@@name@@(dataPool);
+if(ERRORCODE.IsError(result, new ERRORCODE[]{@@skip@@})){
+    continue;
+}
+result = ERRORCODE.ERR_OK;
+
+######SERVICE######
+
+######SELECTOR-RETRY######
+//STEP-IN::SELECTOR-RETRY
+{
+    selectorRetryData.add(new HashMap<>(){{
+        put("retryTime", @@retryTime@@);
+        put("backPassParam", dataPool.get("passParam"));
+        put("backReturnParam", dataPool.get("returnParam"));
+    }});
+    do {
+        dataPool.put("passParam", ((JSONObject)selectorRetryData.getLast().get("backPassParam")).clone());
+        dataPool.put("returnParam", ((JSONObject)selectorRetryData.getLast().get("backReturnParam")).clone());
+        selectorRetryData.getLast().compute("retryTime", (key, value)->{
+            Integer returnValue = 0;
+            if (value instanceof Integer) returnValue = (Integer)value-1;
+            LOGGER.DEBUG("SELECTOR-RETRY remain-try:"+returnValue);
+            return returnValue;
+        });
+
+        @@module@@
+    } while (((Integer)selectorRetryData.getLast().get("retryTime"))>0 && ERRORCODE.IsError(result, new ERRORCODE[]{@@skip@@}));
+    ((JSONObject)selectorRetryData.getLast().get("backPassParam")).clear();
+    ((JSONObject)selectorRetryData.getLast().get("backReturnParam")).clear();
+    selectorRetryData.removeLast();
+}
+if(ERRORCODE.IsError(result, new ERRORCODE[]{@@skip@@})){
+    continue;
+}
+result = ERRORCODE.ERR_OK;
+
+######SELECTOR-RETRY######
+
+######SELECTOR-ERROR######
+//STEP-IN::SELECTOR-ERROR
+do{
+   @@module@@
+}while (false);
+if(ERRORCODE.IsError(result, new ERRORCODE[]{@@skip@@})){
+    do{
+       @@moduleError@@;
+    }while (false);
+}
+if(ERRORCODE.IsError(result, new ERRORCODE[]{@@skip@@})){
+    continue;
+}
+result = ERRORCODE.ERR_OK;
+
+######SELECTOR-ERROR######
+
+######SELECTOR-SERVICE######
+//STEP-IN::SELECTOR-SERVICE
+{
+    switch (TOOLS.ReadPassParam("@@option@@", "", dataPool)){
+        @@switchService@@
+        default:
+            result = ERRORCODE.ERR_Api_Switch_Lack;
+    }
+}
+if(ERRORCODE.IsError(result, new ERRORCODE[]{@@skip@@})){
+    continue;
+}
+result = ERRORCODE.ERR_OK;
+
+######SELECTOR-SERVICE######
+
+######SELECTOR-SWITCH######
+//STEP-IN::Switch
+{
+    switch (TOOLS.ReadPassParam("@@option@@", "", dataPool)){
+        @@switch@@
+        default:
+            result = ERRORCODE.ERR_Api_Switch_Lack;
+    }
+}
+
+######SELECTOR-SWITCH######

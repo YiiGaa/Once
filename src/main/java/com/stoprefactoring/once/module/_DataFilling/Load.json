@@ -1,0 +1,18 @@
+{
+    "version": "1.0=2024.06.10",
+    "publish": "2024.07.27",
+    "file": [
+        "Once.Config",
+        "Once.Link",
+        "_DataFillingConfig.java",
+        "README.md",
+        "Sample.java",
+        "_DataFilling.java",
+        "README-en.md",
+        "Load.json"
+    ],
+    "skip": [
+        "Once.Config"
+    ],
+    "customSkip": []
+}

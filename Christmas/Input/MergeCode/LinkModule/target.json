@@ -1,0 +1,69 @@
+{
+    "Xmas_config":{
+        "@module@":"../src/main/java/com/stoprefactoring/once/module",
+        "@code@":"../src/main/java/com/stoprefactoring/once",
+        "@template@":"./Template/LinkModule",
+        "@Christmas@":"../Christmas"
+    },
+    "Xmas_clean":{},
+    "Xmas_task":[
+        {
+            "Xmas_target":"@code@/common/ERRORCODE.java",
+            "Xmas_source":{
+                "Xmas_path":"@template@/ErrorCode.templ", "Xmas_filter":"######DEFAULT######",
+                "@@enum@@":{
+                    "Xmas_path":"@module@/<>/Once.Link", "Xmas_filter":"######ErrorCode enum######"
+                },
+                "@@errorCode@@":{
+                    "Xmas_path":"@module@/<>/Once.Link", "Xmas_filter":"######ErrorCode######"
+                }
+            }
+        },{
+            "Xmas_target":"../config/application.properties",
+            "Xmas_source":{
+                "Xmas_path":"@template@/Config.templ", "Xmas_filter":"######DEFAULT######",
+                "@@setting@@":{
+                    "Xmas_path":"@module@/<>/Once.Config", "Xmas_filter":"######Config######"
+                }
+            }
+        },{
+            "Xmas_target":"../config/application-check.properties",
+            "Xmas_source":{
+                "Xmas_path":"@template@/Config.templ", "Xmas_filter":"######CHECK######",
+                "@@setting@@":{
+                    "Xmas_path":"@module@/<>/Once.Link", "Xmas_filter":"######Config for application-check.properties######"
+                }
+            }
+        },{
+            "Xmas_target":"../build.gradle",
+            "Xmas_source":{
+                "Xmas_path":"@template@/Gradle.templ", "Xmas_filter":"######DEFAULT######",
+                "@@include@@":{
+                    "Xmas_path":"@module@/<module>/Once.Link",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"//<module>\nif(!project.hasProperty('module') || project.property('module').toString() == '<module>') {\n@@dependencies config@@\n@@dependencies@@\n}",
+                    "@@dependencies config@@":{
+                        "Xmas_path":"@module@/<module>/Once.Config", "Xmas_filter":"######Dependencies Config######"
+                    },
+                    "@@dependencies@@":{
+                        "Xmas_path":"@module@/<module>/Once.Link", "Xmas_filter":"######Dependencies######"
+                    }
+                }
+            }
+        },{
+            "Xmas_target":"@Christmas@/Input/ShellExcute/API#Genrate/target.json",
+            "Xmas_source":{
+                "Xmas_path":"@template@/Xmas.templ", "Xmas_filter":"######DEFAULT######",
+                "@@piece@@":{
+                    "Xmas_path":"@Christmas@/Input/GenCode/API#<api>/target.json",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"@@<api>@@",
+                    "@@<api>@@":{
+                        "Xmas_path":"@template@/Xmas.templ", "Xmas_filter":"######API######",
+                        "@@api@@":"<api>"
+                    }
+                }
+            }
+        }
+    ]
+}
