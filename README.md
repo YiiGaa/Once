@@ -1,7 +1,10 @@
 <img src="https://raw.githubusercontents.com/YiiGaa/Trick/master/Prop/Common/Img/logo.png" width="300"/>
 
-- 最新稳定版本: 2.0=2024.07.29
+- 最新稳定版本: 2.1=2024.12.29
 - 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/#content@content#framework/once/)
+
+- Latest stable version: 2.1=2024.12.29
+- For the user manual, please refer to the official website, [click to jump to the user manual](https://stoprefactoring.com/#content@content#framework/once/)
 
 # 编写RESTful-API就像画流程图一样
 
@@ -157,6 +160,9 @@ The specific working principle is:
 ![](design/overview-work-3-en.jpg)
 
 # 历史版本
+## 2.1
+- [update]业务代码（target.json）迁移到java代码同级目录
+- [bug]当API请求方式为GET时，会对url参数进行多余的URL解码（报错）
 
 ## 2.0
 
@@ -178,6 +184,11 @@ The specific working principle is:
 - 业务代码由Json配置，由代码生成器生成Java代码
 
 # Historical version
+
+## 2.1
+
+- [update] Business code (target.json) is migrated to the same-level directory of java code
+- [bug] When the API request method is GET, the url parameters will be decoded (error)
 
 ## 2.0
 

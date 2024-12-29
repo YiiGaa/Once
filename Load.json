@@ -1,5 +1,5 @@
 {
-    "version": "2.0=2024.07.29",
+    "version": "2.1=2024.12.29",
     "file": [
         "HELP.md",
         "build.gradle",
@@ -75,13 +75,18 @@
         "src/main/java/com/stoprefactoring/once/common/LOGGER.java",
         "src/main/java/com/stoprefactoring/once/common/ERRORCODE.java",
         "src/main/java/com/stoprefactoring/once/common/TOOLS.java",
+        "src/main/java/com/stoprefactoring/once/module/Module.java",
+        "src/main/java/com/stoprefactoring/once/module/Link.java",
         "Load.json"
     ],
     "skip": [
         "../src/main/java/com/stoprefactoring/once/common/ERRORCODE.java",
         "build.gradle",
         "settings.gradle",
-        "config/",
+        "config/application.properties",
+        "config/application-check.properties",
+        "config/log4j2.xml",
+        "config/log4j2-check.xml",
         "Christmas/Input/ShellExcute/API#Genrate/target.json",
         "Christmas/Input/DownloadCode/Update#Module/target.json",
         "Christmas/Input/DownloadCode/Update#Christmas/target.json",
