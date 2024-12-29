@@ -20,7 +20,8 @@ class GenCode:
             'mod_fileKey':'Xmas_path',
             'mod_isJudgeExist':configParam['isJudgeExist'],
             'mod_isExistBackup':configParam['isExistBackup'],
-            'mod_isFillLack':configParam['isFillLack']
+            'mod_isFillLack':configParam['isFillLack'],
+            'mod_fillLackMap':configParam['fillLackMap']
         })
 
     def Start(targetParam, configParam):

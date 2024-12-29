@@ -28,10 +28,10 @@ class ReplaceTemplate:
     def ReplaceTarget(param, templateKey):
         content = param[templateKey]
         try:
-            isRelaceHash = False
+            isReplaceHash = False
             listContent = ''
             if '@@key@@' in content and '@@value@@' in content:
-                isRelaceHash = True
+                isReplaceHash = True
 
             for key,value in param.items():
                 if key != templateKey:
@@ -41,12 +41,12 @@ class ReplaceTemplate:
                         value = str(value)
                     elif isinstance(value, bool):
                         value = str(value)
-                    if isRelaceHash:
+                    if isReplaceHash:
                         tempContent = content.replace(f'@@key@@', key)
                         listContent += tempContent.replace(f'@@value@@', value) + '\n'
                     else:
                         content = ReplaceTemplate.ReplaceTarget_AddSpace(content, f'@@{key}@@', value)
-            if isRelaceHash:
+            if isReplaceHash:
                 content = listContent.removesuffix('\n')
         except Exception as e:
             print(f'Error: {e}')

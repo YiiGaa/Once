@@ -20,9 +20,11 @@ class Move:
 
     def DefaultConfig(param):
         defaultConfig = {
+            'targetFile':'',
             'isJudgeExist':True,
             'isExistBackup':True,
 			'isFillLack':False,
+			'fillLackMap':{},
             'templatePath':{}
         }
         for key,value in defaultConfig.items():
@@ -126,14 +128,16 @@ class Move:
         if isFileConfig == True:
             print(f'{Config.logPrefix}file mode.')
 
-            loadPath = f'{Config.inputPath}{targetPath}{Config.targetFile}'
-            print(f'{Config.logPrefix}loading '+loadPath)
-            targetParam = Move.ReadConfig(loadPath)
-
             loadPath = f'{Config.inputPath}{targetPath}{Config.configFile}'
             print(f'{Config.logPrefix}loading '+loadPath)
             configParam = Move.ReadConfig(loadPath)
             configParam = Move.DefaultConfig(configParam)
+
+            loadPath = f'{Config.inputPath}{targetPath}{Config.targetFile}'
+            if configParam['targetFile'] != '':
+                loadPath = configParam['targetFile']
+            print(f'{Config.logPrefix}loading '+loadPath)
+            targetParam = Move.ReadConfig(loadPath)
 
             print(f'{Config.logPrefix}replace setting')
             targetParam = Move.ReplaceSetting(targetParam, configParam, setting)

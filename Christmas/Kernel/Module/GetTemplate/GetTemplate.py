@@ -40,8 +40,8 @@ class GetTemplate:
             if not param and frontKey in templatePath:
                 return ''
             for key,value in param.items():
-                if isinstance(value, str):
-                    if key == templateKey:
+                if key == templateKey:
+                    if isinstance(value, str):
                         if frontKey in templatePath:
                             param[key] = GetTemplate.ReadFile(value, frontKey, templatePath[frontKey])
                 else:
@@ -50,14 +50,17 @@ class GetTemplate:
             if frontKey in templatePath:
                 content = GetTemplate.ReadFile('DEFAULT', frontKey, templatePath[frontKey])
                 if '@@value@@' in content:
-                    param = content.replace('@@value@@', param)
+                    param = {
+                        templateKey: content,
+                        'value': param
+                    }
         return param
 
     def DoStart(targetParam, moduleParam):
         templateKey = moduleParam['mod_templateKey'] if 'mod_templateKey' in moduleParam else ''
         templatePath = moduleParam['mod_templatePath'] if 'mod_templatePath' in moduleParam else {}
 
-        targetParam = GetTemplate.Traverse(targetParam, '', templateKey, templatePath)  
+        targetParam = GetTemplate.Traverse(targetParam, '', templateKey, templatePath)
         return targetParam
 
     def Start(targetParam, moduleParam):

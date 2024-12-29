@@ -1,10 +1,10 @@
 [
     {
-        "Xmas_shell":"python3 Christmas.py Input/ShellExcute/API#Genrate",
+        "Xmas_shell":"python3 Christmas.py Input/MergeCode/LinkModule",
         "Xmas_cwd":".",
         "Xmas_judge":true
     },{
-        "Xmas_shell":"python3 Christmas.py Input/MergeCode/LinkModule",
+        "Xmas_shell":"python3 Christmas.py Input/ShellExcute/API#Genrate",
         "Xmas_cwd":".",
         "Xmas_judge":true
     },{

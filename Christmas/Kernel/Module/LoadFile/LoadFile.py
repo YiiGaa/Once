@@ -18,16 +18,19 @@ class LoadFile:
         try:
             result = urllib.request.urlopen(f'{sourcePath}?license={license}')         
             lines = result.readlines()
-            targetFile = open(targetPath, 'a', 0o777)
+            targetFile = open(targetPath, 'ab', 0o777)
             if len(lines)>=1 and 'License forbidden.' in str(lines[0]):
                 print('')
                 print('Error: The request is rejected, the license may not have been added, or the license has expired.')
                 LoadFile.ErrorLog()
             for line in lines:
-                line = line.decode('utf-8')
-                for key,value in replace.items():
-                    line = line.replace(key, value)            
-                targetFile.write(line)
+                try:
+                    line = line.decode('utf-8')
+                    for key,value in replace.items():
+                        line = line.replace(key, value)
+                    targetFile.write(line.encode('utf-8'))
+                except:
+                    targetFile.write(line)
             targetFile.close()
         except urllib.error.HTTPError as e:
             print(e)
