@@ -38,14 +38,14 @@ public class APIINIT {
                         if (parameterMap.isEmpty())
                             break;
                         for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
-                            String paramKey = URLDecoder.decode(entry.getKey(), StandardCharsets.UTF_8);
+                            String paramKey = entry.getKey();
                             String[] paramValues = entry.getValue();
                             if (paramValues.length == 1) {
-                                passParam.put(paramKey, URLDecoder.decode(paramValues[0], StandardCharsets.UTF_8));
+                                passParam.put(paramKey, paramValues[0]);
                             } else {
                                 JSONArray tempArray = new JSONArray();
                                 for (String item : paramValues) {
-                                    tempArray.add(URLDecoder.decode(item, StandardCharsets.UTF_8));
+                                    tempArray.add(item);
                                 }
                                 passParam.put(paramKey, tempArray);
                             }
