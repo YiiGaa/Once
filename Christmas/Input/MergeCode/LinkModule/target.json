@@ -55,7 +55,7 @@
             "Xmas_source":{
                 "Xmas_path":"@template@/Xmas.templ", "Xmas_filter":"######DEFAULT######",
                 "@@piece@@":{
-                    "Xmas_path":"@Christmas@/Input/GenCode/API#<api>/target.json",
+                    "Xmas_path":"@Christmas@/Input/GenCode/API#<api>/config.json",
                     "Xmas_filter":"-", "Xmas_select":"-",
                     "":"@@<api>@@",
                     "@@<api>@@":{

@@ -1,6 +1,7 @@
 {
+    "targetFile": "../src/main/java/com/stoprefactoring/once/api/test/test.json",
     "inputSign":"?",
-    "rewaitInput":"[move name]",
+    "rewaitInput":"[]",
     "isJudgeExist":false,
     "isExistBackup":false,
     "isFillLack":true,

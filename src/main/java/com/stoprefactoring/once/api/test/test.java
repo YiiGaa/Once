@@ -1,4 +1,4 @@
-package com.stoprefactoring.once.api;
+package com.stoprefactoring.once.api.test;
 
 import com.stoprefactoring.once.common.APIINIT;
 import com.stoprefactoring.once.common.LOGGER;

@@ -1,6 +1,6 @@
 [
     {
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/api/testService.java",
+        "Xmas_path":"../src/main/java/com/stoprefactoring/once/api/test/testService.java",
         "file": {
             "name":"test",
             "function":[

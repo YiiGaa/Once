@@ -1,4 +1,4 @@
-package com.stoprefactoring.once.api;
+package com.stoprefactoring.once.api.test;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.stoprefactoring.once.common.ERRORCODE;
