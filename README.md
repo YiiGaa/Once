@@ -3,7 +3,7 @@
 - 最新稳定版本: 2.2=2025.01.06
 - 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/#content@content#framework/once/)
 
-- Latest stable version: 2.1=2024.12.29
+- Latest stable version: 2.2=2025.01.06
 - For the user manual, please refer to the official website, [click to jump to the user manual](https://stoprefactoring.com/#content@content#framework/once/)
 
 # 编写RESTful-API就像画流程图一样
