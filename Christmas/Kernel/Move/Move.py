@@ -39,7 +39,7 @@ class Move:
     def ReadConfig(param):
         content = ''
         try:
-            targetFile = open(param)
+            targetFile = open(param, encoding='utf-8')
             line = targetFile.readline()
             while line:
                 content = content + line

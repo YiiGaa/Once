@@ -62,7 +62,7 @@ class WriteFile:
                     os.mkdir(checkDir, 0o777)
 
             print(f'{Config.logPrefix}{targetFile}')
-            targetFile = open(targetFile, 'w', 0o777)
+            targetFile = open(targetFile, 'w', 0o777, encoding='utf-8')
             targetFile.write(content)
             targetFile.close()
         except Exception as e:

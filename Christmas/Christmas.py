@@ -10,7 +10,7 @@ import json
 
 def PrintVersion():
     print('')
-    with open('./Load.json', 'r') as file:
+    with open('./Load.json', 'r', encoding='utf-8') as file:
         content = json.load(file)
         content = content['version']
         print(f'Christmas v{content}')
@@ -36,6 +36,8 @@ if __name__ == '__main__':
         PrintVersion()
         action = sys.argv[1]
         setting = []
+        if os.name == 'nt':
+            action = action.replace('\\', '/')
         for list in sys.argv[2:]:
             setting.append(list)
         Move.Start(action, setting)

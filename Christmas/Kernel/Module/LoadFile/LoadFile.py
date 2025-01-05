@@ -18,7 +18,7 @@ class LoadFile:
         try:
             result = urllib.request.urlopen(f'{sourcePath}?license={license}')         
             lines = result.readlines()
-            targetFile = open(targetPath, 'ab', 0o777)
+            targetFile = open(targetPath, 'ab', 0o777, encoding='utf-8')
             if len(lines)>=1 and 'License forbidden.' in str(lines[0]):
                 print('')
                 print('Error: The request is rejected, the license may not have been added, or the license has expired.')
@@ -40,7 +40,7 @@ class LoadFile:
     def LoadFile_Local(sourcePath, targetPath, replace):
         with open(sourcePath, 'r', encoding='utf-8') as file:
             lines = file.readlines()
-            targetFile = open(targetPath, 'a', 0o777)
+            targetFile = open(targetPath, 'a', 0o777, encoding='utf-8')
             for line in lines:
                 for key,value in replace.items():
                     line = line.replace(key, value)            
@@ -67,7 +67,7 @@ class LoadFile:
         localLoad = {}
         try:
             content = ''
-            targetFile = open(path)
+            targetFile = open(path, encoding='utf-8')
             line = targetFile.readline()
             while line:
                 content = content + line

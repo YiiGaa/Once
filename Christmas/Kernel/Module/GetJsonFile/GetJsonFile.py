@@ -9,7 +9,7 @@ class GetJsonFile:
         mod_isToHash = moduleParam['mod_isToHash'] if 'mod_isToHash' in moduleParam else False
 
         content = ''
-        targetFile = open(mod_path)
+        targetFile = open(mod_path, encoding='utf-8')
         line = targetFile.readline()
         while line:
             content = content + line

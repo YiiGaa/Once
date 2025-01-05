@@ -248,7 +248,7 @@ class GenFile:
         #STEP::Add \n when output file exist
         if isOutput == True:
             isAddLine = True if os.path.exists(outPath) else False
-            outFile = open(outPath, 'a', 0o777)
+            outFile = open(outPath, 'a', 0o777, encoding='utf-8')
             if isAddLine:
                 outFile.write('\n')
         
@@ -259,7 +259,7 @@ class GenFile:
             return content
 
         #STEP::Open file and select text
-        sourceFile = open(filePath)
+        sourceFile = open(filePath, encoding='utf-8')
         line = sourceFile.readline()
         isFirstLine = True
         isMark = False if filterStr != '' else True

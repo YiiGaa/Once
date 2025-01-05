@@ -12,7 +12,7 @@ class GetTemplate:
         content = ''
         isMark = False
         try:
-            targetFile = open(templateFile)
+            targetFile = open(templateFile, encoding='utf-8')
             line = targetFile.readline()
             while line:
                 if f'######{fitlerKey}######' in line:
