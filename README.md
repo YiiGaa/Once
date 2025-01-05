@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontents.com/YiiGaa/Trick/master/Prop/Common/Img/logo.png" width="300"/>
 
-- 最新稳定版本: 2.1=2024.12.29
+- 最新稳定版本: 2.2=2025.01.06
 - 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/#content@content#framework/once/)
 
 - Latest stable version: 2.1=2024.12.29
@@ -160,6 +160,10 @@ The specific working principle is:
 ![](design/overview-work-3-en.jpg)
 
 # 历史版本
+## 2.2
+- [update]升级Christmas 2.3
+- [bug]修复Windows下，Christmas及插件无法正常使用
+
 ## 2.1
 - [update]业务代码（target.json）迁移到java代码同级目录
 - [bug]当API请求方式为GET时，会对url参数进行多余的URL解码（报错）
@@ -184,6 +188,10 @@ The specific working principle is:
 - 业务代码由Json配置，由代码生成器生成Java代码
 
 # Historical version
+
+## 2.2
+- [update] Upgrade to Christmas 2.3
+- [bug] Fixed the issue where Christmas and plugins could not be used normally under Windows
 
 ## 2.1
 
