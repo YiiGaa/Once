@@ -18,7 +18,7 @@ class LoadFile:
         try:
             result = urllib.request.urlopen(f'{sourcePath}?license={license}')         
             lines = result.readlines()
-            targetFile = open(targetPath, 'ab', 0o777, encoding='utf-8')
+            targetFile = open(targetPath, 'ab', 0o777)
             if len(lines)>=1 and 'License forbidden.' in str(lines[0]):
                 print('')
                 print('Error: The request is rejected, the license may not have been added, or the license has expired.')
