@@ -2,12 +2,12 @@
 
 Christmas是一个通用代码生成器，如果代码不能只写一次，那就生成它。
 
-最新稳定版本: 2.2=2024.12.29
+最新稳定版本: 2.3=2025.01.06
 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/#content@content#framework/christmas/)
 
 Christmas is a generic code generator that generates code if it can't be written just once.
 
-Latest stable version: 2.2=2024.12.29
+Latest stable version: 2.3=2025.01.06
 For detailed documentation, please refer to the official website, [click to jump to the manual](https://stoprefactoring.com/#content@content#framework/christmas/).
 
 ---
@@ -59,6 +59,12 @@ Christmas contains five major functions
 - ShellExcute: shell command line programming
 
 ## 历史版本 Revision History
+
+### 2.3
+- [bug]修复Windows下，Christmas插件不能正常使用
+- [bug]修复Windows下，打开/写入UTF-8文件报错
+- [bug] Fixed the issue that the Christmas plugin cannot be used normally under Windows
+- [bug] Fixed the error when opening/writing UTF-8 files under Windows
 
 ### 2.2
 - [update]config.json增加通用字段targetFile，允许引用外部target.json

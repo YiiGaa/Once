@@ -89,12 +89,14 @@ class GenFile:
                 findPath = findPath + '/' if findPath != path else findPath
 
             result = glob.glob(path)
+            result = [tempPath.replace('\\', '/') for tempPath in result]
             allResult = result
             for value in result:
                 if os.path.isfile(value):
                     continue
                 else:
-                    allResult += glob.glob(value+'**' if value[-1]=='/' else value+'/**')
+                    tempData = glob.glob(value+'**' if value[-1]=='/' else value+'/**')
+                    allResult += [tempPath.replace('\\', '/') for tempPath in tempData]
 
             for value in allResult:
                 if os.path.isfile(value):

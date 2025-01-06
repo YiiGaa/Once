@@ -26,6 +26,7 @@ class LoadTarget:
             if '*' in targetPath:
                 resultList = []
                 fileList = glob.glob(targetPath)
+                fileList = [tempPath.replace('\\', '/') for tempPath in fileList]
                 matchKey = targetPath.replace('*', '(.*?)')
                 if matchKey.startswith('(.*?)'):
                     matchKey = '(.*)' + matchKey[5:]
