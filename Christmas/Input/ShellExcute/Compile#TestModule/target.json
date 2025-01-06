@@ -4,8 +4,12 @@
         "Xmas_cwd":".",
         "Xmas_judge":true
     },{
-        "Xmas_shell":"sh gradlew bootRun -Pmodule=??",
+        "Xmas_shell":".\\gradlew bootRun -Pmodule=??",
         "Xmas_cwd":"../",
-        "Xmas_judge":true
+        "Xmas_judge":false
+    },{
+        "Xmas_shell":"sh gradlew bootRun -Pmodule=?? #for mac/linux",
+        "Xmas_cwd":"../",
+        "Xmas_judge":false
     }
 ]

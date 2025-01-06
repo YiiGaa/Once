@@ -8,8 +8,12 @@
         "Xmas_cwd":".",
         "Xmas_judge":true
     },{
-        "Xmas_shell":"sh gradlew bootRun",
+        "Xmas_shell":".\\gradlew bootRun",
         "Xmas_cwd":"../",
-        "Xmas_judge":true
+        "Xmas_judge":false
+    },{
+        "Xmas_shell":"sh gradlew bootRun #for mac/linux",
+        "Xmas_cwd":"../",
+        "Xmas_judge":false
     }
 ]
