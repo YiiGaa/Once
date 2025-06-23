@@ -1,10 +1,10 @@
 <img src="https://raw.githubusercontents.com/YiiGaa/Trick/master/Prop/Common/Img/logo.png" width="300"/>
 
 - 最新稳定版本: 2.2=2025.01.06
-- 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/#content@content#framework/once/)
+- 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/official/content?t=framework&p=once&i=overview-overview)
 
 - Latest stable version: 2.2=2025.01.06
-- For the user manual, please refer to the official website, [click to jump to the user manual](https://stoprefactoring.com/#content@content#framework/once/)
+- For the user manual, please refer to the official website, [click to jump to the user manual](https://stoprefactoring.com/official/content?t=framework&p=once&i=overview-overview)
 
 # 编写RESTful-API就像画流程图一样
 
