@@ -1,14 +1,15 @@
 ######DEFAULT######
-package com.stoprefactoring.once.module.@@name@@;
+package main.module.@@name@@;
 
-import com.alibaba.fastjson2.JSONObject;
-import com.stoprefactoring.once.common.APIINIT;
-import com.stoprefactoring.once.common.ERRORCODE;
-import com.stoprefactoring.once.common.LOGGER;
-import com.stoprefactoring.once.module.Module;
+import main.common.APIINIT;
+import main.common.ERRORCODE;
+import main.common.LOGGER;
+import main.common.TOOLS;
+import main.module.Module;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
+import tools.jackson.databind.JsonNode;
 import java.util.HashMap;
 
 @RequestMapping("/module")
@@ -16,39 +17,40 @@ import java.util.HashMap;
 public class Sample {
     @RequestMapping(value="/sample", method= RequestMethod.POST)
     @ResponseBody
-    public JSONObject sample(HttpServletRequest request, HttpServletResponse response, @RequestBody(required = false) String requestParam){
+    public JsonNode sample(HttpServletRequest request, HttpServletResponse response, @RequestBody(required = false) String requestParam){
         HashMap<String, Object> dataPool = new HashMap<>();
         ERRORCODE result = ERRORCODE.ERR_OK;
-        JSONObject moduleParam;
+        JsonNode moduleParam;
 
         try {
             //STEP::Init data pool
             result = APIINIT.InitDataPool(dataPool, request, response, requestParam);
             LOGGER.INIT("API", "API start", dataPool);
+            Module.Init(dataPool);
             if(ERRORCODE.IsError(result)){
                 return null;
             }
 
             //STEP::Call Module
-            moduleParam = JSONObject.parseObject("""
+            moduleParam = TOOLS.JsonParse("""
                 {
-                    //module setting
-               }
+
+                }
             """);
             result = Module.Start("@@name@@", moduleParam, dataPool);
             if(ERRORCODE.IsError(result)){
                 return null;
             }
 
-        } catch(Exception e){
+        }  catch(Exception e){
             e.printStackTrace();
             result = ERRORCODE.ERR_Api_Exception;
         } finally {
             Module.End(dataPool, result);
-            JSONObject returnJson = (JSONObject) dataPool.get("returnParam");
-            returnJson = ERRORCODE.GetErrorCode(result, returnJson);
-            LOGGER.END("API end", returnJson);
-            return returnJson;
+            JsonNode passParam = (JsonNode) dataPool.get("passParam");
+            passParam = ERRORCODE.GetErrorCode(result, passParam);
+            LOGGER.END("API end", passParam);
+            return passParam;
         }
     }
 }

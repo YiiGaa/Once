@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-import json
+import Kernel.Common.Lib.json5 as json
 
 class GetJsonFile:
     def DoStart(dataPool, moduleParam):

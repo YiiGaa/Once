@@ -1,0 +1,89 @@
+######DEFAULT######
+//STEP-IN::Call Module-@@name@@
+moduleParam = TOOLS.JsonCache("""
+    @@param@@
+""");
+result = Module.Start("@@name@@", moduleParam, dataPool);
+if(ERRORCODE.IsError(result, new ERRORCODE[]{
+    @@skip@@})){
+    continue;
+}
+result = ERRORCODE.ERR_OK;
+
+######DEFAULT######
+
+######SELECTOR-CALL######
+//STEP-IN::SELECTOR-CALL
+result = this.@@call@@FUNCTION(dataPool);
+if(ERRORCODE.IsError(result)){
+    continue;
+}
+result = ERRORCODE.ERR_OK;
+
+######SELECTOR-CALL######
+
+######SELECTOR-RETRY######
+//STEP-IN::SELECTOR-RETRY
+{
+    selectorRetryData.add(new HashMap<>(){{
+        put("retryTime", (Integer)@@count@@);
+        put("backPassParam", dataPool.get("passParam"));
+    }});
+    do {
+        dataPool.put("passParam", ((JsonNode)selectorRetryData.getLast().get("backPassParam")).deepCopy());
+        selectorRetryData.getLast().compute("retryTime", (key, value)->{
+            Integer returnValue = (Integer) 0;
+            if (value instanceof Integer) returnValue = (Integer) ((Integer)value-1);
+            LOGGER.DEBUG("SELECTOR-RETRY remain-try:"+returnValue);
+            return returnValue;
+        });
+        
+        do{
+            @@module@@
+        }while(false);
+
+        if(((Integer)selectorRetryData.getLast().get("retryTime"))>0 && ERRORCODE.IsError(result)){
+            Thread.sleep(@@interval@@);
+        }
+    } while (((Integer)selectorRetryData.getLast().get("retryTime"))>0 && ERRORCODE.IsError(result));
+    selectorRetryData.removeLast();
+}
+if(ERRORCODE.IsError(result)){
+    continue;
+}
+result = ERRORCODE.ERR_OK;
+
+######SELECTOR-RETRY######
+
+######SELECTOR-TRY######
+//STEP-IN::SELECTOR-TRY
+do{
+    @@module@@
+}while (false);
+//STEP-IN::SELECTOR-TRY(ERROR)
+if(ERRORCODE.IsError(result)){
+    do{
+        @@error@@
+    }while (false);
+}
+if(ERRORCODE.IsError(result)){
+    continue;
+}
+result = ERRORCODE.ERR_OK;
+
+######SELECTOR-TRY######
+
+######SELECTOR-ERROR######
+@@module@@
+######SELECTOR-ERROR######
+
+######SELECTOR-SWITCH######
+//STEP-IN::SELECTOR-SWITCH
+switch (TOOLS.ReadPassParam("@@option@@", dataPool)){
+    @@switch@@
+    default:do{
+            @@module@@
+        }while (false);
+}
+
+######SELECTOR-SWITCH######

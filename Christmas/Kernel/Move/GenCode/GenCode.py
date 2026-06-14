@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 from Kernel.Module.Module import Module
+from Kernel.Common.Logger.Logger import Logger
 
 class GenCode:
     def DoStart(targetParam, configParam):
@@ -27,4 +28,4 @@ class GenCode:
     def Start(targetParam, configParam):
         GenCode.DoStart(targetParam, configParam)
         print('')
-        print('SUCCESS')
+        Logger.Tips('SUCCESS')

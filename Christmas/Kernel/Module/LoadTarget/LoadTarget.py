@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from Kernel.Config.Config import Config
+from Kernel.Common.Config.Config import Config
+from Kernel.Common.Logger.Logger import Logger
 import glob
 import re
 import copy
@@ -8,7 +9,7 @@ import copy
 
 class LoadTarget:
     def ErrorLog():
-        print('Quit! Module LoadTarget Error.')
+        Logger.Error('Quit! Module LoadTarget Error.')
         exit(-1)
 
     def DoStart(targetParam, moduleParam):

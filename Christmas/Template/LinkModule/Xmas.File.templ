@@ -1,0 +1,502 @@
+######DEFAULT######
+{
+    "Xmas_tab":4,
+    "Xmas_sign":"<<",
+    "Xmas_template":{
+        " <<Xmas_path":"<<param<<path",
+        "file": {
+            " <<name":"<<param<<name",
+            "api":"<<node<<&"
+        }
+    },
+    "Xmas_setting":{
+        "&":{
+            "Xmas_node":{
+                "repeat":"^\\&[a-zA-Z0-9_]+ /*[_a-zA-Z][_a-zA-Z0-9]*",
+                "define":"^\\&function [_a-zA-Z][_a-zA-Z0-9]*"
+            },
+            "Xmas_highlight":[
+                {"node":"", "line":"^&\\w+", "key":"&\\w+", "type":"keyword"}
+            ],
+            "Xmas_check":[
+                {
+                    "node":"^&\\w+",
+                    "line":"^&\\w+",
+                    "check":[
+                        "^&post /[_a-zA-Z][_a-zA-Z0-9]*$",
+                        "^&delete /[_a-zA-Z][_a-zA-Z0-9]*$",
+                        "^&put /[_a-zA-Z][_a-zA-Z0-9]*$",
+                        "^&get /[_a-zA-Z][_a-zA-Z0-9]*$",
+                        "^&timer [_a-zA-Z][_a-zA-Z0-9]* ((?:[0-5]?\\d|\\*|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*)(?:/[1-9]\\d*)?)\\s+((?:[0-5]?\\d|\\*|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*)(?:/[1-9]\\d*)?)\\s+((?:[01]?\\d|2[0-3]|\\*|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*)(?:/[1-9]\\d*)?)\\s+((?:0?[1-9]|[12]\\d|3[01]|\\*|\\?|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*|L|LW|[0-3]?[0-9]W)(?:/[1-9]\\d*)?)\\s+((?:0?[1-9]|1[0-2]|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC|\\*|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*)(?:/[1-9]\\d*)?)\\s+((?:[1-7]|MON|TUE|WED|THU|FRI|SAT|SUN|\\*|\\?|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*|L|[1-7]L|[1-5]#[1-5])(?:/[1-9]\\d*)?)$",
+                        "^&function [a-zA-Z_][_a-zA-Z0-9]*$"
+                    ],
+                    "tips":[
+                        {"line":"^&post",     "tips":"&post /[name]"},
+                        {"line":"^&delete",   "tips":"&delete /[name]"},
+                        {"line":"^&put",      "tips":"&put /[name]"},
+                        {"line":"^&get",      "tips":"&get /[name]"},
+                        {"line":"^&timer",    "tips":"&timer [name] [scheduled]"},
+                        {"line":"^&function", "tips":"&function /[name]"},
+                        {"line":"",           "tips":"null"}
+                    ]
+                }
+            ],
+            "Xmas_hint":[
+                {
+                    "node":"",
+                    "line":"^&$",
+                    "icon":"module",
+                    "key":"&",
+                    "hint":[
+                        ["Post",     {"":"请求方式:POST","en":"Request method:POST"},     "post /~"],
+                        ["Delete",   {"":"请求方式:DELETE","en":"Request method:DELETE"}, "delete /~"],
+                        ["Put",      {"":"请求方式:PUT","en":"Request method:PUT"},       "put /~"],
+                        ["Get",      {"":"请求方式:GET","en":"Request method:GET"},       "get /~"],
+                        ["Timer",    {"":"定时器","en":"Timer"},                          "timer ~ 0 0/20 * * * ?"],
+                        ["Function", {"":"函数","en":"Function"},                         "function ~"]
+                    ]
+                }
+            ],
+            "Xmas_template":[
+                {
+                    "node":"^&timer",
+                    "template":{
+                        "Xmas_templ":"TIMER",
+                        "name":"<<(?<=^&timer )\\S+",
+                        "time":"<<1<<(?<=^&timer )\\S+ (.+)$",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&function",
+                    "template":{
+                        "Xmas_templ":"FUNCTION",
+                        "name":"<<(?<=^&function )\\S+",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&post",
+                    "template":{
+                        "name":"<<(?<=^&post /)\\S+",
+                        "method":"POST",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&delete",
+                    "template":{
+                        "name":"<<(?<=^&delete /)\\S+",
+                        "method":"DELETE",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&put",
+                    "template":{
+                        "name":"<<(?<=^&put /)\\S+",
+                        "method":"PUT",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&get",
+                    "template":{
+                        "name":"<<(?<=^&get /)\\S+",
+                        "method":"GET",
+                        "module":"<<node"
+                    }
+                }
+            ],
+            "Xmas_readme":[
+                {
+                    "node":"",
+                    "line":"^&post",
+                    "tips":{
+                        "":"※ 请求方式: POST  <br>※ 格式: &post /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Request method: POST <br>※ Format: &post /[name] <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&delete",
+                    "tips":{
+                        "":"※ 请求方式: DELETE  <br>※ 格式: &delete /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Request method: DELETE  <br>※ Format: &delete /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&put",
+                    "tips":{
+                        "":"※ 请求方式: PUT  <br>※ 格式: &put /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Request method: PUT  <br>※ Format: &put /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&get",
+                    "tips":{
+                        "":"※ 请求方式: GET  <br>※ 格式: &get /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Request method: GET  <br>※ Format: &get /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&timer",
+                    "tips":{
+                        "":"※ 自动触发: 定时器  <br>※ 格式: &timer [name] [scheduled]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ scheduled: 必要，cron表达式(定时设置)",
+                        "en":"※ Automatic trigger: Timer  <br>※ Format: &timer [name] [scheduled]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ scheduled: Necessary, cron expression(Scheduled setting)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&function",
+                    "tips":{
+                        "":"※ 函数，通过@call 调用  <br>※ 格式: &function [name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，函数名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Function, called by @call  <br>※ Format: &function [name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, function name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&",
+                    "tips":{
+                        "":"!!! 非法设置",
+                        "en":"!!! Illegal settings"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                }
+            ]
+        },
+        "@":{
+            "Xmas_node":[
+                {"line":"^@error", "match":"^@try"},
+                {"line":"^@case", "match":"^@(switch|case)"}
+            ],
+            "Xmas_highlight":[
+                {"node":"", "line":"^\\@\\w+", "key":"\\@\\w+", "type":"function"},
+                {"node":"", "line":"^\\@call", "key":"(?<=@call )&.+", "type":"keyword"},
+                {"node":"", "line":"^\\@switch", "key":"(?<=@switch ).+", "type":"property"}
+            ],
+            "Xmas_check":[
+                {
+                    "node":"^@retry",
+                    "line":"^@retry",
+                    "check":[
+                        "^@retry \\d+ \\d+"
+                    ],
+                    "tips":[
+                        {"line":"^@retry", "tips":"@retry [time] [interval]"}
+                    ]
+                },
+                {
+                    "node":"^@try",
+                    "line":"^@try",
+                    "check":[
+                        "^@try"
+                    ],
+                    "tips":[
+                        {"line":"^@try", "tips":"@try"}
+                    ]
+                },{
+                    "node":"^@switch",
+                    "line":"^@switch",
+                    "check":[
+                        "^@switch \\S"
+                    ],
+                    "tips":[
+                        {"line":"^@switch", "tips":"@switch [option]"}
+                    ]
+                },{
+                    "node":"^@case",
+                    "line":"^@case",
+                    "check":[
+                        "^@case \\S"
+                    ],
+                    "tips":[
+                        {"line":"^@case", "tips":"@case [value]"}
+                    ]
+                },{
+                    "node":"^@call",
+                    "line":"^@call",
+                    "check":[
+                        ["^@call \\&(<<1)", "&", "function (\\S+)"]
+                    ],
+                    "tips":[
+                        {"line":"^@call", "tips":"@call &[function]"}
+                    ]
+                }
+            ],
+            "Xmas_hint":[
+                {
+                    "node":"",
+                    "line":"^@$",
+                    "icon":"module",
+                    "key":"@",
+                    "hint":[
+                        ["Try/Error", {"":"错误捕获", "en":"Error capture"} , "try\n@error"],
+                        ["/Error", {"":"错误捕获", "en":"Error capture"} , "error"],
+                        ["Switch/Case", {"":"多分支选择", "en":"Multi-branch selection"} , "switch ~\n@case ~"],
+                        ["/Case", {"":"多分支选择(分支)", "en":"Multi-branch selection (branch)"} , "case ~"],
+                        ["Call", {"":"调用函数&function ~", "en":"Call function &function ~"} , "call ~"],
+                        ["Retry", {"":"失败重试", "en":"Failed retry"} , "retry 1 500"]
+                    ]
+                },{
+                    "node":"^@call ",
+                    "line":"^@call ",
+                    "icon":"module",
+                    "key":"&",
+                    "hint":[
+                        ["<<1", {"":"函数","en":"Function"}, "<<1", "&", "function (.+)"]
+                    ]
+                }
+            ],
+            "Xmas_template":[
+                {
+                    "node":"^@switch",
+                    "template":{
+                        "Xmas_templ": "SELECTOR-SWITCH",
+                        "option": "<<(?<=^@switch )\\S+",
+                        "module":"<<node",
+                        "switch":"<<pair<<@case"
+                    }
+                },{
+                    "node":"^@case",
+                    "template":{
+                        "value":"<<(?<=^@case )\\S+",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^@try",
+                    "template":{
+                        "Xmas_templ": "SELECTOR-TRY",
+                        "module":"<<node",
+                        "error":"<<pair<<@error"
+                    }
+                },{
+                    "node":"^@error",
+                    "template":{
+                        "Xmas_templ": "SELECTOR-ERROR",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^@call",
+                    "template":{
+                        "Xmas_templ":"SELECTOR-CALL",
+                        "call":"<<(?<=^@call \\&)\\S+"
+                    }
+                },{
+                    "node":"^@retry",
+                    "template":{
+                        "Xmas_templ":"SELECTOR-RETRY",
+                        "0<<count": "<<(?<=@retry )(\\d+)",
+                        "0<<interval": "<<1<<(?<=@retry )\\d+ (\\d+)",
+                        "module":"<<node"
+                    }
+                }
+            ],
+            "Xmas_readme":[
+                {
+                    "node":"^@(try|error)",
+                    "line":"^@(try|error)",
+                    "tips":{
+                        "":"※ 逻辑选择器: 错误捕获<br>※ 格式: <br>@try<br>&nbsp;&nbsp;&nbsp;&nbsp;...正常逻辑<br>@error<br>&nbsp;&nbsp;&nbsp;&nbsp;...错误逻辑",
+                        "en":"※ Logical selector: Error capture<br>※ Format:<br>@try<br>&nbsp;&nbsp;&nbsp;&nbsp;...Normal logic<br>@error<br>&nbsp;&nbsp;&nbsp;&nbsp;...Error logic"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/Selector.md",
+                        "en":"Christmas/Readme/Selector-en.md"
+                    }
+                },{
+                    "node":"^@(switch|case)",
+                    "line":"^@(switch|case)",
+                    "tips":{
+                        "":"※ 逻辑选择器: 多分支选择<br>※ 格式: <br>@switch [从passParam中获取值的key]<br>&nbsp;&nbsp;&nbsp;&nbsp;...默认逻辑<br>@case [分支值]<br>&nbsp;&nbsp;&nbsp;&nbsp;...分支逻辑<br>@case ...",
+                        "en":"※ Logical selector: Multi-branch selection<br>※ Format:<br>@switch [the key to get the value from passParam]<br>&nbsp;&nbsp;&nbsp;&nbsp;...Default logic<br>@case [case value]<br>&nbsp;&nbsp;&nbsp;&nbsp;...Case logic<br>@case ..."
+                    },
+                    "path":{
+                        "":"Christmas/Readme/Selector.md",
+                        "en":"Christmas/Readme/Selector-en.md"
+                    }
+                },{
+                    "node":"^@call",
+                    "line":"^@call",
+                    "tips":{
+                        "":"※ 逻辑选择器: 调用函数<br>※ 格式: @call &[function]",
+                        "en":"※ Logical selector: Call function<br>※ Format: @call &[function]"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/Selector.md",
+                        "en":"Christmas/Readme/Selector-en.md"
+                    }
+                },{
+                    "node":"^@(retry)",
+                    "line":"^@(retry)",
+                    "tips":{
+                        "":"※ 逻辑选择器: 失败重试<br>※ 格式: <br>@call [重试次数] [间隔时间, 1000=1s]<br>&nbsp;&nbsp;&nbsp;&nbsp;...逻辑",
+                        "en":"※ Logical selector: Failed retry<br>※ Format: <br>@call [Count of rtry] [Interval time, 1000=1s]<br>&nbsp;&nbsp;&nbsp;&nbsp;...Logic"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/Selector.md",
+                        "en":"Christmas/Readme/Selector-en.md"
+                    }
+                }
+            ]
+        },
+        ">":{
+            "Xmas_node":"leaf",
+            "Xmas_highlight":[
+                {"node":"", "line":"^>\\w+", "key":">\\w+( +-.*?(?=\\!|$))?",  "type":"keyword"},
+                {"node":"", "line":"^>\\w+", "key":"(?<= )![A-Za-z0-9_]+", "type":"keyword"},
+                {"node":"", "line":"^_.\\w+:", "key":"(?<=: )get##.*", "type":"property"},
+                {"node":"", "line":"^_.\\w+:", "key":"(?<=Key: ).*", "type":"property"},
+                {"node":"", "line":"^(?![>_\"'-]).+", "key":"^.+?(?=:)", "type":"property"},
+                {"node":"", "line":"^- .+", "key":"(?<=-).+?(?=:)", "type":"property"}
+            ],
+            "Xmas_check":[
+                @@module check@@
+                {
+                    "node":"^>",
+                    "line":"^>",
+                    "check":[],
+                    "tips":[
+                        {"line":"", "tips":{"":"缺少模块","en":"Lack module"}}
+                    ]
+                }
+            ],
+            "Xmas_hint":[
+                {
+                    "node":"",
+                    "line":"",
+                    "icon":"constructor",
+                    "key":">",
+                    "hint":[
+@@module hint@@
+                    ]
+                },
+                @@module param hint@@
+                @@module error hint@@
+            ],
+            "Xmas_template":[
+                @@module param@@
+            ],
+            "Xmas_readme":[
+                @@module node read@@
+                @@module param read@@
+            ]
+        }
+    }
+}
+######DEFAULT######
+
+######MODULE Check Node######
+{
+    "node":"^>@@modules@@",
+    "line":"^>@@modules@@",
+    "isEmptyPass":true,
+    "check":[
+        @@action@@
+    ],
+    "tips":[
+        {"line":"", "tips":{"":"非法action","en":"Illegal action"}}
+    ],
+    "appendix":[{
+        "match":"!([a-zA-Z_][a-zA-Z0-9_]*)",
+        "list":[
+            @@error@@
+            "!ERR_Api_moduleParamType_Illegal"
+        ],
+        "tips":{"":"非法错误码","en":"Illegal error code"}
+    }]
+},
+######MODULE Check Node######
+
+######MODULE Check Param######
+{
+    "node":"^>@@modules@@@@action@@\\s*(!|$)",
+    "template":{
+        "name":"@@modules@@",
+        "param":{
+            @@action param@@
+            @@param@@
+        },
+        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+    }
+},
+######MODULE Check Param######
+
+######MODULE Check Action######
+"^>@@modules@@ -@@action@@",
+######MODULE Check Action######
+
+######MODULE Hint######
+[
+    "@@modules@@@@action@@", @@desc@@ , 
+    "@@modules@@@@action@@\n\
+    @@default@@
+],
+######MODULE Hint######
+
+######MODULE Hint Param######
+{
+    "node":"^>@@modules@@@@action@@\\s*(!|$)",
+    "line":"^_$",
+    "icon":"constructor",
+    "key":"_",
+    "hint":[
+        @@param list@@
+    ]
+},
+######MODULE Hint Param######
+
+######MODULE Hint Error######
+{
+    "node":"^>@@modules@@",
+    "line":"^>@@modules@@",
+    "icon":"constructor",
+    "key":"!",
+    "hint":[
+        @@error list@@
+    ]
+},
+######MODULE Hint Error######
+
+######MODULE Read Node######
+{
+    "node":"^>@@modules@@@@action@@\\s*(!|$)",
+    "line":"^>@@modules@@@@action@@\\s*(!|$)",
+    "tips":@@tips@@,
+    "path":{
+        "":"src/main/module/@@modules@@/README.md",
+        "en":"src/main/module/@@modules@@/README-en.md"
+    }
+},
+######MODULE Read Node######
+
+######MODULE Param Node######
+{
+    "node":"^>@@modules@@@@action@@\\s*(!|$)",
+    "line":"^ *@@key@@",
+    "tips":@@tips@@,
+    "path":{
+        "":"src/main/module/@@modules@@/README.md",
+        "en":"src/main/module/@@modules@@/README-en.md"
+    }
+},
+######MODULE Param Node######

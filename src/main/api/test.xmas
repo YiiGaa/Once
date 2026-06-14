@@ -1,0 +1,124 @@
+path: ../src/main/api/test.java
+name: test
+
+#URL: /once/test/test
+#Method: POST
+&post /test
+    >_DataCheck
+        _isClean: true
+        _param: 
+            opt##test_value: str##
+    >_DataFilling
+        _setting: 
+            test_id: uuid
+            opt##test_value: time
+    >_ServeDao -insert
+        _table: test
+        _isCheckAffect: true
+    >_DataCheck
+        _isClean: true
+        _param: {}
+
+#URL: /once/test/testBatch
+#Method: POST
+&post /testBatch
+    >_DataCheck
+        _isClean: true
+        _param: 
+            10##insert: 
+                - test_value: str##
+    >_DataFilling
+        _setting: 
+            insert: 
+                - test_id: uuid
+    >_ServeDao -insert batch
+        _table: test
+        _target: get##insert
+        _isCheckAffect: true
+        _resultKey: result
+    >_DataCheck
+        _isClean: true
+        _param:
+            result: ""
+
+#URL: /once/test/test
+#Method: DELETE
+&delete /test
+    >_DataCheck
+        _isClean: true
+        _param: 
+            test_id: str##
+    >_ServeDao -delete
+        _table: test
+        _isCheckAffect: true
+    >_DataCheck
+        _isClean: true
+        _param: {}
+
+#URL: /once/test/test
+#Method: PUT
+&put /test
+    >_DataCheck
+        _isClean: true
+        _param: 
+            10##test_id: 
+                - str##
+    >_DataFilling
+        _setting: 
+            test_value: time
+    >_ServeDao -update
+        _table: test
+        _isCheckAffect: true
+        _resultKey: update
+    >_ServeDao -sql select
+        _sql: SELECT * FROM test WHERE test_id IN ('@test_id@')
+        _selectType: select list
+        _resultKey: result
+    >_DataCheck
+        _isClean: true
+        _param:
+            update: ""
+            result: ""
+
+#URL: /once/test/test
+#Method: GET
+&get /test
+    >_DataCheck
+        _isClean: false
+        _param:
+            option: str##object/list
+    @switch option
+        @call &testGet_object
+    @case list
+        >_DataCheck
+            _isClean: true
+            _param: 
+                page: int##
+                pageSize: int##
+        >_ServeDao -select list
+            _table: test
+            _resultKey: result
+            _page: get##page
+            _pageSize: get##pageSize
+            _countResultKey: count
+        >_DataCheck
+            _isClean: true
+            _param: 
+                result: ""
+                opt##count: ""
+
+#Call by @call &testGet_object
+&function testGet_object
+    >_DataCheck
+        _isClean: true
+        _param: 
+            test_id: str##
+    >_ServeDao -select object
+        _table: test
+        _resultKey: ""
+        _isGetNullError: true
+    >_DataCheck
+        _isClean: true
+        _param: 
+            test_id: ""
+            test_value: ""

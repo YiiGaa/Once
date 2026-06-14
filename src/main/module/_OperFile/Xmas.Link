@@ -1,0 +1,112 @@
+**以下所有内容需要Christmas合并
+**All of the following contents need to be merged by Christmas
+
+**最终合并到config/application-check.properties
+**Final merged into config/application-check.properties
+######Config for application-check.properties######
+#_OperFile
+spring.servlet.multipart.max-file-size=@opt@
+spring.servlet.multipart.max-request-size=@opt@
+module._OperFile.rootPath=@nec@
+module._OperFile.checkPath=@opt@
+module._OperFile.poolSize=@opt@
+module._OperFile.poolQueue=@opt@
+######Config for application-check.properties######
+
+**最终合并到build.gradle
+**Final merged into 'build.gradle'
+######Dependencies######
+    //implementation 'xx:xx:xx'
+######Dependencies######
+
+**最终合并到src/main/common/ERRORCODE.java
+**Final merged into 'src/main/common/ERRORCODE.java'
+######ErrorCode######
+ERR_Module__OperFile_Exception:{"E-WS(_OperFile)", "_OperFile exception"}
+ERR_Module__OperFile_Action_Illegal:{"E-WS(_OperFile)", "_OperFile Action illegal"}
+ERR_Module__OperFile_Upload_File_Lack:{"E-WS(_OperFile)", "_OperFile Upload file lack"}
+ERR_Module__OperFile_Upload_FileCount_Limit:{"E-WS(_OperFile)", "_OperFile Upload file count over limit"}
+ERR_Module__OperFile_Upload_FileSize_Limit:{"E-WS(_OperFile)", "_OperFile Upload file size over limit"}
+ERR_Module__OperFile_Upload_File_Empty:{"E-WS(_OperFile)", "_OperFile Upload file is empty"}
+ERR_Module__OperFile_Upload_File_FilePreCheck_Empty:{"E-WS(_OperFile)", "_OperFile Upload file is empty(pre-check)"}
+ERR_Module__OperFile_Upload_FileName_Illegal:{"E-WS(_OperFile)", "_OperFile Upload file name is illegal, contain '\\' or '/'"}
+ERR_Module__OperFile_Upload_FileSuffix_Block:{"E-WS(_OperFile)", "_OperFile Upload file suffix is not allow"}
+ERR_Module__OperFile_Upload_File_Exist:{"E-WS(_OperFile)", "_OperFile Upload file is already exist"}
+ERR_Module__OperFile_Upload_FilePreCheck_Exist:{"E-WS(_OperFile)", "_OperFile Upload file(pre-check) is already exist"}
+ERR_Module__OperFile_Upload_UploadListSize_Incorrect:{"E-WS(_OperFile)", "_OperFile Upload length of uploadList is incorrect"}
+ERR_Module__OperFile_Upload_CreateParentDirs_Fail:{"E-WS(_OperFile)", "_OperFile Upload create parent dirs fail"}
+ERR_Module__OperFile_Upload_Exception:{"E-WS(_OperFile)", "_OperFile Upload file exception"}
+ERR_Module__OperFile_Delete_Path_Empty:{"E-WS(_OperFile)", "_OperFile Delete path empty"}
+ERR_Module__OperFile_Delete_Path_Illegal:{"E-WS(_OperFile)", "_OperFile Delete path illegal"}
+ERR_Module__OperFile_Delete_Path_Lack:{"E-WS(_OperFile)", "_OperFile Delete path is not exists"}
+ERR_Module__OperFile_Delete_Exception:{"E-WS(_OperFile)", "_OperFile Delete exception"}
+ERR_Module__OperFile_Delete_File_Fail:{"E-WS(_OperFile)", "_OperFile Delete file fail"}
+ERR_Module__OperFile_Delete_Directory_Fail:{"E-WS(_OperFile)", "_OperFile Delete directory fail"}
+ERR_Module__OperFile_UploadRollBack_Exception:{"E-WS(_OperFile)", "_OperFile UploadRollBack file rollback exception(queue full)"}
+ERR_Module__OperFile_Move_SourcePath_Empty:{"E-WS(_OperFile)", "_OperFile Move source path empty"}
+ERR_Module__OperFile_Move_SourcePath_Illegal:{"E-WS(_OperFile)", "_OperFile Move source path illegal"}
+ERR_Module__OperFile_Move_TargetPath_Empty:{"E-WS(_OperFile)", "_OperFile Move target path empty"}
+ERR_Module__OperFile_Move_TargetSource_Same:{"E-WS(_OperFile)", "_OperFile Move target/source path is same"}
+ERR_Module__OperFile_Move_TargetPath_Illegal:{"E-WS(_OperFile)", "_OperFile Move target path illegal"}
+ERR_Module__OperFile_Move_SourcePath_Lack:{"E-WS(_OperFile)", "_OperFile Move source path is not exists"}
+ERR_Module__OperFile_Move_TargetPath_Exist:{"E-WS(_OperFile)", "_OperFile Move target path is exists"}
+ERR_Module__OperFile_Move_TargetPath_CoverDirs_Fail:{"E-WS(_OperFile)", "_OperFile Move target path is exists, and directory can not be covered"}
+ERR_Module__OperFile_Move_Exception:{"E-WS(_OperFile)", "_OperFile Move exception"}
+ERR_Module__OperFile_End_Exception:{"E-WS(_OperFile)", "_OperFile End file rollback exception(queue full)"}
+######ErrorCode######
+
+**用于设置模块参数_action的值，用作.xmas文件语法提示、错误检查
+**格式为=> [action名]::{"":"中文说明","en":"英文说明"}
+**例如=> insert::{"":"※ 模块: 说明<br>➤ Action: 说明","en":"※ Module: desc<br>➤ Action: desc"}
+**若模块不支持多种_action，请设置为'-'
+**最终合并到Christmas/Input/GenCode/Xmas.File.json
+**It is used to set the value of the module parameter '_action', which is used as a syntax prompt and error check of .xmas file
+**The format is=> [action name]::{"":"Chinese description","en":"English description"}
+**For example=> insert::{"":"※ 模块: 说明<br>➤ Action: 说明","en":"※ Module: desc<br>➤ Action: desc"}
+**If the module does not support multiple _actions, please set it to '-'
+**Final merged into 'Christmas/Input/GenCode/Xmas.File.json'
+######Module Action######
+upload::{"":"※ 模块: 文件操作<br>➤ Action: 上传文件","en":"※ Module: File operation<br>➤ Action: upload file"}
+delete::{"":"※ 模块: 文件操作<br>➤ Action: 删除文件/目录","en":"※ Module: File operation<br>➤ Action: delete file/directory"}
+move::{"":"※ 模块: 文件操作<br>➤ Action: 迁移文件/目录","en":"※ Module: File operation<br>➤ Action: move file/directory"}
+######Module Action######
+
+**用于设置被允许的模块参数，没被设置的模块参数字段，将不会被正常传递，用作.xmas文件语法提示、错误检查
+**格式为=> [action名称]::[参数字段]::[默认参数]::{"":"中文说明","en":"英文说明"}
+**例如=> insert::_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**若模块不支持多种_action，请设置为'-'
+**例如=> -::_table::name::{"":"数据表名","en":"table name"}
+**默认情况，.xmas文件选择模块后，会加入全部参数。若某个参数不希望被引入，可以在参数名前添加^
+**例如=> -::^_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**最终合并到Christmas/Input/GenCode/Xmas.File.json
+**It is used to set the allowed module parameters. Module parameter fields that have not been set will not be passed normally. They are used as .xmas file syntax prompts and error checks.
+**The format is=> [action name]::{"":"Chinese description","en":"English description"}
+**For example=> insert::_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**If the module does not support multiple _actions, please set it to '-'
+**Fro example=> -::_table::name::{"":"数据表名","en":"table name"}
+**By default, after the user selected the module in a .xmas file, all parameters will be added. If you don't want a parameter to be introduced, you can add '^' before the parameter
+**Fro example=> -::^_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**Final merged into 'Christmas/Input/GenCode/Xmas.File.json'
+######Module Param######
+upload::_targetKey::file::{"":"※ 参数: <br>上传文件在请求表单中对应的key","en":"※ Param: <br>The key corresponding to the upload file in the request form"}
+upload::^_isNullError::true::{"":"※ 参数: <br>当请求表单中获取不到文件时，是否报错。true:报错，false:不报错","en":"※ Param: <br>When the file cannot be obtained in the request form, whether to report an error. true: error, false: no error"}
+upload::^_maxCount::-1::{"":"※ 参数: <br>上传文件的最大个数，默认不限制","en":"※ Param: <br>Maximum number of files uploaded, unlimited by default"}
+upload::^_maxFileSize::-1::{"":"※ 参数: <br>单个文件的最大存储空间限制（单位：字节），默认不限制","en":"※ Param: <br>Maximum storage space limit for a single file (unit: Bytes), unlimited by default"}
+upload::^_AllowSuffix::.jpg|.png|.gif::{"":"※ 参数: <br>允许的文件后缀，默认不限制","en":"※ Param: <br>Allowed file suffixes, unlimited by default"}
+upload::^_targetFileName::/dirs/filename::{"":"※ 参数: <br>保存的文件名，文件后缀会自动拼接，默认uuid","en":"※ Param: <br>The saved file name, and the file suffix will be automatically spliced together, uuid by default"}
+upload::_resultPathKey::key::{"":"※ 参数: <br>存放上传完成的文件路径的key，默认采用`_targetKey`的设置","en":"※ Param: <br>The key to put the result (uploaded file path), use the setting of `_targetKey` by default"}
+upload::^_resultOriginalNameKey::key::{"":"※ 参数: <br>存放上传完成的文件原始名称的key，默认不记录","en":"※ Param: <br>The key to put the result (original file name), not recorded by default"}
+upload::^_resultFileSizeKey::key::{"":"※ 参数: <br>存放上传完成的文件大小的key，单位：字节，默认不记录","en":"※ Param: <br>The key to put the result (file size),  unit: Bytes, not recorded by default"}
+upload::^_isExistCover::false::{"":"※ 参数: <br>当目标路径已经存在文件，是否覆盖，true:覆盖，false:报错退出","en":"※ Param: <br>When the target path already exists, whether to overwrite, true: overwrite, false: error exit"}
+upload::^_isErrorRollBack::true::{"":"※ 参数: <br>当模块报错时，是否删除已经上传的文件，true:自动删除，false:不删除","en":"※ Param: <br>When the module reports an error, whether to delete the uploaded file, true: automatic deletion, false: do not delete"}
+upload::^_isAutoRollBack::true::{"":"※ 参数: <br>当业务逻辑报错时（Controller、Service调用其他模块报错），是否删除已上传的文件，true:自动删除，false:不删除","en":"※ Param: <br>When the business logic reports an error (Controller, Service calls other modules to report an error), whether to delete the uploaded files, true: automatic deletion, false: do not delete"}
+delete::_path::/file/path::{"":"※ 参数: <br>需要删除的文件/目录路径","en":"※ Param: <br>File/directory path to be deleted"}
+delete::^_isNullError::true::{"":"※ 参数: <br>当文件/目录不存在时，是否报错，true:报错，false:不报错","en":"※ Param: <br>When the file/directory does not exist, whether an error is reported, true: error, false: no error"}
+delete::^_isSync::false::{"":"※ 参数: <br>是否采用同步的方式删除，true:同步删除，false:异步线程删除","en":"※ Param: <br>Whether to delete in a synchronous way, true: delete synchronously, false: asynchronous thread deletion"}
+delete::^_isDeleteErrorInterrupt::false::{"":"※ 参数: <br>删除目录时，如果中途出现错误，是否中断。true:中断，false:继续","en":"※ Param: <br>When deleting the directory, if there is an error in the middle, whether it will be interrupted. True: interrupt, false: continue"}
+move::_sourcePath::/file/path::{"":"※ 参数: <br>源文件/目录路径","en":"※ Param: <br>Source file/directory path"}
+move::_targetPath::/file/path::{"":"※ 参数: <br>目标文件/目录路径","en":"※ Param: <br>Target file/directory path"}
+move::^_isSourceNullError::true::{"":"※ 参数: <br>当源文件/目录不存在时，是否报错，true:报错，false:不报错","en":"※ Param: <br>When the source file/directory does not exist, whether the error is reported, true: error, false: no error"}
+move::^_isTargetCover::false::{"":"※ 参数: <br>当目标文件/目录路径存在时，是否覆盖，true:覆盖，false:不覆盖并报错","en":"※ Param: <br>When the target file/directory path exists, whether to cover, true: cover, false: do not cover and report an error"}
+move::^_isSync::false::{"":"※ 参数: <br>是否采用同步的方式迁移，true:同步迁移，false:异步线程迁移","en":"※ Param: <br>Whether to move file/directory in a synchronous way, true: synchronous move, false: asynchronous thread move"}
+######Module Param######

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 from Kernel.Module.Module import Module
+from Kernel.Common.Logger.Logger import Logger
 
 class MergeCode:
     def DoStart(targetParam, configParam):
@@ -28,6 +29,7 @@ class MergeCode:
             'mod_replaceExtraKey':'Xmas_',
             'mod_isJudgeExist':configParam['isJudgeExist'],
             'mod_isExistBackup':configParam['isExistBackup'],
+            'mod_isRemoveRepeat':configParam['isRemoveRepeat'],
         })
 
         print('STEP::Clean Temporary Dir or File')
@@ -39,4 +41,4 @@ class MergeCode:
     def Start(targetParam, configParam):
         MergeCode.DoStart(targetParam, configParam)
         print('')
-        print('SUCCESS')
+        Logger.Tips('SUCCESS')

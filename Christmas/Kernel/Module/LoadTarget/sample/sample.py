@@ -10,7 +10,7 @@ if __name__ == '__main__':
     targetParam = {
         "Xmas_target":"./test/*/*/",
         "Xmas_url":"http://192.168.3.200:8001/framework-module/hive/*/.../",
-        "Xmas_index":"Load.json",
+        "Xmas_index":"Xmas.Sync.json",
         "aa":"bb"
     }
 

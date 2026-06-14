@@ -1,0 +1,18 @@
+{
+    "version": "2.0=2026.03.10",
+    "publish": "2026.06.15",
+    "file": [
+        "_DataFillingConfig.java",
+        "Xmas.Link",
+        "README.md",
+        "Sample.java",
+        "Xmas.Config",
+        "_DataFilling.java",
+        "README-en.md",
+        "Xmas.Sync.json"
+    ],
+    "skip": [
+        "Xmas.Config"
+    ],
+    "customSkip": []
+}

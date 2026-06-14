@@ -1,0 +1,2178 @@
+{
+    "Xmas_tab":4,
+    "Xmas_sign":"<<",
+    "Xmas_template":{
+        " <<Xmas_path":"<<param<<path",
+        "file": {
+            " <<name":"<<param<<name",
+            "api":"<<node<<&"
+        }
+    },
+    "Xmas_setting":{
+        "&":{
+            "Xmas_node":{
+                "repeat":"^\\&[a-zA-Z0-9_]+ /*[_a-zA-Z][_a-zA-Z0-9]*",
+                "define":"^\\&function [_a-zA-Z][_a-zA-Z0-9]*"
+            },
+            "Xmas_highlight":[
+                {"node":"", "line":"^&\\w+", "key":"&\\w+", "type":"keyword"}
+            ],
+            "Xmas_check":[
+                {
+                    "node":"^&\\w+",
+                    "line":"^&\\w+",
+                    "check":[
+                        "^&post /[_a-zA-Z][_a-zA-Z0-9]*$",
+                        "^&delete /[_a-zA-Z][_a-zA-Z0-9]*$",
+                        "^&put /[_a-zA-Z][_a-zA-Z0-9]*$",
+                        "^&get /[_a-zA-Z][_a-zA-Z0-9]*$",
+                        "^&timer [_a-zA-Z][_a-zA-Z0-9]* ((?:[0-5]?\\d|\\*|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*)(?:/[1-9]\\d*)?)\\s+((?:[0-5]?\\d|\\*|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*)(?:/[1-9]\\d*)?)\\s+((?:[01]?\\d|2[0-3]|\\*|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*)(?:/[1-9]\\d*)?)\\s+((?:0?[1-9]|[12]\\d|3[01]|\\*|\\?|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*|L|LW|[0-3]?[0-9]W)(?:/[1-9]\\d*)?)\\s+((?:0?[1-9]|1[0-2]|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC|\\*|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*)(?:/[1-9]\\d*)?)\\s+((?:[1-7]|MON|TUE|WED|THU|FRI|SAT|SUN|\\*|\\?|(?:\\d+(?:-\\d+)?)(?:,\\d+(?:-\\d+)?)*|L|[1-7]L|[1-5]#[1-5])(?:/[1-9]\\d*)?)$",
+                        "^&function [a-zA-Z_][_a-zA-Z0-9]*$"
+                    ],
+                    "tips":[
+                        {"line":"^&post",     "tips":"&post /[name]"},
+                        {"line":"^&delete",   "tips":"&delete /[name]"},
+                        {"line":"^&put",      "tips":"&put /[name]"},
+                        {"line":"^&get",      "tips":"&get /[name]"},
+                        {"line":"^&timer",    "tips":"&timer [name] [scheduled]"},
+                        {"line":"^&function", "tips":"&function /[name]"},
+                        {"line":"",           "tips":"null"}
+                    ]
+                }
+            ],
+            "Xmas_hint":[
+                {
+                    "node":"",
+                    "line":"^&$",
+                    "icon":"module",
+                    "key":"&",
+                    "hint":[
+                        ["Post",     {"":"请求方式:POST","en":"Request method:POST"},     "post /~"],
+                        ["Delete",   {"":"请求方式:DELETE","en":"Request method:DELETE"}, "delete /~"],
+                        ["Put",      {"":"请求方式:PUT","en":"Request method:PUT"},       "put /~"],
+                        ["Get",      {"":"请求方式:GET","en":"Request method:GET"},       "get /~"],
+                        ["Timer",    {"":"定时器","en":"Timer"},                          "timer ~ 0 0/20 * * * ?"],
+                        ["Function", {"":"函数","en":"Function"},                         "function ~"]
+                    ]
+                }
+            ],
+            "Xmas_template":[
+                {
+                    "node":"^&timer",
+                    "template":{
+                        "Xmas_templ":"TIMER",
+                        "name":"<<(?<=^&timer )\\S+",
+                        "time":"<<1<<(?<=^&timer )\\S+ (.+)$",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&function",
+                    "template":{
+                        "Xmas_templ":"FUNCTION",
+                        "name":"<<(?<=^&function )\\S+",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&post",
+                    "template":{
+                        "name":"<<(?<=^&post /)\\S+",
+                        "method":"POST",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&delete",
+                    "template":{
+                        "name":"<<(?<=^&delete /)\\S+",
+                        "method":"DELETE",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&put",
+                    "template":{
+                        "name":"<<(?<=^&put /)\\S+",
+                        "method":"PUT",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^&get",
+                    "template":{
+                        "name":"<<(?<=^&get /)\\S+",
+                        "method":"GET",
+                        "module":"<<node"
+                    }
+                }
+            ],
+            "Xmas_readme":[
+                {
+                    "node":"",
+                    "line":"^&post",
+                    "tips":{
+                        "":"※ 请求方式: POST  <br>※ 格式: &post /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Request method: POST <br>※ Format: &post /[name] <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&delete",
+                    "tips":{
+                        "":"※ 请求方式: DELETE  <br>※ 格式: &delete /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Request method: DELETE  <br>※ Format: &delete /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&put",
+                    "tips":{
+                        "":"※ 请求方式: PUT  <br>※ 格式: &put /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Request method: PUT  <br>※ Format: &put /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&get",
+                    "tips":{
+                        "":"※ 请求方式: GET  <br>※ 格式: &get /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Request method: GET  <br>※ Format: &get /[name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&timer",
+                    "tips":{
+                        "":"※ 自动触发: 定时器  <br>※ 格式: &timer [name] [scheduled]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，路径名称，允许：_、字母、数字(第二位开始)  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ scheduled: 必要，cron表达式(定时设置)",
+                        "en":"※ Automatic trigger: Timer  <br>※ Format: &timer [name] [scheduled]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, path name, allowed: _ , letters , numbers(starting from the second char)  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ scheduled: Necessary, cron expression(Scheduled setting)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&function",
+                    "tips":{
+                        "":"※ 函数，通过@call 调用  <br>※ 格式: &function [name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: 必要，函数名称，允许：_、字母、数字(第二位开始)",
+                        "en":"※ Function, called by @call  <br>※ Format: &function [name]  <br>&nbsp;&nbsp;&nbsp;&nbsp;➤ name: Necessary, function name, allowed: _ , letters , numbers(starting from the second char)"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                },{
+                    "node":"",
+                    "line":"^&",
+                    "tips":{
+                        "":"!!! 非法设置",
+                        "en":"!!! Illegal settings"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/API.md",
+                        "en":"Christmas/Readme/API-en.md"
+                    }
+                }
+            ]
+        },
+        "@":{
+            "Xmas_node":[
+                {"line":"^@error", "match":"^@try"},
+                {"line":"^@case", "match":"^@(switch|case)"}
+            ],
+            "Xmas_highlight":[
+                {"node":"", "line":"^\\@\\w+", "key":"\\@\\w+", "type":"function"},
+                {"node":"", "line":"^\\@call", "key":"(?<=@call )&.+", "type":"keyword"},
+                {"node":"", "line":"^\\@switch", "key":"(?<=@switch ).+", "type":"property"}
+            ],
+            "Xmas_check":[
+                {
+                    "node":"^@retry",
+                    "line":"^@retry",
+                    "check":[
+                        "^@retry \\d+ \\d+"
+                    ],
+                    "tips":[
+                        {"line":"^@retry", "tips":"@retry [time] [interval]"}
+                    ]
+                },
+                {
+                    "node":"^@try",
+                    "line":"^@try",
+                    "check":[
+                        "^@try"
+                    ],
+                    "tips":[
+                        {"line":"^@try", "tips":"@try"}
+                    ]
+                },{
+                    "node":"^@switch",
+                    "line":"^@switch",
+                    "check":[
+                        "^@switch \\S"
+                    ],
+                    "tips":[
+                        {"line":"^@switch", "tips":"@switch [option]"}
+                    ]
+                },{
+                    "node":"^@case",
+                    "line":"^@case",
+                    "check":[
+                        "^@case \\S"
+                    ],
+                    "tips":[
+                        {"line":"^@case", "tips":"@case [value]"}
+                    ]
+                },{
+                    "node":"^@call",
+                    "line":"^@call",
+                    "check":[
+                        ["^@call \\&(<<1)", "&", "function (\\S+)"]
+                    ],
+                    "tips":[
+                        {"line":"^@call", "tips":"@call &[function]"}
+                    ]
+                }
+            ],
+            "Xmas_hint":[
+                {
+                    "node":"",
+                    "line":"^@$",
+                    "icon":"module",
+                    "key":"@",
+                    "hint":[
+                        ["Try/Error", {"":"错误捕获", "en":"Error capture"} , "try\n@error"],
+                        ["/Error", {"":"错误捕获", "en":"Error capture"} , "error"],
+                        ["Switch/Case", {"":"多分支选择", "en":"Multi-branch selection"} , "switch ~\n@case ~"],
+                        ["/Case", {"":"多分支选择(分支)", "en":"Multi-branch selection (branch)"} , "case ~"],
+                        ["Call", {"":"调用函数&function ~", "en":"Call function &function ~"} , "call ~"],
+                        ["Retry", {"":"失败重试", "en":"Failed retry"} , "retry 1 500"]
+                    ]
+                },{
+                    "node":"^@call ",
+                    "line":"^@call ",
+                    "icon":"module",
+                    "key":"&",
+                    "hint":[
+                        ["<<1", {"":"函数","en":"Function"}, "<<1", "&", "function (.+)"]
+                    ]
+                }
+            ],
+            "Xmas_template":[
+                {
+                    "node":"^@switch",
+                    "template":{
+                        "Xmas_templ": "SELECTOR-SWITCH",
+                        "option": "<<(?<=^@switch )\\S+",
+                        "module":"<<node",
+                        "switch":"<<pair<<@case"
+                    }
+                },{
+                    "node":"^@case",
+                    "template":{
+                        "value":"<<(?<=^@case )\\S+",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^@try",
+                    "template":{
+                        "Xmas_templ": "SELECTOR-TRY",
+                        "module":"<<node",
+                        "error":"<<pair<<@error"
+                    }
+                },{
+                    "node":"^@error",
+                    "template":{
+                        "Xmas_templ": "SELECTOR-ERROR",
+                        "module":"<<node"
+                    }
+                },{
+                    "node":"^@call",
+                    "template":{
+                        "Xmas_templ":"SELECTOR-CALL",
+                        "call":"<<(?<=^@call \\&)\\S+"
+                    }
+                },{
+                    "node":"^@retry",
+                    "template":{
+                        "Xmas_templ":"SELECTOR-RETRY",
+                        "0<<count": "<<(?<=@retry )(\\d+)",
+                        "0<<interval": "<<1<<(?<=@retry )\\d+ (\\d+)",
+                        "module":"<<node"
+                    }
+                }
+            ],
+            "Xmas_readme":[
+                {
+                    "node":"^@(try|error)",
+                    "line":"^@(try|error)",
+                    "tips":{
+                        "":"※ 逻辑选择器: 错误捕获<br>※ 格式: <br>@try<br>&nbsp;&nbsp;&nbsp;&nbsp;...正常逻辑<br>@error<br>&nbsp;&nbsp;&nbsp;&nbsp;...错误逻辑",
+                        "en":"※ Logical selector: Error capture<br>※ Format:<br>@try<br>&nbsp;&nbsp;&nbsp;&nbsp;...Normal logic<br>@error<br>&nbsp;&nbsp;&nbsp;&nbsp;...Error logic"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/Selector.md",
+                        "en":"Christmas/Readme/Selector-en.md"
+                    }
+                },{
+                    "node":"^@(switch|case)",
+                    "line":"^@(switch|case)",
+                    "tips":{
+                        "":"※ 逻辑选择器: 多分支选择<br>※ 格式: <br>@switch [从passParam中获取值的key]<br>&nbsp;&nbsp;&nbsp;&nbsp;...默认逻辑<br>@case [分支值]<br>&nbsp;&nbsp;&nbsp;&nbsp;...分支逻辑<br>@case ...",
+                        "en":"※ Logical selector: Multi-branch selection<br>※ Format:<br>@switch [the key to get the value from passParam]<br>&nbsp;&nbsp;&nbsp;&nbsp;...Default logic<br>@case [case value]<br>&nbsp;&nbsp;&nbsp;&nbsp;...Case logic<br>@case ..."
+                    },
+                    "path":{
+                        "":"Christmas/Readme/Selector.md",
+                        "en":"Christmas/Readme/Selector-en.md"
+                    }
+                },{
+                    "node":"^@call",
+                    "line":"^@call",
+                    "tips":{
+                        "":"※ 逻辑选择器: 调用函数<br>※ 格式: @call &[function]",
+                        "en":"※ Logical selector: Call function<br>※ Format: @call &[function]"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/Selector.md",
+                        "en":"Christmas/Readme/Selector-en.md"
+                    }
+                },{
+                    "node":"^@(retry)",
+                    "line":"^@(retry)",
+                    "tips":{
+                        "":"※ 逻辑选择器: 失败重试<br>※ 格式: <br>@call [重试次数] [间隔时间, 1000=1s]<br>&nbsp;&nbsp;&nbsp;&nbsp;...逻辑",
+                        "en":"※ Logical selector: Failed retry<br>※ Format: <br>@call [Count of rtry] [Interval time, 1000=1s]<br>&nbsp;&nbsp;&nbsp;&nbsp;...Logic"
+                    },
+                    "path":{
+                        "":"Christmas/Readme/Selector.md",
+                        "en":"Christmas/Readme/Selector-en.md"
+                    }
+                }
+            ]
+        },
+        ">":{
+            "Xmas_node":"leaf",
+            "Xmas_highlight":[
+                {"node":"", "line":"^>\\w+", "key":">\\w+( +-.*?(?=\\!|$))?",  "type":"keyword"},
+                {"node":"", "line":"^>\\w+", "key":"(?<= )![A-Za-z0-9_]+", "type":"keyword"},
+                {"node":"", "line":"^_.\\w+:", "key":"(?<=: )get##.*", "type":"property"},
+                {"node":"", "line":"^_.\\w+:", "key":"(?<=Key: ).*", "type":"property"},
+                {"node":"", "line":"^(?![>_\"'-]).+", "key":"^.+?(?=:)", "type":"property"},
+                {"node":"", "line":"^- .+", "key":"(?<=-).+?(?=:)", "type":"property"}
+            ],
+            "Xmas_check":[
+                {
+                    "node":"^>_OperFile",
+                    "line":"^>_OperFile",
+                    "isEmptyPass":true,
+                    "check":[
+                        "^>_OperFile -upload",
+                        "^>_OperFile -delete",
+                        "^>_OperFile -move",
+                    ],
+                    "tips":[
+                        {"line":"", "tips":{"":"非法action","en":"Illegal action"}}
+                    ],
+                    "appendix":[{
+                        "match":"!([a-zA-Z_][a-zA-Z0-9_]*)",
+                        "list":[
+                            "!ERR_Module__OperFile_Exception",
+                            "!ERR_Module__OperFile_Action_Illegal",
+                            "!ERR_Module__OperFile_Upload_File_Lack",
+                            "!ERR_Module__OperFile_Upload_FileCount_Limit",
+                            "!ERR_Module__OperFile_Upload_FileSize_Limit",
+                            "!ERR_Module__OperFile_Upload_File_Empty",
+                            "!ERR_Module__OperFile_Upload_File_FilePreCheck_Empty",
+                            "!ERR_Module__OperFile_Upload_FileName_Illegal",
+                            "!ERR_Module__OperFile_Upload_FileSuffix_Block",
+                            "!ERR_Module__OperFile_Upload_File_Exist",
+                            "!ERR_Module__OperFile_Upload_FilePreCheck_Exist",
+                            "!ERR_Module__OperFile_Upload_UploadListSize_Incorrect",
+                            "!ERR_Module__OperFile_Upload_CreateParentDirs_Fail",
+                            "!ERR_Module__OperFile_Upload_Exception",
+                            "!ERR_Module__OperFile_Delete_Path_Empty",
+                            "!ERR_Module__OperFile_Delete_Path_Illegal",
+                            "!ERR_Module__OperFile_Delete_Path_Lack",
+                            "!ERR_Module__OperFile_Delete_Exception",
+                            "!ERR_Module__OperFile_Delete_File_Fail",
+                            "!ERR_Module__OperFile_Delete_Directory_Fail",
+                            "!ERR_Module__OperFile_UploadRollBack_Exception",
+                            "!ERR_Module__OperFile_Move_SourcePath_Empty",
+                            "!ERR_Module__OperFile_Move_SourcePath_Illegal",
+                            "!ERR_Module__OperFile_Move_TargetPath_Empty",
+                            "!ERR_Module__OperFile_Move_TargetSource_Same",
+                            "!ERR_Module__OperFile_Move_TargetPath_Illegal",
+                            "!ERR_Module__OperFile_Move_SourcePath_Lack",
+                            "!ERR_Module__OperFile_Move_TargetPath_Exist",
+                            "!ERR_Module__OperFile_Move_TargetPath_CoverDirs_Fail",
+                            "!ERR_Module__OperFile_Move_Exception",
+                            "!ERR_Module__OperFile_End_Exception",
+                            "!ERR_Api_moduleParamType_Illegal"
+                        ],
+                        "tips":{"":"非法错误码","en":"Illegal error code"}
+                    }]
+                },
+                {
+                    "node":"^>_ServeDao",
+                    "line":"^>_ServeDao",
+                    "isEmptyPass":true,
+                    "check":[
+                        "^>_ServeDao -insert",
+                        "^>_ServeDao -insert batch",
+                        "^>_ServeDao -delete",
+                        "^>_ServeDao -update",
+                        "^>_ServeDao -select object",
+                        "^>_ServeDao -select list",
+                        "^>_ServeDao -sql update",
+                        "^>_ServeDao -sql select",
+                        "^>_ServeDao -txn start",
+                        "^>_ServeDao -txn end",
+                    ],
+                    "tips":[
+                        {"line":"", "tips":{"":"非法action","en":"Illegal action"}}
+                    ],
+                    "appendix":[{
+                        "match":"!([a-zA-Z_][a-zA-Z0-9_]*)",
+                        "list":[
+                            "!ERR_Module__ServeDao_Exception",
+                            "!ERR_Module__ServeDao_Action_Illegal",
+                            "!ERR_Module__ServeDao_SQLMake_Empty",
+                            "!ERR_Module__ServeDao_TableCheck_TableName_Illegal",
+                            "!ERR_Module__ServeDao_TableCheck_Table_Lack",
+                            "!ERR_Module__ServeDao_TableCheck_TableInfo_Lack",
+                            "!ERR_Module__ServeDao_TableCheck_TableType_Illegal",
+                            "!ERR_Module__ServeDao_Insert_Column_Lack",
+                            "!ERR_Module__ServeDao_Insert_ColumnValueLength_Limit",
+                            "!ERR_Module__ServeDao_InsertBatch_Data_Empty",
+                            "!ERR_Module__ServeDao_InsertBatch_Column_Lack",
+                            "!ERR_Module__ServeDao_InsertBatch_ColumnValueLength_Limit",
+                            "!ERR_Module__ServeDao_Update_ColumnValueLength_Limit",
+                            "!ERR_Module__ServeDao_SQLStringDeal_Template_Illegal",
+                            "!ERR_Module__ServeDao_SQLStringDeal_Replace_Illegal",
+                            "!ERR_Module__ServeDao_SQLExecute_Type_Illegal",
+                            "!ERR_Module__ServeDao_SQLExecute_Exception",
+                            "!ERR_Module__ServeDao_SQLExecute_Update_Fail",
+                            "!ERR_Module__ServeDao_SQLExecute_Select_Null_Error",
+                            "!ERR_Module__ServeDao_SQLExecute_Select_NotNull_Error",
+                            "!ERR_Module__ServeDao_SQLSelect_Type_Illegal",
+                            "!ERR_Module__ServeDao_TXNStart_Exception",
+                            "!ERR_Module__ServeDao_TXNStart_Level_Illegal",
+                            "!ERR_Module__ServeDao_TXNStart_Create_Already",
+                            "!ERR_Module__ServeDao_TXNEnd_Exception",
+                            "!ERR_Api_moduleParamType_Illegal"
+                        ],
+                        "tips":{"":"非法错误码","en":"Illegal error code"}
+                    }]
+                },
+                {
+                    "node":"^>_DataFilling",
+                    "line":"^>_DataFilling",
+                    "isEmptyPass":true,
+                    "check":[
+                        
+                    ],
+                    "tips":[
+                        {"line":"", "tips":{"":"非法action","en":"Illegal action"}}
+                    ],
+                    "appendix":[{
+                        "match":"!([a-zA-Z_][a-zA-Z0-9_]*)",
+                        "list":[
+                            "!ERR_Module__DataFilling_Exception",
+                            "!ERR_Module__DataFilling_JsonPath_Illegal",
+                            "!ERR_Module__DataFilling_Session_Fail",
+                            "!ERR_Api_moduleParamType_Illegal"
+                        ],
+                        "tips":{"":"非法错误码","en":"Illegal error code"}
+                    }]
+                },
+                {
+                    "node":"^>_DataCheck",
+                    "line":"^>_DataCheck",
+                    "isEmptyPass":true,
+                    "check":[
+                        
+                    ],
+                    "tips":[
+                        {"line":"", "tips":{"":"非法action","en":"Illegal action"}}
+                    ],
+                    "appendix":[{
+                        "match":"!([a-zA-Z_][a-zA-Z0-9_]*)",
+                        "list":[
+                            "!ERR_Module__DataCheck_Exception",
+                            "!ERR_Module__DataCheck_Check_Block",
+                            "!ERR_Module__DataCheck_Lack_Block",
+                            "!ERR_Module__DataCheck_LensLimit_Over",
+                            "!ERR_Module__DataCheck_List_Empty",
+                            "!ERR_Module__DataCheck_JsonPath_Illegal",
+                            "!ERR_Api_moduleParamType_Illegal"
+                        ],
+                        "tips":{"":"非法错误码","en":"Illegal error code"}
+                    }]
+                },
+                {
+                    "node":"^>_OperSession",
+                    "line":"^>_OperSession",
+                    "isEmptyPass":true,
+                    "check":[
+                        "^>_OperSession -save",
+                        "^>_OperSession -delete",
+                    ],
+                    "tips":[
+                        {"line":"", "tips":{"":"非法action","en":"Illegal action"}}
+                    ],
+                    "appendix":[{
+                        "match":"!([a-zA-Z_][a-zA-Z0-9_]*)",
+                        "list":[
+                            "!ERR_Module__OperSession_Exception",
+                            "!ERR_Module__OperSession_Action_Illegal",
+                            "!ERR_Module__OperSession_Save_Empty",
+                            "!ERR_Api_moduleParamType_Illegal"
+                        ],
+                        "tips":{"":"非法错误码","en":"Illegal error code"}
+                    }]
+                },
+                {
+                    "node":"^>",
+                    "line":"^>",
+                    "check":[],
+                    "tips":[
+                        {"line":"", "tips":{"":"缺少模块","en":"Lack module"}}
+                    ]
+                }
+            ],
+            "Xmas_hint":[
+                {
+                    "node":"",
+                    "line":"",
+                    "icon":"constructor",
+                    "key":">",
+                    "hint":[
+[
+    "_OperFile -upload", {"":"※ 模块: 文件操作<br>➤ Action: 上传文件","en":"※ Module: File operation<br>➤ Action: upload file"} , 
+    "_OperFile -upload\n\
+    _targetKey: file\n\
+    _resultPathKey: key\n\
+    "
+],
+[
+    "_OperFile -delete", {"":"※ 模块: 文件操作<br>➤ Action: 删除文件/目录","en":"※ Module: File operation<br>➤ Action: delete file/directory"} , 
+    "_OperFile -delete\n\
+    _path: /file/path\n\
+    "
+],
+[
+    "_OperFile -move", {"":"※ 模块: 文件操作<br>➤ Action: 迁移文件/目录","en":"※ Module: File operation<br>➤ Action: move file/directory"} , 
+    "_OperFile -move\n\
+    _sourcePath: /file/path\n\
+    _targetPath: /file/path\n\
+    "
+],
+[
+    "_ServeDao -insert", {"":"※ 模块: MySQL数据库操作<br>➤ Action: 插入数据","en":"※ Module: MySQL database operation<br>➤ Action: insert data"} , 
+    "_ServeDao -insert\n\
+    _table: name\n\
+    "
+],
+[
+    "_ServeDao -insert batch", {"":"※ 模块: MySQL数据库操作<br>➤ Action: 批量插入数据","en":"※ Module: MySQL database operation<br>➤ Action: insert data in batches"} , 
+    "_ServeDao -insert batch\n\
+    _table: name\n\
+    _target: []\n\
+    "
+],
+[
+    "_ServeDao -delete", {"":"※ 模块: MySQL数据库操作<br>➤ Action: 删除数据","en":"※ Module: MySQL database operation<br>➤ Action: delete data"} , 
+    "_ServeDao -delete\n\
+    _table: name\n\
+    "
+],
+[
+    "_ServeDao -update", {"":"※ 模块: MySQL数据库操作<br>➤ Action: 更新数据","en":"※ Module: MySQL database operation<br>➤ Action: update data"} , 
+    "_ServeDao -update\n\
+    _table: name\n\
+    "
+],
+[
+    "_ServeDao -select object", {"":"※ 模块: MySQL数据库操作<br>➤ Action: 查询数据","en":"※ Module: MySQL database operation<br>➤ Action: query data"} , 
+    "_ServeDao -select object\n\
+    _table: name\n\
+    _resultKey: result\n\
+    "
+],
+[
+    "_ServeDao -select list", {"":"※ 模块: MySQL数据库操作<br>➤ Action: 查询数据列表","en":"※ Module: MySQL database operation<br>➤ Action: query data list"} , 
+    "_ServeDao -select list\n\
+    _table: name\n\
+    _resultKey: result\n\
+    "
+],
+[
+    "_ServeDao -sql update", {"":"※ 模块: MySQL数据库操作<br>➤ Action: SQL语句更新（插入/删除/更新数据）","en":"※ Module: MySQL database operation<br>➤ Action: SQL statement update (insert/delete/update data)"} , 
+    "_ServeDao -sql update\n\
+    _sql: UPDATE table SET key = '@key@' WHERE id = '@id@'\n\
+    "
+],
+[
+    "_ServeDao -sql select", {"":"※ 模块: MySQL数据库操作<br>➤ Action: SQL语句查询","en":"※ Module: MySQL database operation<br>➤ Action: SQL statement query"} , 
+    "_ServeDao -sql select\n\
+    _sql: SELECT * FROM table WHERE key = '@key@'\n\
+    _selectType: select list\n\
+    "
+],
+[
+    "_ServeDao -txn start", {"":"※ 模块: MySQL数据库操作<br>➤ Action: 开启数据库事务","en":"※ Module: MySQL database operation<br>➤ Action: start database transactions"} , 
+    "_ServeDao -txn start\n\
+    _isAutoErrorRollBack: true\n\
+    "
+],
+[
+    "_ServeDao -txn end", {"":"※ 模块: MySQL数据库操作<br>➤ Action: 结束数据库事务","en":"※ Module: MySQL database operation<br>➤ Action: end database transaction"} , 
+    "_ServeDao -txn end\n\
+    _isCommit: true\n\
+    "
+],
+[
+    "_DataFilling", {"":"※ 模块: 修改passParam的数据","en":"※ Module: Modify the data of passParam"} , 
+    "_DataFilling\n\
+    _setting: {}\n\
+    "
+],
+[
+    "_DataCheck", {"":"※ 模块: 检查passParam数据、值范围","en":"※ Module: Check the data and value range of passParam"} , 
+    "_DataCheck\n\
+    _isClean: true\n\
+    _param: {}\n\
+    "
+],
+[
+    "_OperSession -save", {"":"※ 模块: Session操作<br>➤ Action: 添加session信息","en":"※ Module: Session operation<br>➤ Action: add session information"} , 
+    "_OperSession -save\n\
+    _setting: {}\n\
+    "
+],
+[
+    "_OperSession -delete", {"":"※ 模块: Session操作<br>➤ Action: 删除session信息","en":"※ Module: Session operation<br>➤ Action: delete session information"} , 
+    "_OperSession -delete\n\
+    _key: []\n\
+    "
+],
+                    ]
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_targetKey *", {"":"※ 参数: <br>上传文件在请求表单中对应的key","en":"※ Param: <br>The key corresponding to the upload file in the request form"}, "targetKey: file"],
+                        ["_isNullError", {"":"※ 参数: <br>当请求表单中获取不到文件时，是否报错。true:报错，false:不报错","en":"※ Param: <br>When the file cannot be obtained in the request form, whether to report an error. true: error, false: no error"}, "isNullError: true"],
+                        ["_maxCount", {"":"※ 参数: <br>上传文件的最大个数，默认不限制","en":"※ Param: <br>Maximum number of files uploaded, unlimited by default"}, "maxCount: -1"],
+                        ["_maxFileSize", {"":"※ 参数: <br>单个文件的最大存储空间限制（单位：字节），默认不限制","en":"※ Param: <br>Maximum storage space limit for a single file (unit: Bytes), unlimited by default"}, "maxFileSize: -1"],
+                        ["_AllowSuffix", {"":"※ 参数: <br>允许的文件后缀，默认不限制","en":"※ Param: <br>Allowed file suffixes, unlimited by default"}, "AllowSuffix: .jpg|.png|.gif"],
+                        ["_targetFileName", {"":"※ 参数: <br>保存的文件名，文件后缀会自动拼接，默认uuid","en":"※ Param: <br>The saved file name, and the file suffix will be automatically spliced together, uuid by default"}, "targetFileName: /dirs/filename"],
+                        ["_resultPathKey *", {"":"※ 参数: <br>存放上传完成的文件路径的key，默认采用`_targetKey`的设置","en":"※ Param: <br>The key to put the result (uploaded file path), use the setting of `_targetKey` by default"}, "resultPathKey: key"],
+                        ["_resultOriginalNameKey", {"":"※ 参数: <br>存放上传完成的文件原始名称的key，默认不记录","en":"※ Param: <br>The key to put the result (original file name), not recorded by default"}, "resultOriginalNameKey: key"],
+                        ["_resultFileSizeKey", {"":"※ 参数: <br>存放上传完成的文件大小的key，单位：字节，默认不记录","en":"※ Param: <br>The key to put the result (file size),  unit: Bytes, not recorded by default"}, "resultFileSizeKey: key"],
+                        ["_isExistCover", {"":"※ 参数: <br>当目标路径已经存在文件，是否覆盖，true:覆盖，false:报错退出","en":"※ Param: <br>When the target path already exists, whether to overwrite, true: overwrite, false: error exit"}, "isExistCover: false"],
+                        ["_isErrorRollBack", {"":"※ 参数: <br>当模块报错时，是否删除已经上传的文件，true:自动删除，false:不删除","en":"※ Param: <br>When the module reports an error, whether to delete the uploaded file, true: automatic deletion, false: do not delete"}, "isErrorRollBack: true"],
+                        ["_isAutoRollBack", {"":"※ 参数: <br>当业务逻辑报错时（Controller、Service调用其他模块报错），是否删除已上传的文件，true:自动删除，false:不删除","en":"※ Param: <br>When the business logic reports an error (Controller, Service calls other modules to report an error), whether to delete the uploaded files, true: automatic deletion, false: do not delete"}, "isAutoRollBack: true"],
+                    ]
+                },
+                {
+                    "node":"^>_OperFile -delete\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_path *", {"":"※ 参数: <br>需要删除的文件/目录路径","en":"※ Param: <br>File/directory path to be deleted"}, "path: /file/path"],
+                        ["_isNullError", {"":"※ 参数: <br>当文件/目录不存在时，是否报错，true:报错，false:不报错","en":"※ Param: <br>When the file/directory does not exist, whether an error is reported, true: error, false: no error"}, "isNullError: true"],
+                        ["_isSync", {"":"※ 参数: <br>是否采用同步的方式删除，true:同步删除，false:异步线程删除","en":"※ Param: <br>Whether to delete in a synchronous way, true: delete synchronously, false: asynchronous thread deletion"}, "isSync: false"],
+                        ["_isDeleteErrorInterrupt", {"":"※ 参数: <br>删除目录时，如果中途出现错误，是否中断。true:中断，false:继续","en":"※ Param: <br>When deleting the directory, if there is an error in the middle, whether it will be interrupted. True: interrupt, false: continue"}, "isDeleteErrorInterrupt: false"],
+                    ]
+                },
+                {
+                    "node":"^>_OperFile -move\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_sourcePath *", {"":"※ 参数: <br>源文件/目录路径","en":"※ Param: <br>Source file/directory path"}, "sourcePath: /file/path"],
+                        ["_targetPath *", {"":"※ 参数: <br>目标文件/目录路径","en":"※ Param: <br>Target file/directory path"}, "targetPath: /file/path"],
+                        ["_isSourceNullError", {"":"※ 参数: <br>当源文件/目录不存在时，是否报错，true:报错，false:不报错","en":"※ Param: <br>When the source file/directory does not exist, whether the error is reported, true: error, false: no error"}, "isSourceNullError: true"],
+                        ["_isTargetCover", {"":"※ 参数: <br>当目标文件/目录路径存在时，是否覆盖，true:覆盖，false:不覆盖并报错","en":"※ Param: <br>When the target file/directory path exists, whether to cover, true: cover, false: do not cover and report an error"}, "isTargetCover: false"],
+                        ["_isSync", {"":"※ 参数: <br>是否采用同步的方式迁移，true:同步迁移，false:异步线程迁移","en":"※ Param: <br>Whether to move file/directory in a synchronous way, true: synchronous move, false: asynchronous thread move"}, "isSync: false"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -insert\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_table *", {"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}, "table: name"],
+                        ["_target", {"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}, "target: {}"],
+                        ["_isReplace", {"":"※ 参数: <br>插入数据的SQL是否使用`REPLACE`开头，true:使用`REPLACE`，false:使用`INSERT`","en":"※ Param: <br>Does the SQL that insert the data start with `REPLACE`, true: use `REPLACE`, false: use `INSERT`"}, "isReplace: false"],
+                        ["_resultKey", {"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}, "resultKey: result"],
+                        ["_isCheckAffect", {"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}, "isCheckAffect: true"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -insert batch\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_table *", {"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}, "table: name"],
+                        ["_target *", {"":"※ 参数: <br>目标数据，数据必须为数组[{...},{...}]","en":"※ Param: <br>Target data, the data must be an array[{...},{...}]"}, "target: []"],
+                        ["_isReplace", {"":"※ 参数: <br>插入数据的SQL是否使用`REPLACE`开头，true:使用`REPLACE`，false:使用`INSERT`","en":"※ Param: <br>Does the SQL that insert the data start with `REPLACE`, true: use `REPLACE`, false: use `INSERT`"}, "isReplace: false"],
+                        ["_resultKey", {"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}, "resultKey: result"],
+                        ["_isCheckAffect", {"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}, "isCheckAffect: true"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -delete\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_table *", {"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}, "table: name"],
+                        ["_target", {"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}, "target: {}"],
+                        ["_filter", {"":"※ 参数: <br>用于判断的SQL碎片（DELETE SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of DELETE SQL), Automatic splicing by default"}, "filter: key='@value@'"],
+                        ["_isSQLReplaceStrict", {"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}, "isSQLReplaceStrict: true"],
+                        ["_resultKey", {"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}, "resultKey: result"],
+                        ["_isCheckAffect", {"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}, "isCheckAffect: true"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_table *", {"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}, "table: name"],
+                        ["_target", {"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}, "target: {}"],
+                        ["_update", {"":"※ 参数: <br>用于设置更新数据的SQL碎片（UPDATE SQL的SET部分），默认自动拼接","en":"※ Param: <br>SQL fragment for setting up updated data (SET part of UPDATE SQL),  Automatic splicing by default"}, "update: key='@value@'"],
+                        ["_filter", {"":"※ 参数: <br>用于判断的SQL碎片（UPDATE SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of UPDATE SQL),  Automatic splicing by default"}, "filter: key='@value@'"],
+                        ["_isSQLReplaceStrict", {"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}, "isSQLReplaceStrict: true"],
+                        ["_resultKey", {"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}, "resultKey: result"],
+                        ["_isCheckAffect", {"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}, "isCheckAffect: true"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_table *", {"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}, "table: name"],
+                        ["_target", {"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}, "target: {}"],
+                        ["_get", {"":"※ 参数: <br>用于设置更新数据的SQL碎片（SELECT SQL的设置获取字段部分）","en":"※ Param: <br>SQL fragment for setting update data (SELECT SQL's settings to get the field part)"}, "get: *"],
+                        ["_filter", {"":"※ 参数: <br>用于判断的SQL碎片（SELECT SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of SELECT SQL),  Automatic splicing by default"}, "filter: key='@value@'"],
+                        ["_isSQLReplaceStrict", {"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}, "isSQLReplaceStrict: true"],
+                        ["_resultKey *", {"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}, "resultKey: result"],
+                        ["_isGetNullError", {"":"※ 参数: <br>获取不到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when the data cannot be obtained, true: error, false: no error"}, "isGetNullError: true"],
+                        ["_isGetNotNullError", {"":"※ 参数: <br>获取到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when obtaining the data, true: error, false: no error"}, "isGetNotNullError: false"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_table *", {"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}, "table: name"],
+                        ["_target", {"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}, "target: {}"],
+                        ["_get", {"":"※ 参数: <br>用于设置更新数据的SQL碎片（SELECT SQL的设置获取字段部分）","en":"※ Param: <br>SQL fragment for setting update data (SELECT SQL's settings to get the field part)"}, "get: *"],
+                        ["_filter", {"":"※ 参数: <br>用于判断的SQL碎片（SELECT SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of SELECT SQL),  Automatic splicing by default"}, "filter: key='@value@'"],
+                        ["_orderBy", {"":"※ 参数: <br>用于排序的SQL碎片（SELECT SQL的ORDER BY部分），默认不排序","en":"※ Param: <br>SQL fragment for sorting (ORDER BY part of SELECT SQL), do not sort by default"}, "orderBy: key DESC"],
+                        ["_page", {"":"※ 参数: <br>第几页数据（SELECT SQL的LIMIT部分），默认不限制分页","en":"※ Param: <br>Page of data (LIMIT part of SELECT SQL), no restrictions on paging by default"}, "page: 1"],
+                        ["_pageSize", {"":"※ 参数: <br>每页数据（SELECT SQL的LIMIT部分），默认不限制分页","en":"※ Param: <br>Size of per page (LIMIT part of SELECT SQL), no restrictions on paging by default"}, "pageSize: 10"],
+                        ["_isSQLReplaceStrict", {"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}, "isSQLReplaceStrict: true"],
+                        ["_countResultKey", {"":"※ 参数: <br>记录符合条件的总条数，默认'count'","en":"※ Param: <br>Record the total number of eligible items, 'count' by default"}, "countResultKey: count"],
+                        ["_resultKey *", {"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}, "resultKey: result"],
+                        ["_isGetNullError", {"":"※ 参数: <br>获取不到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when the data cannot be obtained, true: error, false: no error"}, "isGetNullError: false"],
+                        ["_isGetNotNullError", {"":"※ 参数: <br>获取到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when obtaining the data, true: error, false: no error"}, "isGetNotNullError: false"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -sql update\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_sql *", {"":"※ 参数: <br>用于更新(增加/删除/更新)的SQL语句<br><br>SQL例子: <br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@test_id@', '@test_value@')<br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@list>>0>>test_id@', '@list>>0>>test_value@'),('@list>>1>>test_id@', '@list>>1>>test_value@')<br>&emsp;&emsp;DELETE FROM table WHERE test_id = '@test_id@'<br>&emsp;&emsp;UPDATE table SET test_value = '@test_value@' WHERE id = '@test_id@'","en":"※ Param: <br>SQL statements for updating(insert/delete/update)<br><br>SQL samples: <br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@test_id@', '@test_value@')<br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@list>>0>>test_id@', '@list>>0>>test_value@'),('@list>>1>>test_id@', '@list>>1>>test_value@')<br>&emsp;&emsp;DELETE FROM table WHERE test_id = '@test_id@'<br>&emsp;&emsp;UPDATE table SET test_value = '@test_value@' WHERE id = '@test_id@'"}, "sql: UPDATE table SET key = '@key@' WHERE id = '@id@'"],
+                        ["_isSQLReplaceStrict", {"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}, "isSQLReplaceStrict: true"],
+                        ["_resultKey", {"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}, "resultKey: result"],
+                        ["_isCheckAffect", {"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}, "isCheckAffect: true"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -sql select\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_sql *", {"":"※ 参数: <br>用于查询的SQL语句<br><br>SQL例子: <br>&emsp;&emsp;SELECT * FROM table WHERE test_value = '@test_value>>key@'<br>&emsp;&emsp;SELECT * FROM table WHERE test_value like '%@test_value@%'<br>&emsp;&emsp;SELECT * FROM table ORDER BY test_id DESC<br>&emsp;&emsp;SELECT * FROM table LIMIT 3 OFFSET 2","en":"※ Param: <br>SQL statements for query<br><br>SQL samples: <br>&emsp;&emsp;SELECT * FROM table WHERE test_value = '@test_value>>key@'<br>&emsp;&emsp;SELECT * FROM table WHERE test_value like '%@test_value@%'<br>&emsp;&emsp;SELECT * FROM table ORDER BY test_id DESC<br>&emsp;&emsp;SELECT * FROM table LIMIT 3 OFFSET 2"}, "sql: SELECT * FROM table WHERE key = '@key@'"],
+                        ["_selectType *", {"":"※ 参数: <br>指定查询的结果类型，支持4种类型，`select string`、`select int`、`select list`、`select object`","en":"※ Param: <br>Specify the result type of the query, Support 4 types, `select string`, `select int`, `select list`, `select object`"}, "selectType: select list"],
+                        ["_isSQLReplaceStrict", {"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}, "isSQLReplaceStrict: true"],
+                        ["_resultKey", {"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}, "resultKey: result"],
+                        ["_isGetNullError", {"":"※ 参数: <br>获取不到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when the data cannot be obtained, true: error, false: no error"}, "isGetNullError: false"],
+                        ["_isGetNotNullError", {"":"※ 参数: <br>获取到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when obtaining the data, true: error, false: no error"}, "isGetNotNullError: false"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -txn start\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_level", {"":"※ 参数: <br>数据库事务隔离等级，可选数据库事务隔离等级为`read uncommitted`、`read committed`、`repeatable read`、`serializable`","en":"※ Param: <br>Database transaction isolation level, the optional database transaction isolation level is `read uncommitted`, `read committed`, `repeatable read`, `serializable`"}, "level: repeatable read"],
+                        ["_isAutoErrorRollBack *", {"":"※ 参数: <br>业务逻辑结束时，发生错误是否自动回滚事务，true:发生错误回滚，不发生错误提交，false:不发生错误回滚，发生错误提交","en":"※ Param: <br>At the end of the business logic, whether the error automatically rolls back the transaction, true: error rollback, no error submission, false: no error rollback, error submission"}, "isAutoErrorRollBack: true"],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao -txn end\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_isCommit *", {"":"※ 参数: <br>是否提交事务，true:提交，false:回滚","en":"※ Param: <br>Whether to submit the transaction, true: submit, false: rollback"}, "isCommit: true"],
+                    ]
+                },
+                {
+                    "node":"^>_DataFilling\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_isSessionNullError", {"":"※ 参数: <br>获取Session时，如果缺少对应的Session值，是否报错，false:不报错，用'null'作为对应值，true:报错退出","en":"※ Param: <br>When obtaining the Session, if the corresponding Session value is missing, whether the error is reported, false: no error, use 'null' as the corresponding value, true: error exit"}, "isSessionNullError: true"],
+                        ["_setting *", {"":"※ 参数: <br>修改数据的模板<br><br>key例子:<br>&emsp;&emsp;key: 强制设置<br>&emsp;&emsp;key-1>>key-2: 强制设置（深层定位）<br>&emsp;&emsp;nec##key: 强制设置<br>&emsp;&emsp;opt##key: 为非强制设置，当key不存在不设置<br>&emsp;&emsp;key_@get##id@: 动态key，@get##id@会从passParam中获取数据<br>&emsp;&emsp;key_@get##xxx>>key@: 动态key，@get##xxx>>key@会从passParam中获取数据（深层定位）<br>&emsp;&emsp;push##key: 在数组末尾追加数据，value必须为数组类型<br><br>value例子:<br>&emsp;&emsp;true: 设置固定值true<br>&emsp;&emsp;null: 删除这个key<br>&emsp;&emsp;'get##key+uuid': 动态值表达式，用+号连接多个表达式<br><br>value动态值表达式:<br>&emsp;&emsp;uuid: 32位uuid<br>&emsp;&emsp;uuid short: 短uuid<br>&emsp;&emsp;random id: 随机数（默认8位）<br>&emsp;&emsp;session##key: 从session获取值，key为session的key<br>&emsp;&emsp;header##key: 从header获取值，key为header的key<br>&emsp;&emsp;get##key: 从passParam获取值，key为passParam的key，允许深层定位'key>>key-2'<br>&emsp;&emsp;time: 当前时间，格式为yyyy-MM-dd HH:mm:ss<br>&emsp;&emsp;time##yyyy-MM-dd HH:mm:ss: 当前时间","en":"※ Param: <br>Template for modifying data<br><br>key examples:<br>&emsp;&emsp;key: Mandatory setting<br>&emsp;&emsp;key-1>>key-2: Mandatory setting (deep location)<br>&emsp;&emsp;nec##key: Mandatory setting<br>&emsp;&emsp;opt##key: Optional setting, do not set if key does not exist<br>&emsp;&emsp;key_@get##id@: Dynamic key, @get##id@ will retrieve data from passParam<br>&emsp;&emsp;key_@get##xxx>>key@: Dynamic key, @get##xxx>>key@ will retrieve data from passParam (deep location)<br>&emsp;&emsp;push##key: Append data to the end of an array, value must be an array type<br><br>value examples:<br>&emsp;&emsp;true: Set a fixed value of true<br>&emsp;&emsp;null: Delete this key<br>&emsp;&emsp;'get##key+uuid': Dynamic value expression, multiple expressions are connected with + sign<br><br>Dynamic value expressions:<br>&emsp;&emsp;uuid: 32-bit UUID<br>&emsp;&emsp;uuid short: Short UUID<br>&emsp;&emsp;random id: Random number (default 8 digits)<br>&emsp;&emsp;session##key: Retrieve value from session, key is the key of the session<br>&emsp;&emsp;header##key: Retrieve value from header, key is the key of the header<br>&emsp;&emsp;get##key: Retrieve value from passParam, key is the key of passParam, allows deep location 'key>>key-2'<br>&emsp;&emsp;time: Current time, formatted as yyyy-MM-dd HH:mm:ss<br>&emsp;&emsp;time##yyyy-MM-dd HH:mm:ss: Current time"}, "setting: {}"],
+                    ]
+                },
+                {
+                    "node":"^>_DataCheck\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_isClean *", {"":"※ 参数: <br>是否清空多余字段，false:不清理，true:清理","en":"※ Param: <br>Whether to clean redundant fields, false: not cleaned, true: cleaned"}, "isClean: true"],
+                        ["_param *", {"":"※ 参数: <br>检查passParam的模板<br><br>key例子:<br>&emsp;&emsp;key: 必要的key<br>&emsp;&emsp;nec##key: 必要的key<br>&emsp;&emsp;opt##key: 非必要的key<br>&emsp;&emsp;10##key: [数组长度上限为10]<br>&emsp;&emsp;opt##10##key: [非必要的key，且数组长度上限为10]<br>&emsp;&emsp;key-1>>key-2: 必要的key(深层定位)<br><br>value例子:<br>&emsp;&emsp;true: 限制值为true<br>&emsp;&emsp;{}: 限制值类型为{}，但不限制内容<br>&emsp;&emsp;'': 不限制任何值<br>&emsp;&emsp;'str##'、'int##'、'double##'、'long##'、bool##': 限制值类型，但不限制内容<br>&emsp;&emsp;str##abc/bcd: 限制值为字符串类型，且必须为abc或者bcd<br>&emsp;&emsp;not##str##abc/bcc: not##前缀表示结果取反","en":"※ Param: <br>Check the template of passParam<br><br>key examples:<br>&emsp;&emsp;key: Necessary key<br>&emsp;&emsp;nec##key: Necessary key<br>&emsp;&emsp;opt##key: Unnecessary key<br>&emsp;&emsp;10##key: [Array length limit is 10]<br>&emsp;&emsp;opt##10##key: [Unnecessary key, and array length limit is 10]<br>&emsp;&emsp;key-1>>key-2: Necessary key (deep location)<br><br>value examples:<br>&emsp;&emsp;true: Value limit is true<br>&emsp;&emsp;{}: Value type is {}, but content is not limited<br>&emsp;&emsp;'': No value limit<br>&emsp;&emsp;'str##','int##','double##','long##','bool##': Value type is limited, but content is not<br>&emsp;&emsp;str##abc/bcd: Value must be a string type and must be 'abc' or 'bcd'<br>&emsp;&emsp;not##str##abc/bcc: The prefix 'not##' indicates the negation of the result"}, "param: {}"],
+                    ]
+                },
+                {
+                    "node":"^>_OperSession -save\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_isNullError", {"":"※ 参数: <br>当不能获取插入值时，是否报错，true: 报错退出，false: 尝试用默认值代替","en":"※ Param: <br>When the inserted value cannot be obtained, whether an error is reported, true: throw an error and exit, false: try to replace it with the default value"}, "isNullError: true"],
+                        ["_defaultValue", {"":"※ 参数: <br>当获取不到插入值时的默认替代值","en":"※ Param: <br>The default replacement value when the insertion value cannot be obtained"}, "defaultValue: {}"],
+                        ["_setting *", {"":"※ 参数: <br>将要插入session的自定义数据","en":"※ Param: <br>Custom data to be inserted into the session"}, "setting: {}"],
+                    ]
+                },
+                {
+                    "node":"^>_OperSession -delete\\s*(!|$)",
+                    "line":"^_$",
+                    "icon":"constructor",
+                    "key":"_",
+                    "hint":[
+                        ["_key *", {"":"※ 参数: <br>需要删除的session值的key","en":"※ Param: <br>The key of the session value that needs to be deleted"}, "key: []"],
+                    ]
+                },
+                {
+                    "node":"^>_OperFile",
+                    "line":"^>_OperFile",
+                    "icon":"constructor",
+                    "key":"!",
+                    "hint":[
+                        ["ERR_Module__OperFile_Exception",""],
+                        ["ERR_Module__OperFile_Action_Illegal",""],
+                        ["ERR_Module__OperFile_Upload_File_Lack",""],
+                        ["ERR_Module__OperFile_Upload_FileCount_Limit",""],
+                        ["ERR_Module__OperFile_Upload_FileSize_Limit",""],
+                        ["ERR_Module__OperFile_Upload_File_Empty",""],
+                        ["ERR_Module__OperFile_Upload_File_FilePreCheck_Empty",""],
+                        ["ERR_Module__OperFile_Upload_FileName_Illegal",""],
+                        ["ERR_Module__OperFile_Upload_FileSuffix_Block",""],
+                        ["ERR_Module__OperFile_Upload_File_Exist",""],
+                        ["ERR_Module__OperFile_Upload_FilePreCheck_Exist",""],
+                        ["ERR_Module__OperFile_Upload_UploadListSize_Incorrect",""],
+                        ["ERR_Module__OperFile_Upload_CreateParentDirs_Fail",""],
+                        ["ERR_Module__OperFile_Upload_Exception",""],
+                        ["ERR_Module__OperFile_Delete_Path_Empty",""],
+                        ["ERR_Module__OperFile_Delete_Path_Illegal",""],
+                        ["ERR_Module__OperFile_Delete_Path_Lack",""],
+                        ["ERR_Module__OperFile_Delete_Exception",""],
+                        ["ERR_Module__OperFile_Delete_File_Fail",""],
+                        ["ERR_Module__OperFile_Delete_Directory_Fail",""],
+                        ["ERR_Module__OperFile_UploadRollBack_Exception",""],
+                        ["ERR_Module__OperFile_Move_SourcePath_Empty",""],
+                        ["ERR_Module__OperFile_Move_SourcePath_Illegal",""],
+                        ["ERR_Module__OperFile_Move_TargetPath_Empty",""],
+                        ["ERR_Module__OperFile_Move_TargetSource_Same",""],
+                        ["ERR_Module__OperFile_Move_TargetPath_Illegal",""],
+                        ["ERR_Module__OperFile_Move_SourcePath_Lack",""],
+                        ["ERR_Module__OperFile_Move_TargetPath_Exist",""],
+                        ["ERR_Module__OperFile_Move_TargetPath_CoverDirs_Fail",""],
+                        ["ERR_Module__OperFile_Move_Exception",""],
+                        ["ERR_Module__OperFile_End_Exception",""],
+                    ]
+                },
+                {
+                    "node":"^>_ServeDao",
+                    "line":"^>_ServeDao",
+                    "icon":"constructor",
+                    "key":"!",
+                    "hint":[
+                        ["ERR_Module__ServeDao_Exception",""],
+                        ["ERR_Module__ServeDao_Action_Illegal",""],
+                        ["ERR_Module__ServeDao_SQLMake_Empty",""],
+                        ["ERR_Module__ServeDao_TableCheck_TableName_Illegal",""],
+                        ["ERR_Module__ServeDao_TableCheck_Table_Lack",""],
+                        ["ERR_Module__ServeDao_TableCheck_TableInfo_Lack",""],
+                        ["ERR_Module__ServeDao_TableCheck_TableType_Illegal",""],
+                        ["ERR_Module__ServeDao_Insert_Column_Lack",""],
+                        ["ERR_Module__ServeDao_Insert_ColumnValueLength_Limit",""],
+                        ["ERR_Module__ServeDao_InsertBatch_Data_Empty",""],
+                        ["ERR_Module__ServeDao_InsertBatch_Column_Lack",""],
+                        ["ERR_Module__ServeDao_InsertBatch_ColumnValueLength_Limit",""],
+                        ["ERR_Module__ServeDao_Update_ColumnValueLength_Limit",""],
+                        ["ERR_Module__ServeDao_SQLStringDeal_Template_Illegal",""],
+                        ["ERR_Module__ServeDao_SQLStringDeal_Replace_Illegal",""],
+                        ["ERR_Module__ServeDao_SQLExecute_Type_Illegal",""],
+                        ["ERR_Module__ServeDao_SQLExecute_Exception",""],
+                        ["ERR_Module__ServeDao_SQLExecute_Update_Fail",""],
+                        ["ERR_Module__ServeDao_SQLExecute_Select_Null_Error",""],
+                        ["ERR_Module__ServeDao_SQLExecute_Select_NotNull_Error",""],
+                        ["ERR_Module__ServeDao_SQLSelect_Type_Illegal",""],
+                        ["ERR_Module__ServeDao_TXNStart_Exception",""],
+                        ["ERR_Module__ServeDao_TXNStart_Level_Illegal",""],
+                        ["ERR_Module__ServeDao_TXNStart_Create_Already",""],
+                        ["ERR_Module__ServeDao_TXNEnd_Exception",""],
+                    ]
+                },
+                {
+                    "node":"^>_DataFilling",
+                    "line":"^>_DataFilling",
+                    "icon":"constructor",
+                    "key":"!",
+                    "hint":[
+                        ["ERR_Module__DataFilling_Exception",""],
+                        ["ERR_Module__DataFilling_JsonPath_Illegal",""],
+                        ["ERR_Module__DataFilling_Session_Fail",""],
+                    ]
+                },
+                {
+                    "node":"^>_DataCheck",
+                    "line":"^>_DataCheck",
+                    "icon":"constructor",
+                    "key":"!",
+                    "hint":[
+                        ["ERR_Module__DataCheck_Exception",""],
+                        ["ERR_Module__DataCheck_Check_Block",""],
+                        ["ERR_Module__DataCheck_Lack_Block",""],
+                        ["ERR_Module__DataCheck_LensLimit_Over",""],
+                        ["ERR_Module__DataCheck_List_Empty",""],
+                        ["ERR_Module__DataCheck_JsonPath_Illegal",""],
+                    ]
+                },
+                {
+                    "node":"^>_OperSession",
+                    "line":"^>_OperSession",
+                    "icon":"constructor",
+                    "key":"!",
+                    "hint":[
+                        ["ERR_Module__OperSession_Exception",""],
+                        ["ERR_Module__OperSession_Action_Illegal",""],
+                        ["ERR_Module__OperSession_Save_Empty",""],
+                    ]
+                },
+            ],
+            "Xmas_template":[
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "template":{
+                        "name":"_OperFile",
+                        "param":{
+                            "_action": "upload",
+                            "_targetKey":"<<param<<_targetKey",
+                            "opt<<_isNullError":"<<param<<_isNullError",
+                            "opt<<_maxCount":"<<param<<_maxCount",
+                            "opt<<_maxFileSize":"<<param<<_maxFileSize",
+                            "opt<<_AllowSuffix":"<<param<<_AllowSuffix",
+                            "opt<<_targetFileName":"<<param<<_targetFileName",
+                            "_resultPathKey":"<<param<<_resultPathKey",
+                            "opt<<_resultOriginalNameKey":"<<param<<_resultOriginalNameKey",
+                            "opt<<_resultFileSizeKey":"<<param<<_resultFileSizeKey",
+                            "opt<<_isExistCover":"<<param<<_isExistCover",
+                            "opt<<_isErrorRollBack":"<<param<<_isErrorRollBack",
+                            "opt<<_isAutoRollBack":"<<param<<_isAutoRollBack",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -delete\\s*(!|$)",
+                    "template":{
+                        "name":"_OperFile",
+                        "param":{
+                            "_action": "delete",
+                            "_path":"<<param<<_path",
+                            "opt<<_isNullError":"<<param<<_isNullError",
+                            "opt<<_isSync":"<<param<<_isSync",
+                            "opt<<_isDeleteErrorInterrupt":"<<param<<_isDeleteErrorInterrupt",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -move\\s*(!|$)",
+                    "template":{
+                        "name":"_OperFile",
+                        "param":{
+                            "_action": "move",
+                            "_sourcePath":"<<param<<_sourcePath",
+                            "_targetPath":"<<param<<_targetPath",
+                            "opt<<_isSourceNullError":"<<param<<_isSourceNullError",
+                            "opt<<_isTargetCover":"<<param<<_isTargetCover",
+                            "opt<<_isSync":"<<param<<_isSync",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "insert",
+                            "_table":"<<param<<_table",
+                            "opt<<_target":"<<param<<_target",
+                            "opt<<_isReplace":"<<param<<_isReplace",
+                            "opt<<_resultKey":"<<param<<_resultKey",
+                            "opt<<_isCheckAffect":"<<param<<_isCheckAffect",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert batch\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "insert batch",
+                            "_table":"<<param<<_table",
+                            "_target":"<<param<<_target",
+                            "opt<<_isReplace":"<<param<<_isReplace",
+                            "opt<<_resultKey":"<<param<<_resultKey",
+                            "opt<<_isCheckAffect":"<<param<<_isCheckAffect",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -delete\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "delete",
+                            "_table":"<<param<<_table",
+                            "opt<<_target":"<<param<<_target",
+                            "opt<<_filter":"<<param<<_filter",
+                            "opt<<_isSQLReplaceStrict":"<<param<<_isSQLReplaceStrict",
+                            "opt<<_resultKey":"<<param<<_resultKey",
+                            "opt<<_isCheckAffect":"<<param<<_isCheckAffect",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "update",
+                            "_table":"<<param<<_table",
+                            "opt<<_target":"<<param<<_target",
+                            "opt<<_update":"<<param<<_update",
+                            "opt<<_filter":"<<param<<_filter",
+                            "opt<<_isSQLReplaceStrict":"<<param<<_isSQLReplaceStrict",
+                            "opt<<_resultKey":"<<param<<_resultKey",
+                            "opt<<_isCheckAffect":"<<param<<_isCheckAffect",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "select object",
+                            "_table":"<<param<<_table",
+                            "opt<<_target":"<<param<<_target",
+                            "opt<<_get":"<<param<<_get",
+                            "opt<<_filter":"<<param<<_filter",
+                            "opt<<_isSQLReplaceStrict":"<<param<<_isSQLReplaceStrict",
+                            "_resultKey":"<<param<<_resultKey",
+                            "opt<<_isGetNullError":"<<param<<_isGetNullError",
+                            "opt<<_isGetNotNullError":"<<param<<_isGetNotNullError",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "select list",
+                            "_table":"<<param<<_table",
+                            "opt<<_target":"<<param<<_target",
+                            "opt<<_get":"<<param<<_get",
+                            "opt<<_filter":"<<param<<_filter",
+                            "opt<<_orderBy":"<<param<<_orderBy",
+                            "opt<<_page":"<<param<<_page",
+                            "opt<<_pageSize":"<<param<<_pageSize",
+                            "opt<<_isSQLReplaceStrict":"<<param<<_isSQLReplaceStrict",
+                            "opt<<_countResultKey":"<<param<<_countResultKey",
+                            "_resultKey":"<<param<<_resultKey",
+                            "opt<<_isGetNullError":"<<param<<_isGetNullError",
+                            "opt<<_isGetNotNullError":"<<param<<_isGetNotNullError",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql update\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "sql update",
+                            "_sql":"<<param<<_sql",
+                            "opt<<_isSQLReplaceStrict":"<<param<<_isSQLReplaceStrict",
+                            "opt<<_resultKey":"<<param<<_resultKey",
+                            "opt<<_isCheckAffect":"<<param<<_isCheckAffect",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql select\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "sql select",
+                            "_sql":"<<param<<_sql",
+                            "_selectType":"<<param<<_selectType",
+                            "opt<<_isSQLReplaceStrict":"<<param<<_isSQLReplaceStrict",
+                            "opt<<_resultKey":"<<param<<_resultKey",
+                            "opt<<_isGetNullError":"<<param<<_isGetNullError",
+                            "opt<<_isGetNotNullError":"<<param<<_isGetNotNullError",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -txn start\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "txn start",
+                            "opt<<_level":"<<param<<_level",
+                            "_isAutoErrorRollBack":"<<param<<_isAutoErrorRollBack",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -txn end\\s*(!|$)",
+                    "template":{
+                        "name":"_ServeDao",
+                        "param":{
+                            "_action": "txn end",
+                            "_isCommit":"<<param<<_isCommit",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_DataFilling\\s*(!|$)",
+                    "template":{
+                        "name":"_DataFilling",
+                        "param":{
+                            
+                            "opt<<_isSessionNullError":"<<param<<_isSessionNullError",
+                            "_setting":"<<param<<_setting",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_DataCheck\\s*(!|$)",
+                    "template":{
+                        "name":"_DataCheck",
+                        "param":{
+                            
+                            "_isClean":"<<param<<_isClean",
+                            "_param":"<<param<<_param",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_OperSession -save\\s*(!|$)",
+                    "template":{
+                        "name":"_OperSession",
+                        "param":{
+                            "_action": "save",
+                            "opt<<_isNullError":"<<param<<_isNullError",
+                            "opt<<_defaultValue":"<<param<<_defaultValue",
+                            "_setting":"<<param<<_setting",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+                {
+                    "node":"^>_OperSession -delete\\s*(!|$)",
+                    "template":{
+                        "name":"_OperSession",
+                        "param":{
+                            "_action": "delete",
+                            "_key":"<<param<<_key",
+                        },
+                        "[]<<skip":"<<list<<!([a-zA-Z_][a-zA-Z0-9_]*)"
+                    }
+                },
+            ],
+            "Xmas_readme":[
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^>_OperFile -upload\\s*(!|$)",
+                    "tips":{"":"※ 模块: 文件操作<br>➤ Action: 上传文件","en":"※ Module: File operation<br>➤ Action: upload file"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -delete\\s*(!|$)",
+                    "line":"^>_OperFile -delete\\s*(!|$)",
+                    "tips":{"":"※ 模块: 文件操作<br>➤ Action: 删除文件/目录","en":"※ Module: File operation<br>➤ Action: delete file/directory"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -move\\s*(!|$)",
+                    "line":"^>_OperFile -move\\s*(!|$)",
+                    "tips":{"":"※ 模块: 文件操作<br>➤ Action: 迁移文件/目录","en":"※ Module: File operation<br>➤ Action: move file/directory"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert\\s*(!|$)",
+                    "line":"^>_ServeDao -insert\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: 插入数据","en":"※ Module: MySQL database operation<br>➤ Action: insert data"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert batch\\s*(!|$)",
+                    "line":"^>_ServeDao -insert batch\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: 批量插入数据","en":"※ Module: MySQL database operation<br>➤ Action: insert data in batches"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -delete\\s*(!|$)",
+                    "line":"^>_ServeDao -delete\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: 删除数据","en":"※ Module: MySQL database operation<br>➤ Action: delete data"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "line":"^>_ServeDao -update\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: 更新数据","en":"※ Module: MySQL database operation<br>➤ Action: update data"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^>_ServeDao -select object\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: 查询数据","en":"※ Module: MySQL database operation<br>➤ Action: query data"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^>_ServeDao -select list\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: 查询数据列表","en":"※ Module: MySQL database operation<br>➤ Action: query data list"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql update\\s*(!|$)",
+                    "line":"^>_ServeDao -sql update\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: SQL语句更新（插入/删除/更新数据）","en":"※ Module: MySQL database operation<br>➤ Action: SQL statement update (insert/delete/update data)"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql select\\s*(!|$)",
+                    "line":"^>_ServeDao -sql select\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: SQL语句查询","en":"※ Module: MySQL database operation<br>➤ Action: SQL statement query"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -txn start\\s*(!|$)",
+                    "line":"^>_ServeDao -txn start\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: 开启数据库事务","en":"※ Module: MySQL database operation<br>➤ Action: start database transactions"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -txn end\\s*(!|$)",
+                    "line":"^>_ServeDao -txn end\\s*(!|$)",
+                    "tips":{"":"※ 模块: MySQL数据库操作<br>➤ Action: 结束数据库事务","en":"※ Module: MySQL database operation<br>➤ Action: end database transaction"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_DataFilling\\s*(!|$)",
+                    "line":"^>_DataFilling\\s*(!|$)",
+                    "tips":{"":"※ 模块: 修改passParam的数据","en":"※ Module: Modify the data of passParam"},
+                    "path":{
+                        "":"src/main/module/_DataFilling/README.md",
+                        "en":"src/main/module/_DataFilling/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_DataCheck\\s*(!|$)",
+                    "line":"^>_DataCheck\\s*(!|$)",
+                    "tips":{"":"※ 模块: 检查passParam数据、值范围","en":"※ Module: Check the data and value range of passParam"},
+                    "path":{
+                        "":"src/main/module/_DataCheck/README.md",
+                        "en":"src/main/module/_DataCheck/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperSession -save\\s*(!|$)",
+                    "line":"^>_OperSession -save\\s*(!|$)",
+                    "tips":{"":"※ 模块: Session操作<br>➤ Action: 添加session信息","en":"※ Module: Session operation<br>➤ Action: add session information"},
+                    "path":{
+                        "":"src/main/module/_OperSession/README.md",
+                        "en":"src/main/module/_OperSession/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperSession -delete\\s*(!|$)",
+                    "line":"^>_OperSession -delete\\s*(!|$)",
+                    "tips":{"":"※ 模块: Session操作<br>➤ Action: 删除session信息","en":"※ Module: Session operation<br>➤ Action: delete session information"},
+                    "path":{
+                        "":"src/main/module/_OperSession/README.md",
+                        "en":"src/main/module/_OperSession/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *_targetKey:",
+                    "tips":{"":"※ 参数: <br>上传文件在请求表单中对应的key","en":"※ Param: <br>The key corresponding to the upload file in the request form"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_isNullError:",
+                    "tips":{"":"※ 参数: <br>当请求表单中获取不到文件时，是否报错。true:报错，false:不报错","en":"※ Param: <br>When the file cannot be obtained in the request form, whether to report an error. true: error, false: no error"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_maxCount:",
+                    "tips":{"":"※ 参数: <br>上传文件的最大个数，默认不限制","en":"※ Param: <br>Maximum number of files uploaded, unlimited by default"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_maxFileSize:",
+                    "tips":{"":"※ 参数: <br>单个文件的最大存储空间限制（单位：字节），默认不限制","en":"※ Param: <br>Maximum storage space limit for a single file (unit: Bytes), unlimited by default"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_AllowSuffix:",
+                    "tips":{"":"※ 参数: <br>允许的文件后缀，默认不限制","en":"※ Param: <br>Allowed file suffixes, unlimited by default"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_targetFileName:",
+                    "tips":{"":"※ 参数: <br>保存的文件名，文件后缀会自动拼接，默认uuid","en":"※ Param: <br>The saved file name, and the file suffix will be automatically spliced together, uuid by default"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *_resultPathKey:",
+                    "tips":{"":"※ 参数: <br>存放上传完成的文件路径的key，默认采用`_targetKey`的设置","en":"※ Param: <br>The key to put the result (uploaded file path), use the setting of `_targetKey` by default"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_resultOriginalNameKey:",
+                    "tips":{"":"※ 参数: <br>存放上传完成的文件原始名称的key，默认不记录","en":"※ Param: <br>The key to put the result (original file name), not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_resultFileSizeKey:",
+                    "tips":{"":"※ 参数: <br>存放上传完成的文件大小的key，单位：字节，默认不记录","en":"※ Param: <br>The key to put the result (file size),  unit: Bytes, not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_isExistCover:",
+                    "tips":{"":"※ 参数: <br>当目标路径已经存在文件，是否覆盖，true:覆盖，false:报错退出","en":"※ Param: <br>When the target path already exists, whether to overwrite, true: overwrite, false: error exit"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_isErrorRollBack:",
+                    "tips":{"":"※ 参数: <br>当模块报错时，是否删除已经上传的文件，true:自动删除，false:不删除","en":"※ Param: <br>When the module reports an error, whether to delete the uploaded file, true: automatic deletion, false: do not delete"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -upload\\s*(!|$)",
+                    "line":"^ *^_isAutoRollBack:",
+                    "tips":{"":"※ 参数: <br>当业务逻辑报错时（Controller、Service调用其他模块报错），是否删除已上传的文件，true:自动删除，false:不删除","en":"※ Param: <br>When the business logic reports an error (Controller, Service calls other modules to report an error), whether to delete the uploaded files, true: automatic deletion, false: do not delete"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -delete\\s*(!|$)",
+                    "line":"^ *_path:",
+                    "tips":{"":"※ 参数: <br>需要删除的文件/目录路径","en":"※ Param: <br>File/directory path to be deleted"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -delete\\s*(!|$)",
+                    "line":"^ *^_isNullError:",
+                    "tips":{"":"※ 参数: <br>当文件/目录不存在时，是否报错，true:报错，false:不报错","en":"※ Param: <br>When the file/directory does not exist, whether an error is reported, true: error, false: no error"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -delete\\s*(!|$)",
+                    "line":"^ *^_isSync:",
+                    "tips":{"":"※ 参数: <br>是否采用同步的方式删除，true:同步删除，false:异步线程删除","en":"※ Param: <br>Whether to delete in a synchronous way, true: delete synchronously, false: asynchronous thread deletion"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -delete\\s*(!|$)",
+                    "line":"^ *^_isDeleteErrorInterrupt:",
+                    "tips":{"":"※ 参数: <br>删除目录时，如果中途出现错误，是否中断。true:中断，false:继续","en":"※ Param: <br>When deleting the directory, if there is an error in the middle, whether it will be interrupted. True: interrupt, false: continue"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -move\\s*(!|$)",
+                    "line":"^ *_sourcePath:",
+                    "tips":{"":"※ 参数: <br>源文件/目录路径","en":"※ Param: <br>Source file/directory path"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -move\\s*(!|$)",
+                    "line":"^ *_targetPath:",
+                    "tips":{"":"※ 参数: <br>目标文件/目录路径","en":"※ Param: <br>Target file/directory path"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -move\\s*(!|$)",
+                    "line":"^ *^_isSourceNullError:",
+                    "tips":{"":"※ 参数: <br>当源文件/目录不存在时，是否报错，true:报错，false:不报错","en":"※ Param: <br>When the source file/directory does not exist, whether the error is reported, true: error, false: no error"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -move\\s*(!|$)",
+                    "line":"^ *^_isTargetCover:",
+                    "tips":{"":"※ 参数: <br>当目标文件/目录路径存在时，是否覆盖，true:覆盖，false:不覆盖并报错","en":"※ Param: <br>When the target file/directory path exists, whether to cover, true: cover, false: do not cover and report an error"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperFile -move\\s*(!|$)",
+                    "line":"^ *^_isSync:",
+                    "tips":{"":"※ 参数: <br>是否采用同步的方式迁移，true:同步迁移，false:异步线程迁移","en":"※ Param: <br>Whether to move file/directory in a synchronous way, true: synchronous move, false: asynchronous thread move"},
+                    "path":{
+                        "":"src/main/module/_OperFile/README.md",
+                        "en":"src/main/module/_OperFile/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert\\s*(!|$)",
+                    "line":"^ *_table:",
+                    "tips":{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert\\s*(!|$)",
+                    "line":"^ *^_target:",
+                    "tips":{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert\\s*(!|$)",
+                    "line":"^ *^_isReplace:",
+                    "tips":{"":"※ 参数: <br>插入数据的SQL是否使用`REPLACE`开头，true:使用`REPLACE`，false:使用`INSERT`","en":"※ Param: <br>Does the SQL that insert the data start with `REPLACE`, true: use `REPLACE`, false: use `INSERT`"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert\\s*(!|$)",
+                    "line":"^ *^_resultKey:",
+                    "tips":{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert\\s*(!|$)",
+                    "line":"^ *^_isCheckAffect:",
+                    "tips":{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert batch\\s*(!|$)",
+                    "line":"^ *_table:",
+                    "tips":{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert batch\\s*(!|$)",
+                    "line":"^ *_target:",
+                    "tips":{"":"※ 参数: <br>目标数据，数据必须为数组[{...},{...}]","en":"※ Param: <br>Target data, the data must be an array[{...},{...}]"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert batch\\s*(!|$)",
+                    "line":"^ *^_isReplace:",
+                    "tips":{"":"※ 参数: <br>插入数据的SQL是否使用`REPLACE`开头，true:使用`REPLACE`，false:使用`INSERT`","en":"※ Param: <br>Does the SQL that insert the data start with `REPLACE`, true: use `REPLACE`, false: use `INSERT`"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert batch\\s*(!|$)",
+                    "line":"^ *^_resultKey:",
+                    "tips":{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -insert batch\\s*(!|$)",
+                    "line":"^ *^_isCheckAffect:",
+                    "tips":{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -delete\\s*(!|$)",
+                    "line":"^ *_table:",
+                    "tips":{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -delete\\s*(!|$)",
+                    "line":"^ *^_target:",
+                    "tips":{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -delete\\s*(!|$)",
+                    "line":"^ *^_filter:",
+                    "tips":{"":"※ 参数: <br>用于判断的SQL碎片（DELETE SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of DELETE SQL), Automatic splicing by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -delete\\s*(!|$)",
+                    "line":"^ *^_isSQLReplaceStrict:",
+                    "tips":{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -delete\\s*(!|$)",
+                    "line":"^ *^_resultKey:",
+                    "tips":{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -delete\\s*(!|$)",
+                    "line":"^ *^_isCheckAffect:",
+                    "tips":{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "line":"^ *_table:",
+                    "tips":{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "line":"^ *^_target:",
+                    "tips":{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "line":"^ *^_update:",
+                    "tips":{"":"※ 参数: <br>用于设置更新数据的SQL碎片（UPDATE SQL的SET部分），默认自动拼接","en":"※ Param: <br>SQL fragment for setting up updated data (SET part of UPDATE SQL),  Automatic splicing by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "line":"^ *^_filter:",
+                    "tips":{"":"※ 参数: <br>用于判断的SQL碎片（UPDATE SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of UPDATE SQL),  Automatic splicing by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "line":"^ *^_isSQLReplaceStrict:",
+                    "tips":{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "line":"^ *^_resultKey:",
+                    "tips":{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -update\\s*(!|$)",
+                    "line":"^ *^_isCheckAffect:",
+                    "tips":{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^ *_table:",
+                    "tips":{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^ *^_target:",
+                    "tips":{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^ *^_get:",
+                    "tips":{"":"※ 参数: <br>用于设置更新数据的SQL碎片（SELECT SQL的设置获取字段部分）","en":"※ Param: <br>SQL fragment for setting update data (SELECT SQL's settings to get the field part)"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^ *^_filter:",
+                    "tips":{"":"※ 参数: <br>用于判断的SQL碎片（SELECT SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of SELECT SQL),  Automatic splicing by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^ *^_isSQLReplaceStrict:",
+                    "tips":{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^ *_resultKey:",
+                    "tips":{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^ *^_isGetNullError:",
+                    "tips":{"":"※ 参数: <br>获取不到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when the data cannot be obtained, true: error, false: no error"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select object\\s*(!|$)",
+                    "line":"^ *^_isGetNotNullError:",
+                    "tips":{"":"※ 参数: <br>获取到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when obtaining the data, true: error, false: no error"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *_table:",
+                    "tips":{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_target:",
+                    "tips":{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_get:",
+                    "tips":{"":"※ 参数: <br>用于设置更新数据的SQL碎片（SELECT SQL的设置获取字段部分）","en":"※ Param: <br>SQL fragment for setting update data (SELECT SQL's settings to get the field part)"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_filter:",
+                    "tips":{"":"※ 参数: <br>用于判断的SQL碎片（SELECT SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of SELECT SQL),  Automatic splicing by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_orderBy:",
+                    "tips":{"":"※ 参数: <br>用于排序的SQL碎片（SELECT SQL的ORDER BY部分），默认不排序","en":"※ Param: <br>SQL fragment for sorting (ORDER BY part of SELECT SQL), do not sort by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_page:",
+                    "tips":{"":"※ 参数: <br>第几页数据（SELECT SQL的LIMIT部分），默认不限制分页","en":"※ Param: <br>Page of data (LIMIT part of SELECT SQL), no restrictions on paging by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_pageSize:",
+                    "tips":{"":"※ 参数: <br>每页数据（SELECT SQL的LIMIT部分），默认不限制分页","en":"※ Param: <br>Size of per page (LIMIT part of SELECT SQL), no restrictions on paging by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_isSQLReplaceStrict:",
+                    "tips":{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_countResultKey:",
+                    "tips":{"":"※ 参数: <br>记录符合条件的总条数，默认'count'","en":"※ Param: <br>Record the total number of eligible items, 'count' by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *_resultKey:",
+                    "tips":{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_isGetNullError:",
+                    "tips":{"":"※ 参数: <br>获取不到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when the data cannot be obtained, true: error, false: no error"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -select list\\s*(!|$)",
+                    "line":"^ *^_isGetNotNullError:",
+                    "tips":{"":"※ 参数: <br>获取到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when obtaining the data, true: error, false: no error"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql update\\s*(!|$)",
+                    "line":"^ *_sql:",
+                    "tips":{"":"※ 参数: <br>用于更新(增加/删除/更新)的SQL语句<br><br>SQL例子: <br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@test_id@', '@test_value@')<br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@list>>0>>test_id@', '@list>>0>>test_value@'),('@list>>1>>test_id@', '@list>>1>>test_value@')<br>&emsp;&emsp;DELETE FROM table WHERE test_id = '@test_id@'<br>&emsp;&emsp;UPDATE table SET test_value = '@test_value@' WHERE id = '@test_id@'","en":"※ Param: <br>SQL statements for updating(insert/delete/update)<br><br>SQL samples: <br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@test_id@', '@test_value@')<br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@list>>0>>test_id@', '@list>>0>>test_value@'),('@list>>1>>test_id@', '@list>>1>>test_value@')<br>&emsp;&emsp;DELETE FROM table WHERE test_id = '@test_id@'<br>&emsp;&emsp;UPDATE table SET test_value = '@test_value@' WHERE id = '@test_id@'"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql update\\s*(!|$)",
+                    "line":"^ *^_isSQLReplaceStrict:",
+                    "tips":{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql update\\s*(!|$)",
+                    "line":"^ *^_resultKey:",
+                    "tips":{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql update\\s*(!|$)",
+                    "line":"^ *^_isCheckAffect:",
+                    "tips":{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql select\\s*(!|$)",
+                    "line":"^ *_sql:",
+                    "tips":{"":"※ 参数: <br>用于查询的SQL语句<br><br>SQL例子: <br>&emsp;&emsp;SELECT * FROM table WHERE test_value = '@test_value>>key@'<br>&emsp;&emsp;SELECT * FROM table WHERE test_value like '%@test_value@%'<br>&emsp;&emsp;SELECT * FROM table ORDER BY test_id DESC<br>&emsp;&emsp;SELECT * FROM table LIMIT 3 OFFSET 2","en":"※ Param: <br>SQL statements for query<br><br>SQL samples: <br>&emsp;&emsp;SELECT * FROM table WHERE test_value = '@test_value>>key@'<br>&emsp;&emsp;SELECT * FROM table WHERE test_value like '%@test_value@%'<br>&emsp;&emsp;SELECT * FROM table ORDER BY test_id DESC<br>&emsp;&emsp;SELECT * FROM table LIMIT 3 OFFSET 2"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql select\\s*(!|$)",
+                    "line":"^ *_selectType:",
+                    "tips":{"":"※ 参数: <br>指定查询的结果类型，支持4种类型，`select string`、`select int`、`select list`、`select object`","en":"※ Param: <br>Specify the result type of the query, Support 4 types, `select string`, `select int`, `select list`, `select object`"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql select\\s*(!|$)",
+                    "line":"^ *^_isSQLReplaceStrict:",
+                    "tips":{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql select\\s*(!|$)",
+                    "line":"^ *^_resultKey:",
+                    "tips":{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql select\\s*(!|$)",
+                    "line":"^ *^_isGetNullError:",
+                    "tips":{"":"※ 参数: <br>获取不到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when the data cannot be obtained, true: error, false: no error"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -sql select\\s*(!|$)",
+                    "line":"^ *^_isGetNotNullError:",
+                    "tips":{"":"※ 参数: <br>获取到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when obtaining the data, true: error, false: no error"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -txn start\\s*(!|$)",
+                    "line":"^ *^_level:",
+                    "tips":{"":"※ 参数: <br>数据库事务隔离等级，可选数据库事务隔离等级为`read uncommitted`、`read committed`、`repeatable read`、`serializable`","en":"※ Param: <br>Database transaction isolation level, the optional database transaction isolation level is `read uncommitted`, `read committed`, `repeatable read`, `serializable`"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -txn start\\s*(!|$)",
+                    "line":"^ *_isAutoErrorRollBack:",
+                    "tips":{"":"※ 参数: <br>业务逻辑结束时，发生错误是否自动回滚事务，true:发生错误回滚，不发生错误提交，false:不发生错误回滚，发生错误提交","en":"※ Param: <br>At the end of the business logic, whether the error automatically rolls back the transaction, true: error rollback, no error submission, false: no error rollback, error submission"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_ServeDao -txn end\\s*(!|$)",
+                    "line":"^ *_isCommit:",
+                    "tips":{"":"※ 参数: <br>是否提交事务，true:提交，false:回滚","en":"※ Param: <br>Whether to submit the transaction, true: submit, false: rollback"},
+                    "path":{
+                        "":"src/main/module/_ServeDao/README.md",
+                        "en":"src/main/module/_ServeDao/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_DataFilling\\s*(!|$)",
+                    "line":"^ *^_isSessionNullError:",
+                    "tips":{"":"※ 参数: <br>获取Session时，如果缺少对应的Session值，是否报错，false:不报错，用'null'作为对应值，true:报错退出","en":"※ Param: <br>When obtaining the Session, if the corresponding Session value is missing, whether the error is reported, false: no error, use 'null' as the corresponding value, true: error exit"},
+                    "path":{
+                        "":"src/main/module/_DataFilling/README.md",
+                        "en":"src/main/module/_DataFilling/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_DataFilling\\s*(!|$)",
+                    "line":"^ *_setting:",
+                    "tips":{"":"※ 参数: <br>修改数据的模板<br><br>key例子:<br>&emsp;&emsp;key: 强制设置<br>&emsp;&emsp;key-1>>key-2: 强制设置（深层定位）<br>&emsp;&emsp;nec##key: 强制设置<br>&emsp;&emsp;opt##key: 为非强制设置，当key不存在不设置<br>&emsp;&emsp;key_@get##id@: 动态key，@get##id@会从passParam中获取数据<br>&emsp;&emsp;key_@get##xxx>>key@: 动态key，@get##xxx>>key@会从passParam中获取数据（深层定位）<br>&emsp;&emsp;push##key: 在数组末尾追加数据，value必须为数组类型<br><br>value例子:<br>&emsp;&emsp;true: 设置固定值true<br>&emsp;&emsp;null: 删除这个key<br>&emsp;&emsp;'get##key+uuid': 动态值表达式，用+号连接多个表达式<br><br>value动态值表达式:<br>&emsp;&emsp;uuid: 32位uuid<br>&emsp;&emsp;uuid short: 短uuid<br>&emsp;&emsp;random id: 随机数（默认8位）<br>&emsp;&emsp;session##key: 从session获取值，key为session的key<br>&emsp;&emsp;header##key: 从header获取值，key为header的key<br>&emsp;&emsp;get##key: 从passParam获取值，key为passParam的key，允许深层定位'key>>key-2'<br>&emsp;&emsp;time: 当前时间，格式为yyyy-MM-dd HH:mm:ss<br>&emsp;&emsp;time##yyyy-MM-dd HH:mm:ss: 当前时间","en":"※ Param: <br>Template for modifying data<br><br>key examples:<br>&emsp;&emsp;key: Mandatory setting<br>&emsp;&emsp;key-1>>key-2: Mandatory setting (deep location)<br>&emsp;&emsp;nec##key: Mandatory setting<br>&emsp;&emsp;opt##key: Optional setting, do not set if key does not exist<br>&emsp;&emsp;key_@get##id@: Dynamic key, @get##id@ will retrieve data from passParam<br>&emsp;&emsp;key_@get##xxx>>key@: Dynamic key, @get##xxx>>key@ will retrieve data from passParam (deep location)<br>&emsp;&emsp;push##key: Append data to the end of an array, value must be an array type<br><br>value examples:<br>&emsp;&emsp;true: Set a fixed value of true<br>&emsp;&emsp;null: Delete this key<br>&emsp;&emsp;'get##key+uuid': Dynamic value expression, multiple expressions are connected with + sign<br><br>Dynamic value expressions:<br>&emsp;&emsp;uuid: 32-bit UUID<br>&emsp;&emsp;uuid short: Short UUID<br>&emsp;&emsp;random id: Random number (default 8 digits)<br>&emsp;&emsp;session##key: Retrieve value from session, key is the key of the session<br>&emsp;&emsp;header##key: Retrieve value from header, key is the key of the header<br>&emsp;&emsp;get##key: Retrieve value from passParam, key is the key of passParam, allows deep location 'key>>key-2'<br>&emsp;&emsp;time: Current time, formatted as yyyy-MM-dd HH:mm:ss<br>&emsp;&emsp;time##yyyy-MM-dd HH:mm:ss: Current time"},
+                    "path":{
+                        "":"src/main/module/_DataFilling/README.md",
+                        "en":"src/main/module/_DataFilling/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_DataCheck\\s*(!|$)",
+                    "line":"^ *_isClean:",
+                    "tips":{"":"※ 参数: <br>是否清空多余字段，false:不清理，true:清理","en":"※ Param: <br>Whether to clean redundant fields, false: not cleaned, true: cleaned"},
+                    "path":{
+                        "":"src/main/module/_DataCheck/README.md",
+                        "en":"src/main/module/_DataCheck/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_DataCheck\\s*(!|$)",
+                    "line":"^ *_param:",
+                    "tips":{"":"※ 参数: <br>检查passParam的模板<br><br>key例子:<br>&emsp;&emsp;key: 必要的key<br>&emsp;&emsp;nec##key: 必要的key<br>&emsp;&emsp;opt##key: 非必要的key<br>&emsp;&emsp;10##key: [数组长度上限为10]<br>&emsp;&emsp;opt##10##key: [非必要的key，且数组长度上限为10]<br>&emsp;&emsp;key-1>>key-2: 必要的key(深层定位)<br><br>value例子:<br>&emsp;&emsp;true: 限制值为true<br>&emsp;&emsp;{}: 限制值类型为{}，但不限制内容<br>&emsp;&emsp;'': 不限制任何值<br>&emsp;&emsp;'str##'、'int##'、'double##'、'long##'、bool##': 限制值类型，但不限制内容<br>&emsp;&emsp;str##abc/bcd: 限制值为字符串类型，且必须为abc或者bcd<br>&emsp;&emsp;not##str##abc/bcc: not##前缀表示结果取反","en":"※ Param: <br>Check the template of passParam<br><br>key examples:<br>&emsp;&emsp;key: Necessary key<br>&emsp;&emsp;nec##key: Necessary key<br>&emsp;&emsp;opt##key: Unnecessary key<br>&emsp;&emsp;10##key: [Array length limit is 10]<br>&emsp;&emsp;opt##10##key: [Unnecessary key, and array length limit is 10]<br>&emsp;&emsp;key-1>>key-2: Necessary key (deep location)<br><br>value examples:<br>&emsp;&emsp;true: Value limit is true<br>&emsp;&emsp;{}: Value type is {}, but content is not limited<br>&emsp;&emsp;'': No value limit<br>&emsp;&emsp;'str##','int##','double##','long##','bool##': Value type is limited, but content is not<br>&emsp;&emsp;str##abc/bcd: Value must be a string type and must be 'abc' or 'bcd'<br>&emsp;&emsp;not##str##abc/bcc: The prefix 'not##' indicates the negation of the result"},
+                    "path":{
+                        "":"src/main/module/_DataCheck/README.md",
+                        "en":"src/main/module/_DataCheck/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperSession -save\\s*(!|$)",
+                    "line":"^ *^_isNullError:",
+                    "tips":{"":"※ 参数: <br>当不能获取插入值时，是否报错，true: 报错退出，false: 尝试用默认值代替","en":"※ Param: <br>When the inserted value cannot be obtained, whether an error is reported, true: throw an error and exit, false: try to replace it with the default value"},
+                    "path":{
+                        "":"src/main/module/_OperSession/README.md",
+                        "en":"src/main/module/_OperSession/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperSession -save\\s*(!|$)",
+                    "line":"^ *^_defaultValue:",
+                    "tips":{"":"※ 参数: <br>当获取不到插入值时的默认替代值","en":"※ Param: <br>The default replacement value when the insertion value cannot be obtained"},
+                    "path":{
+                        "":"src/main/module/_OperSession/README.md",
+                        "en":"src/main/module/_OperSession/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperSession -save\\s*(!|$)",
+                    "line":"^ *_setting:",
+                    "tips":{"":"※ 参数: <br>将要插入session的自定义数据","en":"※ Param: <br>Custom data to be inserted into the session"},
+                    "path":{
+                        "":"src/main/module/_OperSession/README.md",
+                        "en":"src/main/module/_OperSession/README-en.md"
+                    }
+                },
+                {
+                    "node":"^>_OperSession -delete\\s*(!|$)",
+                    "line":"^ *_key:",
+                    "tips":{"":"※ 参数: <br>需要删除的session值的key","en":"※ Param: <br>The key of the session value that needs to be deleted"},
+                    "path":{
+                        "":"src/main/module/_OperSession/README.md",
+                        "en":"src/main/module/_OperSession/README-en.md"
+                    }
+                },
+            ]
+        }
+    }
+}

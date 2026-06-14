@@ -1,0 +1,61 @@
+**以下所有内容需要Christmas合并
+**All of the following contents need to be merged by Christmas
+
+**最终合并到config/application-check.properties
+**Final merged into config/application-check.properties
+######Config for application-check.properties######
+#_DataCheck
+######Config for application-check.properties######
+
+**最终合并到build.gradle
+**Final merged into 'build.gradle'
+######Dependencies######
+    //implementation 'xx:xx:xx'
+######Dependencies######
+
+**最终合并到src/main/common/ERRORCODE.java
+**Final merged into 'src/main/common/ERRORCODE.java'
+######ErrorCode######
+ERR_Module__DataCheck_Exception:{"E-WS(_DataCheck)", "_DataCheck exception"}
+ERR_Module__DataCheck_Check_Block:{"E-WS(_DataCheck)", "_DataCheck Check block"}
+ERR_Module__DataCheck_Lack_Block:{"E-WS(_DataCheck)", "_DataCheck Check lack param"}
+ERR_Module__DataCheck_LensLimit_Over:{"E-WS(_DataCheck)", "_DataCheck Check list over length limit"}
+ERR_Module__DataCheck_List_Empty:{"E-WS(_DataCheck)", "_DataCheck Check list is empty"}
+ERR_Module__DataCheck_JsonPath_Illegal:{"E-WS(_DataCheck)", "_DataCheck Check module parameter has an illegal `>>` positioning"}
+######ErrorCode######
+
+**用于设置模块参数_action的值，用作.xmas文件语法提示、错误检查
+**格式为=> [action名]::{"":"中文说明","en":"英文说明"}
+**例如=> insert::{"":"※ 模块: 说明<br>➤ Action: 说明","en":"※ Module: desc<br>➤ Action: desc"}
+**若模块不支持多种_action，请设置为'-'
+**最终合并到Christmas/Input/GenCode/Xmas.File.json
+**It is used to set the value of the module parameter '_action', which is used as a syntax prompt and error check of .xmas file
+**The format is=> [action name]::{"":"Chinese description","en":"English description"}
+**For example=> insert::{"":"※ 模块: 说明<br>➤ Action: 说明","en":"※ Module: desc<br>➤ Action: desc"}
+**If the module does not support multiple _actions, please set it to '-'
+**Final merged into 'Christmas/Input/GenCode/Xmas.File.json'
+######Module Action######
+-::{"":"※ 模块: 检查passParam数据、值范围","en":"※ Module: Check the data and value range of passParam"}
+######Module Action######
+
+**用于设置被允许的模块参数，没被设置的模块参数字段，将不会被正常传递，用作.xmas文件语法提示、错误检查
+**格式为=> [action名称]::[参数字段]::[默认参数]::{"":"中文说明","en":"英文说明"}
+**例如=> insert::_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**若模块不支持多种_action，请设置为'-'
+**例如=> -::_table::name::{"":"数据表名","en":"table name"}
+**默认情况，.xmas文件选择模块后，会加入全部参数。若某个参数不希望被引入，可以在参数名前添加^
+**例如=> -::^_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**最终合并到Christmas/Input/GenCode/Xmas.File.json
+**It is used to set the allowed module parameters. Module parameter fields that have not been set will not be passed normally. They are used as .xmas file syntax prompts and error checks.
+**The format is=> [action name]::{"":"Chinese description","en":"English description"}
+**For example=> insert::_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**If the module does not support multiple _actions, please set it to '-'
+**Fro example=> -::_table::name::{"":"数据表名","en":"table name"}
+**By default, after the user selected the module in a .xmas file, all parameters will be added. If you don't want a parameter to be introduced, you can add '^' before the parameter
+**Fro example=> -::^_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**Final merged into 'Christmas/Input/GenCode/Xmas.File.json'
+######Module Param######
+-::_isClean::true::{"":"※ 参数: <br>是否清空多余字段，false:不清理，true:清理","en":"※ Param: <br>Whether to clean redundant fields, false: not cleaned, true: cleaned"}
+-::_param::{}::{"":"※ 参数: <br>检查passParam的模板<br><br>key例子:<br>&emsp;&emsp;key: 必要的key<br>&emsp;&emsp;nec##key: 必要的key<br>&emsp;&emsp;opt##key: 非必要的key<br>&emsp;&emsp;10##key: [数组长度上限为10]<br>&emsp;&emsp;opt##10##key: [非必要的key，且数组长度上限为10]<br>&emsp;&emsp;key-1>>key-2: 必要的key(深层定位)<br><br>value例子:<br>&emsp;&emsp;true: 限制值为true<br>&emsp;&emsp;{}: 限制值类型为{}，但不限制内容<br>&emsp;&emsp;'': 不限制任何值<br>&emsp;&emsp;'str##'、'int##'、'double##'、'long##'、bool##': 限制值类型，但不限制内容<br>&emsp;&emsp;str##abc/bcd: 限制值为字符串类型，且必须为abc或者bcd<br>&emsp;&emsp;not##str##abc/bcc: not##前缀表示结果取反","en":"※ Param: <br>Check the template of passParam<br><br>key examples:<br>&emsp;&emsp;key: Necessary key<br>&emsp;&emsp;nec##key: Necessary key<br>&emsp;&emsp;opt##key: Unnecessary key<br>&emsp;&emsp;10##key: [Array length limit is 10]<br>&emsp;&emsp;opt##10##key: [Unnecessary key, and array length limit is 10]<br>&emsp;&emsp;key-1>>key-2: Necessary key (deep location)<br><br>value examples:<br>&emsp;&emsp;true: Value limit is true<br>&emsp;&emsp;{}: Value type is {}, but content is not limited<br>&emsp;&emsp;'': No value limit<br>&emsp;&emsp;'str##','int##','double##','long##','bool##': Value type is limited, but content is not<br>&emsp;&emsp;str##abc/bcd: Value must be a string type and must be 'abc' or 'bcd'<br>&emsp;&emsp;not##str##abc/bcc: The prefix 'not##' indicates the negation of the result"}
+######Module Param######
+

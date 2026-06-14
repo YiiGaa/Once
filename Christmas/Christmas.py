@@ -4,16 +4,17 @@
 import sys
 sys.dont_write_bytecode = True
 from Kernel.Move.Move import Move
-from Kernel.Config.Config import Config
+from Kernel.Common.Config.Config import Config
+from Kernel.Common.Logger.Logger import Logger
 import os
-import json
+import Kernel.Common.Lib.json5 as json
 
 def PrintVersion():
     print('')
-    with open('./Load.json', 'r', encoding='utf-8') as file:
+    with open('./Xmas.Sync.json', 'r', encoding='utf-8') as file:
         content = json.load(file)
         content = content['version']
-        print(f'Christmas v{content}')
+        Logger.Tips(f'Christmas v{content}')
     print('A general code generator')
     print('gitHub: https://github.com/YiiGaa/Christmas')
     print('official: https://stoprefactoring.com')

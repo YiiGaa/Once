@@ -1,0 +1,19 @@
+[
+    {
+        "Xmas_shell":"python3 Christmas.py Input/GenCode/Gen#LastRun 'python3 Christmas.py Input/ShellExcute/Run#Module ??'",
+        "Xmas_cwd":".",
+        "Xmas_judge":true
+    },{
+        "Xmas_shell":"python3 Christmas.py Input/MergeCode/LinkModule",
+        "Xmas_cwd":".",
+        "Xmas_judge":true
+    },{
+        "Xmas_shell":".\\gradlew bootRun -Ptarget=??",
+        "Xmas_cwd":"../",
+        "Xmas_judge":false
+    },{
+        "Xmas_shell":"sh gradlew bootRun -Ptarget=?? #for mac/linux",
+        "Xmas_cwd":"../",
+        "Xmas_judge":false
+    }
+]

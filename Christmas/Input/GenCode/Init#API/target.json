@@ -1,38 +1,14 @@
 [
     {
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/api/??/??.java",
+        "Xmas_path":"../src/main/api/??.java",
         "apiFile": {
             "name":"??",
             "api":""
         }
     },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/api/??/??Service.java",
-        "serviceFile": {
-            "name":"??",
-            "function":""
-        }
-    },{
-        "Xmas_path":"../Christmas/Input/GenCode/API#??/config.json",
+        "Xmas_path":"../src/main/api/??.xmas",
         "XmasFile": {
-            "Xmas_templ":"CONFIG-API",
-            "name":"??"
-        }
-    },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/api/??/??.json",
-        "XmasFile": {
-            "Xmas_templ":"TARGET-API",
-            "name":"??"
-        }
-    },{
-        "Xmas_path":"../Christmas/Input/GenCode/API#??-Service/config.json",
-        "XmasFile": {
-            "Xmas_templ":"CONFIG-Service",
-            "name":"??"
-        }
-    },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/api/??/??Service.json",
-        "XmasFile": {
-            "Xmas_templ":"TARGET-Service",
+            "Xmas_templ":"XMAS-API",
             "name":"??"
         }
     }

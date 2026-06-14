@@ -1,0 +1,151 @@
+**以下所有内容需要Christmas合并
+**All of the following contents need to be merged by Christmas
+
+**最终合并到config/application-check.properties
+**Final merged into config/application-check.properties
+######Config for application-check.properties######
+#_ServeDao
+module._ServeDao.isAutoGenerateMap=@opt@
+# For more attributes under 'module.sr-servedao.datasource', please refer to 'spring.datasource'
+module.sr-servedao.datasource=@nec@
+module.sr-servedao.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+######Config for application-check.properties######
+
+**最终合并到build.gradle
+**Final merged into 'build.gradle'
+######Dependencies######
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+######Dependencies######
+
+**最终合并到src/main/common/ERRORCODE.java
+**Final merged into 'src/main/common/ERRORCODE.java'
+######ErrorCode######
+ERR_Module__ServeDao_Exception:{"E-WS(_ServeDao)", "_ServeDao exception"}
+ERR_Module__ServeDao_Action_Illegal:{"E-WS(_ServeDao)", "_ServeDao Action illegal"}
+ERR_Module__ServeDao_SQLMake_Empty:{"E-WS(_ServeDao)", "_ServeDao Make SQL fail"}
+ERR_Module__ServeDao_TableCheck_TableName_Illegal:{"E-WS(_ServeDao)", "_ServeDao TableCheck table name is illegal"}
+ERR_Module__ServeDao_TableCheck_Table_Lack:{"E-WS(_ServeDao)", "_ServeDao TableCheck table lack"}
+ERR_Module__ServeDao_TableCheck_TableInfo_Lack:{"E-WS(_ServeDao)", "_ServeDao TableCheck table info lack"}
+ERR_Module__ServeDao_TableCheck_TableType_Illegal:{"E-WS(_ServeDao)", "_ServeDao TableCheck table type illegal"}
+ERR_Module__ServeDao_Insert_Column_Lack:{"E-WS(_ServeDao)", "_ServeDao Insert non-nullable column lack"}
+ERR_Module__ServeDao_Insert_ColumnValueLength_Limit:{"E-WS(_ServeDao)", "_ServeDao Insert column value length over limit"}
+ERR_Module__ServeDao_InsertBatch_Data_Empty:{"E-WS(_ServeDao)", "_ServeDao InsertBatch target value is empty"}
+ERR_Module__ServeDao_InsertBatch_Column_Lack:{"E-WS(_ServeDao)", "_ServeDao InsertBatch non-nullable column lack"}
+ERR_Module__ServeDao_InsertBatch_ColumnValueLength_Limit:{"E-WS(_ServeDao)", "_ServeDao InsertBatch column value length over limit"}
+ERR_Module__ServeDao_Update_ColumnValueLength_Limit:{"E-WS(_ServeDao)", "_ServeDao Update column value length over limit"}
+ERR_Module__ServeDao_SQLStringDeal_Template_Illegal:{"E-WS(_ServeDao)", "_ServeDao SQLStringDeal sql template is empty"}
+ERR_Module__ServeDao_SQLStringDeal_Replace_Illegal:{"E-WS(_ServeDao)", "_ServeDao SQLStringDeal value for replacing sql template is illegal"}
+ERR_Module__ServeDao_SQLExecute_Type_Illegal:{"E-WS(_ServeDao)", "_ServeDao SQLExecute type is illegal"}
+ERR_Module__ServeDao_SQLExecute_Exception:{"E-WS(_ServeDao)", "_ServeDao SQLExecute exception"}
+ERR_Module__ServeDao_SQLExecute_Update_Fail:{"E-WS(_ServeDao)", "_ServeDao SQLExecute update fail"}
+ERR_Module__ServeDao_SQLExecute_Select_Null_Error:{"E-WS(_ServeDao)", "_ServeDao SQLExecute select null error"}
+ERR_Module__ServeDao_SQLExecute_Select_NotNull_Error:{"E-WS(_ServeDao)", "_ServeDao SQLExecute select not null error"}
+ERR_Module__ServeDao_SQLSelect_Type_Illegal:{"E-WS(_ServeDao)", "_ServeDao SQLSelect type is illegal"}
+ERR_Module__ServeDao_TXNStart_Exception:{"E-WS(_ServeDao)", "_ServeDao TXNStart create transaction exception"}
+ERR_Module__ServeDao_TXNStart_Level_Illegal:{"E-WS(_ServeDao)", "_ServeDao TXNStart transaction level illegal"}
+ERR_Module__ServeDao_TXNStart_Create_Already:{"E-WS(_ServeDao)", "_ServeDao TXNStart transaction already create"}
+ERR_Module__ServeDao_TXNEnd_Exception:{"E-WS(_ServeDao)", "_ServeDao TXNEnd end transaction exception"}
+######ErrorCode######
+
+**用于设置模块参数_action的值，用作.xmas文件语法提示、错误检查
+**格式为=> [action名]::{"":"中文说明","en":"英文说明"}
+**例如=> insert::{"":"※ 模块: 说明<br>➤ Action: 说明","en":"※ Module: desc<br>➤ Action: desc"}
+**若模块不支持多种_action，请设置为'-'
+**最终合并到Christmas/Input/GenCode/Xmas.File.json
+**It is used to set the value of the module parameter '_action', which is used as a syntax prompt and error check of .xmas file
+**The format is=> [action name]::{"":"Chinese description","en":"English description"}
+**For example=> insert::{"":"※ 模块: 说明<br>➤ Action: 说明","en":"※ Module: desc<br>➤ Action: desc"}
+**If the module does not support multiple _actions, please set it to '-'
+**Final merged into 'Christmas/Input/GenCode/Xmas.File.json'
+######Module Action######
+insert::{"":"※ 模块: MySQL数据库操作<br>➤ Action: 插入数据","en":"※ Module: MySQL database operation<br>➤ Action: insert data"}
+insert batch::{"":"※ 模块: MySQL数据库操作<br>➤ Action: 批量插入数据","en":"※ Module: MySQL database operation<br>➤ Action: insert data in batches"}
+delete::{"":"※ 模块: MySQL数据库操作<br>➤ Action: 删除数据","en":"※ Module: MySQL database operation<br>➤ Action: delete data"}
+update::{"":"※ 模块: MySQL数据库操作<br>➤ Action: 更新数据","en":"※ Module: MySQL database operation<br>➤ Action: update data"}
+select object::{"":"※ 模块: MySQL数据库操作<br>➤ Action: 查询数据","en":"※ Module: MySQL database operation<br>➤ Action: query data"}
+select list::{"":"※ 模块: MySQL数据库操作<br>➤ Action: 查询数据列表","en":"※ Module: MySQL database operation<br>➤ Action: query data list"}
+sql update::{"":"※ 模块: MySQL数据库操作<br>➤ Action: SQL语句更新（插入/删除/更新数据）","en":"※ Module: MySQL database operation<br>➤ Action: SQL statement update (insert/delete/update data)"}
+sql select::{"":"※ 模块: MySQL数据库操作<br>➤ Action: SQL语句查询","en":"※ Module: MySQL database operation<br>➤ Action: SQL statement query"}
+txn start::{"":"※ 模块: MySQL数据库操作<br>➤ Action: 开启数据库事务","en":"※ Module: MySQL database operation<br>➤ Action: start database transactions"}
+txn end::{"":"※ 模块: MySQL数据库操作<br>➤ Action: 结束数据库事务","en":"※ Module: MySQL database operation<br>➤ Action: end database transaction"}
+######Module Action######
+
+**用于设置被允许的模块参数，没被设置的模块参数字段，将不会被正常传递，用作.xmas文件语法提示、错误检查
+**格式为=> [action名称]::[参数字段]::[默认参数]::{"":"中文说明","en":"英文说明"}
+**例如=> insert::_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**若模块不支持多种_action，请设置为'-'
+**例如=> -::_table::name::{"":"数据表名","en":"table name"}
+**默认情况，.xmas文件选择模块后，会加入全部参数。若某个参数不希望被引入，可以在参数名前添加^
+**例如=> -::^_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**最终合并到Christmas/Input/GenCode/Xmas.File.json
+**It is used to set the allowed module parameters. Module parameter fields that have not been set will not be passed normally. They are used as .xmas file syntax prompts and error checks.
+**The format is=> [action name]::{"":"Chinese description","en":"English description"}
+**For example=> insert::_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**If the module does not support multiple _actions, please set it to '-'
+**Fro example=> -::_table::name::{"":"数据表名","en":"table name"}
+**By default, after the user selected the module in a .xmas file, all parameters will be added. If you don't want a parameter to be introduced, you can add '^' before the parameter
+**Fro example=> -::^_table::name::{"":"※ 参数: <br>说明","en":"※ Param: <br>desc"}
+**Final merged into 'Christmas/Input/GenCode/Xmas.File.json'
+######Module Param######
+insert::_table::name::{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}
+insert::^_target::{}::{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}
+insert::^_isReplace::false::{"":"※ 参数: <br>插入数据的SQL是否使用`REPLACE`开头，true:使用`REPLACE`，false:使用`INSERT`","en":"※ Param: <br>Does the SQL that insert the data start with `REPLACE`, true: use `REPLACE`, false: use `INSERT`"}
+insert::^_resultKey::result::{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}
+insert::^_isCheckAffect::true::{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}
+insert batch::_table::name::{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}
+insert batch::_target::[]::{"":"※ 参数: <br>目标数据，数据必须为数组[{...},{...}]","en":"※ Param: <br>Target data, the data must be an array[{...},{...}]"}
+insert batch::^_isReplace::false::{"":"※ 参数: <br>插入数据的SQL是否使用`REPLACE`开头，true:使用`REPLACE`，false:使用`INSERT`","en":"※ Param: <br>Does the SQL that insert the data start with `REPLACE`, true: use `REPLACE`, false: use `INSERT`"}
+insert batch::^_resultKey::result::{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}
+insert batch::^_isCheckAffect::true::{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}
+delete::_table::name::{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}
+delete::^_target::{}::{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}
+delete::^_filter::key='@value@'::{"":"※ 参数: <br>用于判断的SQL碎片（DELETE SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of DELETE SQL), Automatic splicing by default"}
+delete::^_isSQLReplaceStrict::true::{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}
+delete::^_resultKey::result::{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}
+delete::^_isCheckAffect::true::{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}
+update::_table::name::{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}
+update::^_target::{}::{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}
+update::^_update::key='@value@'::{"":"※ 参数: <br>用于设置更新数据的SQL碎片（UPDATE SQL的SET部分），默认自动拼接","en":"※ Param: <br>SQL fragment for setting up updated data (SET part of UPDATE SQL),  Automatic splicing by default"}
+update::^_filter::key='@value@'::{"":"※ 参数: <br>用于判断的SQL碎片（UPDATE SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of UPDATE SQL),  Automatic splicing by default"}
+update::^_isSQLReplaceStrict::true::{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}
+update::^_resultKey::result::{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}
+update::^_isCheckAffect::true::{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}
+select object::_table::name::{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}
+select object::^_target::{}::{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}
+select object::^_get::*::{"":"※ 参数: <br>用于设置更新数据的SQL碎片（SELECT SQL的设置获取字段部分）","en":"※ Param: <br>SQL fragment for setting update data (SELECT SQL's settings to get the field part)"}
+select object::^_filter::key='@value@'::{"":"※ 参数: <br>用于判断的SQL碎片（SELECT SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of SELECT SQL),  Automatic splicing by default"}
+select object::^_isSQLReplaceStrict::true::{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}
+select object::_resultKey::result::{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}
+select object::^_isGetNullError::true::{"":"※ 参数: <br>获取不到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when the data cannot be obtained, true: error, false: no error"}
+select object::^_isGetNotNullError::false::{"":"※ 参数: <br>获取到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when obtaining the data, true: error, false: no error"}
+select list::_table::name::{"":"※ 参数: <br>数据库表名","en":"※ Param: <br>Database table name"}
+select list::^_target::{}::{"":"※ 参数: <br>目标数据，默认以passParam为目标数据","en":"※ Param: <br>Target data, use the passParam as the target data by default"}
+select list::^_get::*::{"":"※ 参数: <br>用于设置更新数据的SQL碎片（SELECT SQL的设置获取字段部分）","en":"※ Param: <br>SQL fragment for setting update data (SELECT SQL's settings to get the field part)"}
+select list::^_filter::key='@value@'::{"":"※ 参数: <br>用于判断的SQL碎片（SELECT SQL的WHERE部分），默认自动拼接","en":"※ Param: <br>SQL fragments for judgment (WHERE part of SELECT SQL),  Automatic splicing by default"}
+select list::^_orderBy::key DESC::{"":"※ 参数: <br>用于排序的SQL碎片（SELECT SQL的ORDER BY部分），默认不排序","en":"※ Param: <br>SQL fragment for sorting (ORDER BY part of SELECT SQL), do not sort by default"}
+select list::^_page::1::{"":"※ 参数: <br>第几页数据（SELECT SQL的LIMIT部分），默认不限制分页","en":"※ Param: <br>Page of data (LIMIT part of SELECT SQL), no restrictions on paging by default"}
+select list::^_pageSize::10::{"":"※ 参数: <br>每页数据（SELECT SQL的LIMIT部分），默认不限制分页","en":"※ Param: <br>Size of per page (LIMIT part of SELECT SQL), no restrictions on paging by default"}
+select list::^_isSQLReplaceStrict::true::{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}
+select list::^_countResultKey::count::{"":"※ 参数: <br>记录符合条件的总条数，默认'count'","en":"※ Param: <br>Record the total number of eligible items, 'count' by default"}
+select list::_resultKey::result::{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}
+select list::^_isGetNullError::false::{"":"※ 参数: <br>获取不到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when the data cannot be obtained, true: error, false: no error"}
+select list::^_isGetNotNullError::false::{"":"※ 参数: <br>获取到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when obtaining the data, true: error, false: no error"}
+sql update::_sql::UPDATE table SET key = '@key@' WHERE id = '@id@'::{"":"※ 参数: <br>用于更新(增加/删除/更新)的SQL语句<br><br>SQL例子: <br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@test_id@', '@test_value@')<br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@list>>0>>test_id@', '@list>>0>>test_value@'),('@list>>1>>test_id@', '@list>>1>>test_value@')<br>&emsp;&emsp;DELETE FROM table WHERE test_id = '@test_id@'<br>&emsp;&emsp;UPDATE table SET test_value = '@test_value@' WHERE id = '@test_id@'","en":"※ Param: <br>SQL statements for updating(insert/delete/update)<br><br>SQL samples: <br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@test_id@', '@test_value@')<br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@list>>0>>test_id@', '@list>>0>>test_value@'),('@list>>1>>test_id@', '@list>>1>>test_value@')<br>&emsp;&emsp;DELETE FROM table WHERE test_id = '@test_id@'<br>&emsp;&emsp;UPDATE table SET test_value = '@test_value@' WHERE id = '@test_id@'"}
+sql update::^_isSQLReplaceStrict::true::{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}
+sql update::^_resultKey::result::{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}
+sql update::^_isCheckAffect::true::{"":"※ 参数: <br>是否检查执行结果，true:检查(影响行数<=0报错)，false:不检查","en":"※ Param: <br>Whether to check the execution result, true: check (the number of updated rows <=0 error), false: do not check"}
+sql select::_sql::SELECT * FROM table WHERE key = '@key@'::{"":"※ 参数: <br>用于查询的SQL语句<br><br>SQL例子: <br>&emsp;&emsp;SELECT * FROM table WHERE test_value = '@test_value>>key@'<br>&emsp;&emsp;SELECT * FROM table WHERE test_value like '%@test_value@%'<br>&emsp;&emsp;SELECT * FROM table ORDER BY test_id DESC<br>&emsp;&emsp;SELECT * FROM table LIMIT 3 OFFSET 2","en":"※ Param: <br>SQL statements for query<br><br>SQL samples: <br>&emsp;&emsp;SELECT * FROM table WHERE test_value = '@test_value>>key@'<br>&emsp;&emsp;SELECT * FROM table WHERE test_value like '%@test_value@%'<br>&emsp;&emsp;SELECT * FROM table ORDER BY test_id DESC<br>&emsp;&emsp;SELECT * FROM table LIMIT 3 OFFSET 2"}
+sql select::_selectType::select list::{"":"※ 参数: <br>指定查询的结果类型，支持4种类型，`select string`、`select int`、`select list`、`select object`","en":"※ Param: <br>Specify the result type of the query, Support 4 types, `select string`, `select int`, `select list`, `select object`"}
+sql select::^_isSQLReplaceStrict::true::{"":"※ 参数: <br>动态替换SQL碎片数据时，是否以严格方式替换，true:严格替换，false:不检查字符","en":"※ Param: <br>When dynamically replacing SQL fragmented data, whether to replace it in a strict way, true: strictly replace, false: do not check the characters"}
+sql select::^_resultKey::result::{"":"※ 参数: <br>记录结果的Key, 默认不记录","en":"※ Param: <br>Key to record the results, not recorded by default"}
+sql select::^_isGetNullError::false::{"":"※ 参数: <br>获取不到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when the data cannot be obtained, true: error, false: no error"}
+sql select::^_isGetNotNullError::false::{"":"※ 参数: <br>获取到数据时是否报错，true:报错，false:不报错","en":"※ Param: <br>Whether to report an error when obtaining the data, true: error, false: no error"}
+txn start::^_level::repeatable read::{"":"※ 参数: <br>数据库事务隔离等级，可选数据库事务隔离等级为`read uncommitted`、`read committed`、`repeatable read`、`serializable`","en":"※ Param: <br>Database transaction isolation level, the optional database transaction isolation level is `read uncommitted`, `read committed`, `repeatable read`, `serializable`"}
+txn start::_isAutoErrorRollBack::true::{"":"※ 参数: <br>业务逻辑结束时，发生错误是否自动回滚事务，true:发生错误回滚，不发生错误提交，false:不发生错误回滚，发生错误提交","en":"※ Param: <br>At the end of the business logic, whether the error automatically rolls back the transaction, true: error rollback, no error submission, false: no error rollback, error submission"}
+txn end::_isCommit::true::{"":"※ 参数: <br>是否提交事务，true:提交，false:回滚","en":"※ Param: <br>Whether to submit the transaction, true: submit, false: rollback"}
+######Module Param######
+
+<br><br>SQL例子: <br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@test_id@', '@test_value@')<br>&emsp;&emsp;INSERT INTO table (test_id, test_value) VALUES ('@list>>0>>test_id@', '@list>>0>>test_value@'),('@list>>1>>test_id@', '@list>>1>>test_value@')<br>&emsp;&emsp;DELETE FROM table WHERE test_id = '@test_id@'<br>&emsp;&emsp;UPDATE table SET test_value = '@test_value@' WHERE id = '@test_id@'
+
+<br><br>SQL例子: <br>&emsp;&emsp;SELECT * FROM table WHERE test_value = '@test_value>>key@'<br>&emsp;&emsp;SELECT * FROM table WHERE test_value like '%@test_value@%'<br>&emsp;&emsp;SELECT * FROM table ORDER BY test_id DESC<br>&emsp;&emsp;SELECT * FROM table LIMIT 3 OFFSET 2

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-import json
-from Kernel.Config.Config import Config
+import Kernel.Common.Lib.json5 as json
+from Kernel.Common.Config.Config import Config
+from Kernel.Common.Logger.Logger import Logger
 
 class GetTemplate:
     def ErrorLog():
-        print('Quit! Module GetTemplate Error.')
+        Logger.Error('Quit! Module GetTemplate Error.')
         exit(-1)
 
     def ReadFile(fitlerKey, frontKey, templateFile):

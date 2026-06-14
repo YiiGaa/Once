@@ -1,166 +1,183 @@
-<img src="https://raw.githubusercontents.com/YiiGaa/Trick/master/Prop/Common/Img/logo.png" width="300"/>
+<img src="Christmas/Readme/logo.svg" width="300" style="padding-bottom:15px;"/>
 
-- 最新稳定版本: 2.2=2025.01.06
+
+- 最新稳定版本: 3.0=2026.06.15
 - 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/official/content?t=framework&p=once&i=overview-overview)
 
-- Latest stable version: 2.2=2025.01.06
-- For the user manual, please refer to the official website, [click to jump to the user manual](https://stoprefactoring.com/official/content?t=framework&p=once&i=overview-overview)
+- Latest stable version: 3.0=2026.06.15
+- For the user manual, please refer to the official website, [click here to open the manual](https://stoprefactoring.com/official/content?t=framework&p=once&i=overview-overview)
 
 # 编写RESTful-API就像画流程图一样
 
-Once架构分离了业务代码、模块代码。业务代码由JSON配置，是对一个API的模块使用顺序进行编排；模块代码是实际实现功能的代码，可无条件复用多个项目。
+**Once框架是后端服务框架，基于SpringBoot。**是“停止重构”系列框架的其中一员。
 
-Once架构关注的是开发效率和维护成本，业务开发由于不需要关心实际的运行原理，可交由经验较浅的程序员（或其他领域程序员）完成；模块代码虽然需要有一定SpringBoot开发经验的程序员才能胜任，但是一经开发完成，即可无条件复用在多个项目。
+**直接使用SpringBoot框架有什么问题？**
 
-Once架构是一套后端应用的顶层架构，架构本身只约束了工程结构和开发过程，对后端应用的基础技术无任何改造和深度封装，没有黑盒代码。
+在中大型项目里，团队往往只能按照功能点划分工作：每个人负责若干个API。这看起来分工明确，但实际开发过程中会出现很多**重复劳动和重复知识需求**：每个人都要了解Redis、MySQL等基础技术；每个人都要重复编写相似的调用代码；每个人也都会反复犯下相似的代码错误。
 
-Once架构只是一套规则，实际上是一个SpringBoot工程，任何问题都可以通过翻看实际代码排查。
+**这些隐性的重复成本，会逐渐让项目进度失控。在进度压力下，会继续加剧这些成本浪费**。再加上需求变更，会让本就一团乱麻的代码更加混乱。
 
-# Writing an RESTful-API is like drawing a flowchart
+**“停止重构”系列框架是“大象编程”方法论的衍生框架**。“大象编程”旨在重新定义软件工程的生产合作方式，关注的是团队开发效率和维护成本。目标不是“优雅的最佳实践”，而是消除重复劳动和重复知识需求，花更少的成本完成质量过硬的项目。
 
-The Once architecture separates business code and module code. The business code is configured by JSON and is arranged in the order of the module use of an API; the module code is the code that actually implements the function and can unconditionally reuse multiple projects.
+**Once框架将SpringBoot工程代码，分离出了业务代码和模块代码**。
 
-The Once architecture focuses on development efficiency and maintenance costs. Since business development does not need to care about the actual operating principle, it can be completed by inexperienced programmers (or programmers in other fields). Although module code requires programmers with certain SpringBoot development experience to be competent, one After the development is completed, it can be unconditionally reused in multiple projects.
+**将大象放进冰箱需要几步？**三步，打开冰箱，把大象放进去，关上冰箱门。
 
-Once architecture is a set of top-level architecture for back-end applications. The architecture itself only constrains the engineering structure and development process. There is no transformation and in-depth encapsulation of the basic technology of back-end applications, and there is no black box code.
+**业务指的是流程步骤**，不关心具体问题的解决方案，比如以上的3步流程。业务代码由.xmas配置，无需编码调试（只有4个关键字，没有变量），可交由经验尚浅的程序员完成，无需了解过多开发知识。
 
-The Once architecture is just a set of rules. It is actually a SpringBoot project. Any problem can be solved by looking through the actual code.
+**模块指的是某一类问题的具体解决方案**，不关心业务流程，比如如何才能将大象切块塞进冰箱。模块代码需要写Java代码，需要由一定经验的程序员完成。但是，只要复制粘贴模块文件夹，即可无条件复用多个项目，就像齿轮一样。我们也提供可一键下载的官方模块库。由于模块可无条件复用，所以模块可资产化积累，存在不需要开发模块的项目。
+
+**单一职责，按需学习**。写业务的只管编排业务流程，不需要调试/理解代码，就像使用现成零件组装机械装置。写模块的只管自己的模块功能，也就是一个团队最多只需要1个人完全理解redis使用，就像专注于某个齿轮的制作。**工作可量化，无重叠工作或知识要求，模块可资产化积累，成本/质量自然可控**。
+
+**吞噬生态，无黑盒代码**。Once框架实际上是Springboot工程的约束规则，无黑盒代码，所有问题都可以通过SpringBoot工程视角进行排查。SpringBoot所有的工具类或第三方库，都可以用作模块代码的编写。且由于模块代码隔离了业务，代码编写/调试会比直接使用SpringBoot更加快速/便捷。
+
+
+# Writing a RESTful-API is like drawing a flowchart
+
+**The Once framework is a backend service framework built on SpringBoot.** It is one of the frameworks in the "Stop Refactoring" series.
+
+**What problems arise when using SpringBoot directly?**
+
+In medium-sized and large projects, teams often have to divide work by functional scope: each person is responsible for several APIs. This may look like a clear division of labor, but in practice it creates a lot of **repeated work and repeated knowledge requirements**: everyone needs to understand infrastructure such as Redis and MySQL, everyone ends up writing similar integration code, and everyone tends to make similar coding mistakes.
+
+**These hidden repeated costs gradually push the project schedule out of control. Under schedule pressure, those costs continue to compound.** When requirements change, the codebase becomes even harder to manage.
+
+**The "Stop Refactoring" series is derived from the "Elephant Programming" methodology.** "Elephant Programming" aims to redefine how software teams collaborate, with a focus on development efficiency and maintenance cost. The goal is not "elegant best practices," but eliminating repeated work and repeated knowledge requirements so that teams can deliver solid projects at lower cost.
+
+**The Once framework separates a SpringBoot project into business code and module code.**
+
+**How many steps are needed to put an elephant into a refrigerator?** Three: open the refrigerator, put the elephant in, and close the door.
+
+**Business refers to process steps.** It does not focus on the specific technical solution, just like the three steps above. Business code is configured with .xmas, requires no coding or debugging, and can be handled by less experienced developers. It uses only four keywords, has no variables, and keeps the focus on process logic.
+
+**A module refers to a concrete solution for a certain type of problem.** It does not focus on the business process itself, just like figuring out how to cut the elephant into pieces and fit it into the refrigerator. Module code is written in Java and should be handled by developers with some experience. Once a module is written, however, it can be copied into other projects and reused directly like a gear. We also provide an official module library that can be downloaded with one click. Because modules can be reused directly, they can gradually accumulate as reusable assets, and some projects may not need new module development at all.
+
+**Single responsibility, learn as needed.** Developers who work on business only need to arrange the business flow. They do not need to debug or fully understand the underlying code, just like assembling a machine with ready-made parts. Developers who work on modules only need to focus on their own module capabilities. In practice, that means a team may need only one person who fully understands Redis usage, just like one person focusing on building a specific gear. **Work becomes measurable, overlapping work and repeated knowledge requirements are reduced, modules can accumulate as reusable assets, and cost and quality become easier to control.**
+
+**Built on the ecosystem, with no black-box code.** Once is essentially a SpringBoot project with an additional set of structural rules. There is no black-box code, and problems can still be investigated from a normal SpringBoot perspective. All SpringBoot utility classes and third-party libraries can be used directly in module development. Because module code is separated from business flow, development and debugging can also be faster and more straightforward than writing everything directly in SpringBoot.
 
 # 基础技术
 
-Once架构是一种顶层架构，架构本身只约束了工程结构和开发过程，对基础技术无任何改造和深度封装。
+Once框架是一种规则，实际上是一个Springboot工程，框架本身只约束了工程结构和开发过程，对基础技术无任何改造和深度封装。
 
 架构中采用的基础技术如下：
 
-- 开发语言：Java (JDK21或以上)
-- 基础框架：SpringBoot 3.3.1
-- 项目自动构建工具：Gradle
-
-其中，由于Once架构只是一种规则，基础技术甚至是开发语言都是可以替换的，可联系官方打造个性化架构。
+- **开发语言**：Java (JDK21或以上)
+- **基础框架**：SpringBoot 4.0.6
+- **项目自动构建工具**：Gradle
 
 # Basic technology
 
-Once architecture is a top-level architecture. The architecture itself only constrains the engineering structure and development process, and does not have any transformation or deep encapsulation of basic technology.
+The Once framework is essentially a set of rules built on top of a SpringBoot project. It only constrains project structure and development process, without modifying or deeply wrapping the underlying technologies.
 
-The basic technologies used in the architecture are as follows:
+The basic technologies used by the framework are as follows:
 
-- Development language: Java (JDK21 or above)
-
-- Basic framework: SpringBoot 3.3.1
-
-- Project automatic construction tool: Gradle
-
-Among them, because the Once architecture is only a rule, the basic technology and even the development language can be replaced, and you can contact the official to create a personalized architecture.
-
-# 前提知识
-
-在使用Once架构前，最好先学习SpringBoot、Java程序、Http请求等相关知识。
-
-Once架构只是一种规则，实际上是一个SpringBoot工程，要想深度使用、或者排查一些错误，最好先学习这些知识。
-
-# Prerequisite knowledge
-
-Before using the Once architecture, it is best to learn SpringBoot, Java programs, Http requests and other relevant knowledge.
-
-Once architecture is just a rule. It is actually a SpringBoot project. If you want to use it in depth or check some errors, it is best to learn this knowledge first.
+- **Development language**: Java (JDK21 or above)
+- **Base framework**: SpringBoot 4.0.6
+- **Project build tool**: Gradle
 
 # 设计思想
-
-Once架构的设计思想可以直白地理解为：希望所有代码都只写一次。
-
-代码可以只写一次的部分，希望能无条件复用在多个项目。代码不能只写一次的部分（业务强关联），那就简化其表达，用代码生成器生成它。
 
 从宏观上讲，后端应用程序是多个请求接口的集合。而对单个接口来讲，是多个步骤的集合。
 
 以一个审核博客的接口为例，可以对其理解为：第一步“用户鉴权”、第二步“检查必要参数”、第三步“填充默认参数”、第四步“数据库操作”。
 
-![](design/overview-work-1.jpg)
+![](Christmas/Readme/data/overview-work-1.jpg) 
 
-所以Once架构将代码分离成了两层：模块代码、业务代码。
+**Once框架将代码分离成了两层：模块代码、业务代码**。
 
-模块代码是实际执行功能的代码，只关心通用功能的实现，拥有统一的使用方式，所以这部分的代码可以只写一次，且可以无条件复用在多个项目。
+**模块代码是实际执行功能的代码**，只关心通用功能的实现（脱离业务）。
 
-业务代码是跟业务强关联的，只关心实现业务功能的步骤，也就是对模块使用顺序进行编排，例如：第一步检查参数，第二步操作数据库。所以业务代码可以使用JSON进行简化，并使用Christmas（代码生成器）生成代码。
+**业务代码是业务流程的步骤**，也就是对模块使用顺序进行编排。
 
-![](design/overview-work-2.jpg)
+![](Christmas/Readme/data/overview-work-2.jpg) 
 
 # Design ideas
 
-The design idea of the Once architecture can be straightforwardly understood as: It want all the code to be written only once.
+From a macro perspective, a backend application is a collection of request APIs. For a single API, it is a collection of steps.
 
-The part of the code can only be written once, hoping that it can be unconditionally reused in multiple projects. The part of the code cannot be written only once (strong business association), then simplify its expression and generate it with a code generator.
+Take a blog review API as an example. It can be understood as four steps: first, user authentication; second, checking required parameters; third, filling in default parameters; fourth, database operations.
 
-Macroscopically speaking, a back-end application is a collection of multiple request APIs. For a single API, it is a collection of multiple steps.
+![](Christmas/Readme/data/overview-work-1-en.jpg) 
 
-Taking the API of a review blog as an example, it can be understood as: the first step is "user authentication", the second step is "checking the necessary parameters", the third step is "filling the default parameters", and the fourth step is "database operation".
+**The Once framework separates the code into two layers: module code and business code.**
 
-![](design/overview-work-1-en.jpg)
+**Module code is the code that performs actual functions.** It focuses only on implementing general capabilities, independent of any specific business flow.
 
-Therefore, the Once architecture separates the code into two layers: module code and business code.
+**Business code represents the steps of a business flow.** In other words, it arranges the order in which modules are used.
 
-Module code is the code that actually performs functions. It only cares about the implementation of general functions and has a unified way of use, so this part of the code can be written only once and can be unconditionally reused in multiple projects.
-
-The business code is strongly related to the business. It only cares about the steps to realize the business function, that is, arrange the order of use of the module, for example, the first step is to check the parameters, and the second step is to operate the database. Therefore, the business code can be simplified with JSON and generate code with Christmas (code generator).
-
-![](design/overview-work-2-en.jpg)
+![](Christmas/Readme/data/overview-work-2-en.jpg) 
 
 # 工作原理
 
-为了实现以上模块代码、业务代码分离，Once架构加入了数据池
+为了实现以上模块代码、业务代码分离，**Once架构加入了数据池**。
 
-数据池可以看作是一个接口中的全局变量，所有模块都可以对其进行添加、删除数据
+**数据池可以看作是一个API中的全局变量**，所有模块都可以对其进行添加、删除、获取数据。
 
-数据池中包含两个重要部分，`passParam`和`returnParam`：
+数据池是`HashMap`类型的对象。
 
-- `passParam`是用于临时存放数据，主要用于临时存放模块处理完的数据，接口逻辑开始时，会将接口请求参数存放在此
-- `returnParam`是用于存放接口返回的数据，接口逻辑结束时，会自动将此部分的数据返回客户端
+**具体工作原理为：**
 
-具体工作原理为：
-
-- 在接口逻辑开始时，将请求参数及其他重要对象存放在数据池中
+- 在API逻辑开始时，将请求参数及其他重要对象存放在数据池中
 
 - 接口逻辑调用模块时，需要设置模块参数，以及将数据池传递给模块
 
-- 模块按模块参数执行任务时，根据模块参数从数据池获取数据，或根据模块参数对数据池进行修改
+- 模块按模块参数执行任务时，可以对数据池中的数据进行添加、删除、修改。数据池被修改后，会被保留
 
-- 模块执行任务完毕后，检查模块是否报错，不报错继续下一步，否则中断逻辑，接口返回
+- 模块执行任务完毕后，检查模块是否报错，不报错继续下一步；否则中断逻辑，返回结果
 
-  > 报错返回只是默认行为，可以设置报错执行其他步骤的逻辑
+    > 线性调用、报错返回都只是默认行为，可以使用逻辑选择器改变默认行为
 
-- 接口返回时，自动将数据池的`returnParam`部分转换为Json字符串，并返回客户端
+- API返回时，自动将数据池的数据转换为Json字符串，并返回客户端
 
-![](design/overview-work-3.jpg)
+![](Christmas/Readme/data/overview-work-3.jpg) 
 
 # Working principle
 
-In order to realize the separation of the above module code and business code, the Once architecture has added a data pool
+To separate module code from business code, **the Once framework introduces a data pool**.
 
-The data pool can be regarded as a global variable in an API, and all modules can add and delete data
+**The data pool can be understood as a global variable within an API.** All modules can add, remove, and retrieve data from it.
 
-The data pool contains two important parts, `passParam` and `returnParam`:
+The data pool is a `HashMap` object.
 
-- `passParam` is the part used for temporary storage of data, which is mainly used to temporarily store the data processed by the module. At the beginning of the API logic, the API request parameters will be stored here.
+**The working process is as follows:**
 
-- `returnParam` is used to store the data returned by the API. At the end of the interface logic, this part of the data will be automatically returned to the client.
+- At the beginning of API execution, request parameters and other important objects are stored in the data pool.
 
-The specific working principle is:
+- When API logic calls a module, module parameters must be set and the data pool must be passed to the module.
 
-- At the beginning of the API logic, store the request parameters and other important objects in the data pool.
+- While executing according to its parameters, a module can add, remove, or modify data in the data pool. Those changes are preserved after execution.
 
-- When the API logic calls the module, it is necessary to set the module parameters and pass the data pool to the module.
+- After a module finishes its task, the framework checks whether the module reported an error. If no error is reported, execution continues to the next step; otherwise, the process is interrupted and a result is returned.
 
-- When the module performs tasks according to the module parameters, it obtains data from the data pool according to the module parameters, or modifies the data pool according to the module parameters.
+    > Linear execution and returning on error are only the default behaviors. Logical selectors can be used to change them.
 
-- After the module completes the task, check whether the module reports an error. If there is no error, continue to the next step, otherwise the logic will be interrupted and the interface will return.
+- When the API returns, the data in the data pool is automatically converted into a Json string and returned to the client.
 
-> Error return is only the default behavior, and you can set the logic of error execution of other steps.
-
-- When the API returns, automatically convert the `returnParam` part of the data pool into a Json string and return the client.
-
-![](design/overview-work-3-en.jpg)
+![](Christmas/Readme/data/overview-work-3-en.jpg) 
 
 # 历史版本
-## 2.2
+## 3.0
+- [update]升级SpringBoot 4.0.6
+- [update]业务代码由新语言.xmas编写，代替原来的json
+- [update]移除returnParam
+- [update]API返回，错误码字段'code'改为'$code'，错误信息字段'message'改为'$message'
+- [update]代码结构调整
+- [update]删除apiCode/
+- [update]移除基础库fastjson2，使用SpringBoot内嵌的Jackson代替
+- [update]移除@Service，所有业务逻辑集中在@Controller
+- [update]版本文件Load.json改名Xmas.Sync.json
+- [update]连结文件Once.Link改名Xmas.Link
+- [update]自定义配置文件Once.Config改名Xmas.Config
+- [update]Christmas命令/ShellExcute/Compile#Run 改名 /ShellExcute/Run#Run
+- [update]Christmas命令/ShellExcute/Compile#War 改名 /ShellExcute/Run#Pack-War
+- [update]Christmas命令/ShellExcute/Run#Module 改名 /ShellExcute/Run#Module
+- [update]Christmas命令/ShellExcute/Module#Update 改名 /ShellExcute/Pull#Module
+- [update]Christmas命令/ShellExcute/Update#Auto 改名 /ShellExcute/Pull#All
+- [update]移除Christmas命令/ShellExcute/API#Delete
+- [update]移除Christmas命令/ShellExcute/Module#Delete
+
+## 2.2 (v2停止开源维护)
 - [update]升级Christmas 2.3
 - [bug]修复Windows下，Christmas及插件无法正常使用
 
@@ -188,8 +205,27 @@ The specific working principle is:
 - 业务代码由Json配置，由代码生成器生成Java代码
 
 # Historical version
+## 3.0
+- [update] Upgraded to SpringBoot 4.0.6
+- [update] Business code is now written in the new .xmas language instead of the original Json
+- [update] Removed returnParam
+- [update] In API responses, the error code field `code` was renamed to `$code`, and the error message field `message` was renamed to `$message`
+- [update] Adjusted the code structure
+- [update] Removed apiCode/
+- [update] Removed the fastjson2 dependency and replaced it with the Jackson support built into SpringBoot
+- [update] Removed @Service, with all business logic now concentrated in @Controller
+- [update] Renamed version file Load.json to Xmas.Sync.json
+- [update] Renamed link file Once.Link to Xmas.Link
+- [update] Renamed custom config file Once.Config to Xmas.Config
+- [update] Renamed Christmas command /ShellExcute/Compile#Run to /ShellExcute/Run#Run
+- [update] Renamed Christmas command /ShellExcute/Compile#War to /ShellExcute/Run#Pack-War
+- [update] Renamed Christmas command /ShellExcute/Run#Module to /ShellExcute/Run#Module
+- [update] Renamed Christmas command /ShellExcute/Module#Update to /ShellExcute/Pull#Module
+- [update] Renamed Christmas command /ShellExcute/Update#Auto to /ShellExcute/Pull#All
+- [update] Removed Christmas command /ShellExcute/API#Delete
+- [update] Removed Christmas command /ShellExcute/Module#Delete
 
-## 2.2
+## 2.2 (V2 stops open source maintenance)
 - [update] Upgrade to Christmas 2.3
 - [bug] Fixed the issue where Christmas and plugins could not be used normally under Windows
 

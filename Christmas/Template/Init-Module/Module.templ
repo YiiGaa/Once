@@ -1,19 +1,19 @@
 ######DEFAULT######
-package com.stoprefactoring.once.module.@@name@@;
+package main.module.@@name@@;
 
-import com.alibaba.fastjson2.JSONObject;
-import com.stoprefactoring.once.common.ERRORCODE;
-import com.stoprefactoring.once.common.LOGGER;
-import com.stoprefactoring.once.common.TOOLS;
-import com.stoprefactoring.once.module.Link;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.*;
+import main.common.ERRORCODE;
+import main.common.LOGGER;
+import main.common.TOOLS;
+import main.module.Link;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 public class @@name@@ extends Link {
-    private ERRORCODE DoStart(JSONObject moduleParam, HashMap<String, Object> dataPool, ERRORCODE result){
-        JSONObject passParam = (JSONObject) dataPool.get("passParam");
-        JSONObject returnParam = (JSONObject) dataPool.get("returnParam");
+    private ERRORCODE DoStart(ObjectNode moduleParam, HashMap<String, Object> dataPool, ERRORCODE result){
+        ObjectNode passParam = (ObjectNode) dataPool.get("passParam");
         HttpServletRequest request = (HttpServletRequest)dataPool.get("httpRequest");
         HttpServletResponse response = (HttpServletResponse)dataPool.get("httpResponse");
 
@@ -29,7 +29,7 @@ public class @@name@@ extends Link {
     }
 
     @Override
-    public ERRORCODE Start(JSONObject moduleParam, HashMap<String, Object> dataPool){
+    public ERRORCODE Start(ObjectNode moduleParam, HashMap<String, Object> dataPool){
         LOGGER.DEBUG("Module-@@name@@ start", moduleParam, dataPool);
         ERRORCODE result = ERRORCODE.ERR_OK;
         result = DoStart(moduleParam, dataPool, result);
@@ -41,7 +41,7 @@ public class @@name@@ extends Link {
     public ERRORCODE End(HashMap<String, Object> dataPool, ERRORCODE result){
         LOGGER.DEBUG("Module-@@name@@ End start", dataPool);
         try{
-            //Some work of cleaning up the module（When Controller end or Service end）
+            //Some work of cleaning up the module（When API or function end）
             //You need to set "Module.moduleNeedCallEnd.put("@@name@@",true)" in @@name@@Config.Init() to take effect
         }catch (Exception e){LOGGER.ERROR("Module-@@name@@ End for clean exception:"+ TOOLS.GetExceptionInfo(e), dataPool);}
         LOGGER.DEBUG("Module-@@name@@ End end", dataPool);

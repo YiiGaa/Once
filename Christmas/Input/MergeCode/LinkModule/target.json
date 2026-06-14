@@ -1,7 +1,8 @@
 {
     "Xmas_config":{
-        "@module@":"../src/main/java/com/stoprefactoring/once/module",
-        "@code@":"../src/main/java/com/stoprefactoring/once",
+        "@module@":"../src/main/module",
+        "@config@":"../config",
+        "@code@":"../src/main",
         "@template@":"./Template/LinkModule",
         "@Christmas@":"../Christmas"
     },
@@ -12,56 +13,246 @@
             "Xmas_source":{
                 "Xmas_path":"@template@/ErrorCode.templ", "Xmas_filter":"######DEFAULT######",
                 "@@enum@@":{
-                    "Xmas_path":"@module@/<>/Once.Link", "Xmas_filter":"######ErrorCode enum######"
+                    "Xmas_path":"@module@/<>/Xmas.Link", "Xmas_filter":"######ErrorCode######", "Xmas_select":"(.+?):",
+                    ":": ","
                 },
                 "@@errorCode@@":{
-                    "Xmas_path":"@module@/<>/Once.Link", "Xmas_filter":"######ErrorCode######"
+                    "Xmas_path":"@module@/<>/Xmas.Link", "Xmas_filter":"######ErrorCode######", "Xmas_select":"(.+?)",
+                    "{code}:{message}":"put({code}, new String[]{message});"
                 }
             }
         },{
             "Xmas_target":"../config/application.properties",
             "Xmas_source":{
                 "Xmas_path":"@template@/Config.templ", "Xmas_filter":"######DEFAULT######",
+                "@@all@@":{
+                    "Xmas_path":"@config@/Xmas.Config", "Xmas_filter":"######Config######"
+                },
                 "@@setting@@":{
-                    "Xmas_path":"@module@/<>/Once.Config", "Xmas_filter":"######Config######"
+                    "Xmas_path":"@module@/<>/Xmas.Config", "Xmas_filter":"######Config######"
                 }
             }
         },{
             "Xmas_target":"../config/application-check.properties",
             "Xmas_source":{
                 "Xmas_path":"@template@/Config.templ", "Xmas_filter":"######CHECK######",
+                "@@all@@":{
+                    "Xmas_path":"@config@/Xmas.Config", "Xmas_filter":"######Config-Check######"
+                },
                 "@@setting@@":{
-                    "Xmas_path":"@module@/<>/Once.Link", "Xmas_filter":"######Config for application-check.properties######"
+                    "Xmas_path":"@module@/<>/Xmas.Link", "Xmas_filter":"######Config for application-check.properties######"
                 }
             }
         },{
             "Xmas_target":"../build.gradle",
             "Xmas_source":{
                 "Xmas_path":"@template@/Gradle.templ", "Xmas_filter":"######DEFAULT######",
-                "@@include@@":{
-                    "Xmas_path":"@module@/<module>/Once.Link",
+                "@@cource@@":{
+                    "Xmas_path":"@module@/<module>/Xmas.Link",
                     "Xmas_filter":"-", "Xmas_select":"-",
-                    "":"//<module>\nif(!project.hasProperty('module') || project.property('module').toString() == '<module>') {\n@@dependencies config@@\n@@dependencies@@\n}",
+                    "":"<module> {\n	java {\n		srcDirs = ['src']\n        include 'main/module/<module>/**/*.java'\n        exclude 'main/module/<module>/Sample.java'\n    }\n    resources {srcDir 'config'}\n    compileClasspath += sourceSets.common.output + sourceSets.main.output\n    runtimeClasspath += output + compileClasspath\n}"
+                },
+                "@@include@@":{
+                    "Xmas_path":"@module@/<module>/Xmas.Link",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"//<module>\nif(buildTarget == 'all' || buildTarget == '<module>') {\n@@dependencies config@@\n@@dependencies@@\n}",
                     "@@dependencies config@@":{
-                        "Xmas_path":"@module@/<module>/Once.Config", "Xmas_filter":"######Dependencies Config######"
+                        "Xmas_path":"@module@/<module>/Xmas.Config", "Xmas_filter":"######Dependencies Config######"
                     },
                     "@@dependencies@@":{
-                        "Xmas_path":"@module@/<module>/Once.Link", "Xmas_filter":"######Dependencies######"
+                        "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Dependencies######"
                     }
                 }
             }
         },{
-            "Xmas_target":"@Christmas@/Input/ShellExcute/API#Genrate/target.json",
+            "Xmas_target":"@Christmas@/Input/ShellExcute/API#All/target.json",
             "Xmas_source":{
                 "Xmas_path":"@template@/Xmas.templ", "Xmas_filter":"######DEFAULT######",
                 "@@piece@@":{
-                    "Xmas_path":"@Christmas@/Input/GenCode/API#<api>/config.json",
+                    "Xmas_path":"@code@/api/<api>.xmas",
                     "Xmas_filter":"-", "Xmas_select":"-",
                     "":"@@<api>@@",
                     "@@<api>@@":{
                         "Xmas_path":"@template@/Xmas.templ", "Xmas_filter":"######API######",
                         "@@api@@":"<api>"
                     }
+                }
+            }
+        },{
+            "Xmas_target":"@Christmas@/Input/GenCode/Gen#API/Xmas.File.json",
+            "Xmas_source":{
+                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######DEFAULT######",
+                "@@module check@@":{
+                    "Xmas_path":"@code@/module/<module>/Xmas.Link", "Xmas_except":"_Config",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"@@<module>@@",
+                    "@@<module>@@":{
+                        "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Check Node######",
+                        "@@modules@@":"<module>",
+                        "@@action@@":{
+                            "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Action######", "Xmas_select":"^\\S.+?::",
+                            "{action}::": {
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Check Action######",
+                                "@@modules@@":"<module>",
+                                "@@action@@":"{action}"
+                            }
+                        },
+                        "@@error@@":{
+                            "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######ErrorCode######", "Xmas_select":"(.+?):",
+                            "{error}:": "\"!{error}\","
+                        }
+                    }
+                },
+                "@@module param@@":{
+                    "Xmas_path":"@code@/module/<module>/Xmas.Link", "Xmas_except":"_Config",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"@@<module>@@",
+                    "@@<module>@@":[
+                        {
+                            "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Action######", "Xmas_select":"^(.+?::)|^-::",
+                            "reg##^(?!-){action}::": {
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Check Param######",
+                                "@@modules@@":"<module>",
+                                "@@action@@":" -{action}",
+                                "@@action param@@":"\"_action\": \"{action}\",",
+                                "@@param@@":{
+                                    "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Param######", "Xmas_select":"^{action}::.+?::",
+                                    "{none}::^{param}::": "\"opt<<{param}\":\"<<param<<{param}\",",
+                                    "{none}::{param}::": "\"{param}\":\"<<param<<{param}\","
+                                }
+                            },
+                            "reg##^-::": {
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Check Param######",
+                                "@@modules@@":"<module>",
+                                "@@action@@":"",
+                                "@@action param@@":"",
+                                "@@param@@":{
+                                    "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Param######", "Xmas_select":"^-::.+?::",
+                                    "-::^{param}::": "\"opt<<{param}\":\"<<param<<{param}\",",
+                                    "-::{param}::": "\"{param}\":\"<<param<<{param}\","
+                                }
+                            }
+                        }
+                    ]
+                },
+                "@@module hint@@":{
+                    "Xmas_path":"@code@/module/<module>/Xmas.Link", "Xmas_except":"_Config",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"@@<module>@@",
+                    "@@<module>@@":[
+                        {
+                            "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Action######", 
+                            "reg##^(?!-){action}::{desc}": {
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Hint######",
+                                "@@modules@@":"<module>",
+                                "@@desc@@":"{desc}",
+                                "@@action@@":" -{action}",
+                                "@@default@@":[{
+                                    "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Param######", "Xmas_select":"^{action}::[^^]+?::.+?::",
+                                    "{action}::{param}::{default}::": "{param}: {default}\\n\\"
+                                },"\""]
+                            },
+                            "reg##^-::{desc}": {
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Hint######",
+                                "@@modules@@":"<module>",
+                                "@@desc@@":"{desc}",
+                                "@@action@@":"",
+                                "@@default@@":[{
+                                    "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Param######", "Xmas_select":"^-::[^^]+?::.+?::",
+                                    "-::{param}::{default}::": "{param}: {default}\\n\\"
+                                },"\""]
+                            }
+                        }
+                    ]
+                },
+                "@@module param hint@@":{
+                    "Xmas_path":"@code@/module/<module>/Xmas.Link", "Xmas_except":"_Config",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"@@<module>@@",
+                    "@@<module>@@":[
+                        {
+                            "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Action######", "Xmas_select":"^(.+?::)|^-::",
+                            "reg##^(?!-){action}::": {
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Hint Param######",
+                                "@@modules@@":"<module>",
+                                "@@action@@":" -{action}",
+                                "@@param list@@":{
+                                    "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Param######", "Xmas_select":"^{action}::.+?$",
+                                    "{action}::_{param}::{default}::{desc}": "[\"_{param} *\", {desc}, \"{param}: {default}\"],",
+                                    "{action}::^_{param}::{default}::{desc}": "[\"_{param}\", {desc}, \"{param}: {default}\"],"
+                                }
+                            },
+                            "reg##^-::":{
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Hint Param######",
+                                "@@modules@@":"<module>",
+                                "@@action@@":"",
+                                "@@param list@@":{
+                                    "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Param######", "Xmas_select":"^-::.+?$",
+                                    "-::_{param}::{default}::{desc}": "[\"_{param} *\", {desc}, \"{param}: {default}\"],",
+                                    "-::^_{param}::{default}::{desc}": "[\"_{param}\", {desc}, \"{param}: {default}\"],"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "@@module error hint@@":{
+                    "Xmas_path":"@code@/module/<module>/Xmas.Link", "Xmas_except":"_Config",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"@@<module>@@",
+                    "@@<module>@@":{
+                        "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Hint Error######",
+                        "@@modules@@":"<module>",
+                        "@@error list@@":{
+                            "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######ErrorCode######", "Xmas_select":"(.+?):",
+                            "{error}:": "[\"{error}\",\"\"],"
+                        }
+                    }
+                },
+                "@@module node read@@":{
+                    "Xmas_path":"@code@/module/<module>/Xmas.Link", "Xmas_except":"_Config",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"@@<module>@@",
+                    "@@<module>@@":[
+                        {
+                            "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Action######", 
+                            "reg##^(?!-){action}::{desc}": {
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Read Node######",
+                                "@@modules@@":"<module>",
+                                "@@action@@":" -{action}",
+                                "@@tips@@":"{desc}"
+                            },
+                            "reg##^-::{desc}":{
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Read Node######",
+                                "@@modules@@":"<module>",
+                                "@@action@@":"",
+                                "@@tips@@":"{desc}"
+                            }
+                        }
+                    ]
+                },
+                "@@module param read@@":{
+                    "Xmas_path":"@code@/module/<module>/Xmas.Link", "Xmas_except":"_Config",
+                    "Xmas_filter":"-", "Xmas_select":"-",
+                    "":"@@<module>@@",
+                    "@@<module>@@":[
+                        {
+                            "Xmas_path":"@module@/<module>/Xmas.Link", "Xmas_filter":"######Module Param######", 
+                            "reg##^(?!-){action}::{param}::{default}::{desc}": {
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Param Node######",
+                                "@@modules@@":"<module>",
+                                "@@action@@":" -{action}",
+                                "@@tips@@":"{desc}",
+                                "@@key@@":"{param}:"
+                            },
+                            "reg##^-::{param}::{default}::{desc}":{
+                                "Xmas_path":"@template@/Xmas.File.templ", "Xmas_filter":"######MODULE Param Node######",
+                                "@@modules@@":"<module>",
+                                "@@action@@":"",
+                                "@@tips@@":"{desc}",
+                                "@@key@@":"{param}:"
+                            }
+                        }
+                    ]
                 }
             }
         }

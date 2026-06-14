@@ -1,0 +1,16 @@
+{
+    "inputSign":"?",
+    "rewaitInput":"[]",
+    "isJudgeExist":false,
+    "isExistBackup":false,
+    "isFillLack":true,
+    "templatePath":{
+        "file":"./Template/Init-API/Move-API.templ",
+        "api":"./Template/Init-API/Function-API.templ",
+        "module":"./Template/Init-API/Module.templ",
+        "error":"./Template/Init-API/Module.templ",
+        "moduleError":"./Template/Init-API/Module.templ",
+        "skip":"./Template/Init-API/Module-Skip.templ",
+        "switch":"./Template/Init-API/Module-Switch.templ"
+    }
+}

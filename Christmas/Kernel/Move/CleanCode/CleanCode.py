@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 from Kernel.Module.Module import Module
+from Kernel.Common.Logger.Logger import Logger
 
 class CleanCode:
     def DoStart(targetParam, configParam):
@@ -22,4 +23,4 @@ class CleanCode:
     def Start(targetParam, configParam):
         CleanCode.DoStart(targetParam, configParam)
         print('')
-        print('SUCCESS')
+        Logger.Tips('SUCCESS')

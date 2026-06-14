@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-import json
-from Kernel.Config.Config import Config
+import Kernel.Common.Lib.json5 as json
+from Kernel.Common.Config.Config import Config
+from Kernel.Common.Logger.Logger import Logger
 import os
 import time
 import random
@@ -9,7 +10,7 @@ import shutil
 
 class CleanDirFile:
     def ErrorLog():
-        print('Quit! Module CleanDirFile Error.')
+        Logger.Error('Quit! Module CleanDirFile Error.')
         exit(-1)
 
     def BackUp(targetFile):

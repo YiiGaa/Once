@@ -1,0 +1,37 @@
+######XMAS-API######
+path: ../src/main/api/@@name@@.java
+name: @@name@@
+
+#URL: /once/@@name@@/@@name@@
+#Method: POST
+&post /@@name@@
+    >_DataCheck
+        _isClean: true
+        _param: {}
+
+######XMAS-API######
+
+######TARGET-API######
+[
+    {
+        "Xmas_path":"../src/main/api/@@name@@/@@name@@.java",
+        "file": {
+            "name":"@@name@@",
+            "api":[
+                {
+                    "name":"API_name",
+                    "method":"POST",
+                    "module":[
+                        {
+                            "name":"Module_name",
+                            "param":{
+                                "param_key":"param_value"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]
+######TARGET-API######

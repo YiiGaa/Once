@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
+import Kernel.Common.Lib.json5 as json5
 import json
-from Kernel.Config.Config import Config
+from Kernel.Common.Config.Config import Config
+from Kernel.Common.Logger.Logger import Logger
 
 class ReplaceConfig:
     def ErrorLog():
-        print('Quit! Module ReplaceConfig Error.')
+        Logger.Error('Quit! Module ReplaceConfig Error.')
         exit(-1)
 
     def DoStart(targetParam, moduleParam):
@@ -18,7 +20,7 @@ class ReplaceConfig:
                 for key,value in replaceList.items():
                     print(f'{Config.logPrefix}{key} >> {value}')
                     content = content.replace(key, value)
-        return json.loads(content)
+        return json5.loads(content)
 
     def Start(targetParam, moduleParam):
         return ReplaceConfig.DoStart(targetParam, moduleParam)

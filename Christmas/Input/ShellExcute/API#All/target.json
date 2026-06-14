@@ -1,0 +1,8 @@
+[   
+    {
+        "Xmas_shell":"python3 Christmas.py GenCode '../src/main/api/test.xmas' './Input/GenCode/Gen#API/config.json'",
+        "Xmas_cwd":".",
+        "Xmas_judge":true,
+        "Xmas_error":"echo !!!ERROR when generate src/main/api/test.xmas"
+    },
+]

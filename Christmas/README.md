@@ -1,14 +1,18 @@
-<img src="Test/logo.png" width="300"/>
+<img src="Readme/logo.svg" width="300" style="padding-bottom:15px;"/>
+
+- 最新稳定版本: 3.1=2026.06.15
+- 使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/official/content?t=framework&p=christmas&i=overview-overview)
+
+- Latest stable version: 3.1=2026.06.15
+- For detailed documentation, please refer to the official website, [click to jump to the manual](https://stoprefactoring.com/official/content?t=framework&p=christmas&i=overview-overview)
 
 Christmas是一个通用代码生成器，如果代码不能只写一次，那就生成它。
 
-最新稳定版本: 2.3=2025.01.06
-使用文档详见官网，[点击跳转使用手册](https://stoprefactoring.com/#content@content#framework/christmas/)
+Christmas是“停止重构”系列框架的核心组成部分。
 
-Christmas is a generic code generator that generates code if it can't be written just once.
+Christmas is a generic code generator that generates code if it can't be written just once. 
 
-Latest stable version: 2.3=2025.01.06
-For detailed documentation, please refer to the official website, [click to jump to the manual](https://stoprefactoring.com/#content@content#framework/christmas/).
+Christmas is a core component of the "Stop Refactoring" series framework.
 
 ---
 
@@ -58,7 +62,21 @@ Christmas contains five major functions
 - DownloadCode: download code
 - ShellExcute: shell command line programming
 
-## 历史版本 Revision History
+## 历史版本 Historical version
+
+### 3.1=2026.06.15
+- [bug]修复.xmas转换bug
+- [bug]Fixed .xmas conversion bug
+
+### 3.0=2026.03.15
+- [update]增加.xmas文件支持（语法自定义），可代替target.json
+- [update]增加VSCode、JetBrains对.xmas文件的语法检测支持（需安装新版本(>=v3)的Christmas插件）
+- [update]支持json5标准的.json文件读取
+- [update]升级文件Load.json，改名为Xmas.Sync.json
+- [update]Add .xmas file support (syntax customization), which can replace target.json
+- [update]Add syntax detection support for .xmas files by VSCode and JetBrains (need to install a new version(>=v3) of the Christmas plug-in)
+- [update]Support for reading .json files with json5 standard
+- [update] The file Load.json used for upgrades has been renamed to Xmas.Sync.json
 
 ### 2.3
 - [bug]修复Windows下，Christmas插件不能正常使用

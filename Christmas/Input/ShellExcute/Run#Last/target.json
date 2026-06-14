@@ -1,0 +1,7 @@
+[
+    {
+        "Xmas_shell":"python3 Christmas.py Input/ShellExcute/Run#Run",
+        "Xmas_cwd":".",
+        "Xmas_judge":true
+    }
+]

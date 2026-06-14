@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 import json
-from Kernel.Config.Config import Config
+from Kernel.Common.Config.Config import Config
+from Kernel.Common.Logger.Logger import Logger
 import re
 
 class ReplaceTemplate:
     def ErrorLog():
-        print('Quit! Module ReplaceTemplate Error.')
+        Logger.Error('Quit! Module ReplaceTemplate Error.')
         exit(-1)
     
     def ReplaceTarget_AddSpace(line, replaceKey, tempContent):

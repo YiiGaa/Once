@@ -1,0 +1,101 @@
+######DEFAULT######
+
+@RequestMapping(value="/@@name@@", method=RequestMethod.@@method@@)
+@ResponseBody
+public JsonNode @@name@@@@method@@(HttpServletRequest request, HttpServletResponse response, @RequestBody(required = false) String requestParam){
+    List<HashMap<String, Object>> selectorRetryData = new ArrayList<>();
+    HashMap<String, Object> dataPool = new HashMap<>();
+    ERRORCODE result = ERRORCODE.ERR_OK;
+    JsonNode moduleParam;
+
+    try {
+        //STEP::Init data pool
+        result = APIINIT.InitDataPool(dataPool, request, response, requestParam);
+        LOGGER.INIT("API", "API start", dataPool);
+        Module.Init(dataPool);
+        if(ERRORCODE.IsError(result)){
+            return null;
+        }
+
+        //STEP::Run task
+        do{
+
+            @@module@@
+        }while (false);
+
+    } catch(Exception e){
+        result = ERRORCODE.ERR_Api_Exception;
+        LOGGER.ERROR("API exception:"+ TOOLS.GetExceptionInfo(e), dataPool);
+    } finally {
+        Module.End(dataPool, result);
+        JsonNode passParam = (JsonNode) dataPool.get("passParam");
+        passParam = ERRORCODE.GetErrorCode(result, passParam);
+        LOGGER.END("API end", passParam);
+        return passParam;
+    }
+}
+######DEFAULT######
+
+######FUNCTION######
+
+public ERRORCODE @@name@@FUNCTION(HashMap<String, Object> dataPool) {
+    LOGGER.DEBUG("FUNCTION @@name@@ start", dataPool);
+    List<HashMap<String, Object>> selectorRetryData = new ArrayList<>();
+    ERRORCODE result = ERRORCODE.ERR_OK;
+    LOGGER.ChangePosition("FUNCTION-@@name@@");
+    JsonNode moduleParam;
+
+    try {
+        //STEP::Run task
+        do{
+
+            @@module@@
+        }while (false);
+    } catch(Exception e){
+        result = ERRORCODE.ERR_Api_Exception;
+        LOGGER.ERROR("FUNCTION exception:"+ TOOLS.GetExceptionInfo(e), dataPool);
+    } finally{
+        Module.End(dataPool, result);
+    }
+
+    LOGGER.DEBUG("FUNCTION @@name@@ end", dataPool);
+    return result;
+}
+######FUNCTION######
+
+######TIMER######
+
+@Scheduled(cron="@@time@@")
+public JsonNode @@name@@TIMER(){
+    List<HashMap<String, Object>> selectorRetryData = new ArrayList<>();
+    HashMap<String, Object> dataPool = new HashMap<>();
+    ERRORCODE result = ERRORCODE.ERR_OK;
+    JsonNode moduleParam;
+
+    try {
+        //STEP::Init data pool
+        result = APIINIT.InitDataPool(dataPool, null, null, null);
+        LOGGER.INIT("API", "API start", dataPool);
+        Module.Init(dataPool);
+        if(ERRORCODE.IsError(result)){
+            return null;
+        }
+
+        //STEP::Run task
+        do{
+
+            @@module@@
+        }while (false);
+
+    } catch(Exception e){
+        result = ERRORCODE.ERR_Api_Exception;
+        LOGGER.ERROR("API exception:"+ TOOLS.GetExceptionInfo(e), dataPool);
+    }
+
+    Module.End(dataPool, result);
+    JsonNode passParam = (JsonNode) dataPool.get("passParam");
+    passParam = ERRORCODE.GetErrorCode(result, passParam);
+    LOGGER.END("API end", passParam);
+    return passParam;
+}
+######TIMER######

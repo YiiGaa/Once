@@ -36,7 +36,7 @@
 
 # ◎ 配置说明
 
-模块配置在`@@name@@/Once.Config`中设置，通过Christmas运行应用时，会自动拼接到`config/application.properties`
+模块配置在`@@name@@/Xmas.Config`中设置，通过Christmas运行应用时，会自动拼接到`config/application.properties`
 
 | key | 说明 | 是否必要 | 默认值 | 类型 | 组入/更新版本 |
 | --- | --- | --- | --- | --- | --- |
@@ -53,10 +53,10 @@
 在工程根目录，运行shell指令
 
 ```
-python3 Christmas/Christmas.py ShellExcute/Compile#TestModule @@name@@
+python3 Christmas/Christmas.py ShellExcute/Run#Module @@name@@
 ```
 
-也可以通过`Christmas插件`运行`ShellExcute>>Compile#TestModule`，并在插件打开的终端中输入`@@name@@`
+也可以通过`Christmas插件`运行`ShellExcute>>Run#Module`，并在插件打开的终端中输入`@@name@@`
 
 ### > 测试例子
 
@@ -75,8 +75,8 @@ python3 Christmas/Christmas.py ShellExcute/Compile#TestModule @@name@@
 
     ```
     {
-        "code": "200",
-        "message": "OK"
+        "$code": "200",
+        "$message": "OK"
     }
     ```
 
@@ -106,13 +106,9 @@ Description of the value of module parameters:
 
 - Add version: 1.0=0000.00.00
 
-```json
-{
-	"name":"@@name@@",
-	"param":{
-		"_xx":""
-	}
-}
+```yaml
+>@@name@@
+    _xx: value
 ```
 
 | Key    | Description                           | Necessary | Default | Type   | Add/Update     |
@@ -128,7 +124,7 @@ Supplementary description of module parameters:
 
 # ◎ Configuration Notes
 
-The module configuration is set in `@@name@@/Once.Config`. When the application is run through Christmas, it will be automatically spliced to `config/application.properties`
+The module configuration is set in `@@name@@/Xmas.Config`. When the application is run through Christmas, it will be automatically spliced to `config/application.properties`
 
 | Key    | Description                           | Necessary | Default | Type   | Add/Update     |
 | ------ | ------------------------------------- | --------- | ------- | ------ | -------------- |
@@ -146,10 +142,10 @@ Supplementary description of module parameters:
 In the project root directory, run the shell instruction
 
 ```
-python3 Christmas/Christmas.py ShellExcute/Compile#TestModule @@name@@
+python3 Christmas/Christmas.py ShellExcute/Run#Module @@name@@
 ```
 
-You can also run ShellExcute>>Compile#TestModule through the Christmas plug-in, and enter `@@name@@` in the terminal opened by the plug-in.
+You can also run ShellExcute>>Run#Module through the Christmas plug-in, and enter `@@name@@` in the terminal opened by the plug-in.
 
 ### > Sample
 
@@ -168,8 +164,8 @@ You can also run ShellExcute>>Compile#TestModule through the Christmas plug-in, 
 
     ```
     {
-        "code": "200",
-        "message": "OK"
+        "$code": "200",
+        "$message": "OK"
     }
     ```
 

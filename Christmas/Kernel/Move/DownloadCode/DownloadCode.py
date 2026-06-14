@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 from Kernel.Module.Module import Module
+from Kernel.Common.Logger.Logger import Logger
 
 class DownloadCode:
     def DoStart(targetParam, configParam):
@@ -25,4 +26,4 @@ class DownloadCode:
     def Start(targetParam, configParam):
         DownloadCode.DoStart(targetParam, configParam)
         print('')
-        print('SUCCESS')
+        Logger.Tips('SUCCESS')

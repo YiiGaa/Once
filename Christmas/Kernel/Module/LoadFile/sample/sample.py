@@ -11,7 +11,7 @@ if __name__ == '__main__':
         {
             'Xmas_target':'./test/folder_1/folder_1-1/', 
             'Xmas_url':'./test/folder_2/>>>/', 
-            'Xmas_index':'Load.json', 
+            'Xmas_index':'Xmas.Sync.json', 
             'aa':'bb'
         }
     ]

@@ -1,9 +1,7 @@
 [   
     {
-        "Xmas_path":"../Christmas/Input/GenCode/API#??"
+        "Xmas_path":"../src/main/api/??.xmas"
     },{
-        "Xmas_path":"../Christmas/Input/GenCode/API#??-Service"
-    },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/api/??/"
+        "Xmas_path":"../src/main/api/??.java"
     }
 ]

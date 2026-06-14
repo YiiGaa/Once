@@ -1,43 +1,43 @@
 [
     {
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/module/??/??.java",
+        "Xmas_path":"../src/main/module/??/??.java",
         "moduleFile": {
             "name":"??"
         }
     },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/module/??/??Config.java",
+        "Xmas_path":"../src/main/module/??/??Config.java",
         "configFile": {
             "name":"??"
         }
     },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/module/??/Once.Link",
+        "Xmas_path":"../src/main/module/??/Xmas.Link",
         "linkFile": {
             "name":"??"
         }
     },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/module/??/Once.Config",
+        "Xmas_path":"../src/main/module/??/Xmas.Config",
         "linkFile": {
             "Xmas_templ":"CONFIG-SELF",
             "name":"??"
         }
     },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/module/??/Sample.java",
+        "Xmas_path":"../src/main/module/??/Sample.java",
         "sampleFile": {
             "name":"??"
         }
     },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/module/??/Load.json",
+        "Xmas_path":"../src/main/module/??/Xmas.Sync.json",
         "loadFile": {
             "name":"??"
         }
     },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/module/??/README.md",
+        "Xmas_path":"../src/main/module/??/README.md",
         "readmeFile": {
             "Xmas_templ":"README",
             "name":"??"
         }
     },{
-        "Xmas_path":"../src/main/java/com/stoprefactoring/once/module/??/README-en.md",
+        "Xmas_path":"../src/main/module/??/README-en.md",
         "readmeFile": {
             "Xmas_templ":"README-en",
             "name":"??"

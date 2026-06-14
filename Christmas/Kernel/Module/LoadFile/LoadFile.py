@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from Kernel.Config.Config import Config
+from Kernel.Common.Config.Config import Config
+from Kernel.Common.Logger.Logger import Logger
+import Kernel.Common.Lib.json5 as json5
 import json
 import urllib.request
 import os
@@ -11,7 +13,7 @@ from urllib.parse import quote
 
 class LoadFile:
     def ErrorLog():
-        print('Quit! Module LoadFile Error.')
+        Logger.Error('Quit! Module LoadFile Error.')
         exit(-1)
 
     def LoadFile_Http(sourcePath, targetPath, replace, license):
@@ -56,7 +58,7 @@ class LoadFile:
                 print('')
                 print('Error: The request is rejected, the license may not have been added, or the license has expired.')
                 LoadFile.ErrorLog()
-            content = json.loads(content)
+            content = json5.loads(content)
             return content
         except urllib.error.HTTPError as e:
             print(e)
@@ -73,7 +75,7 @@ class LoadFile:
                 content = content + line
                 line = targetFile.readline()
             targetFile.close()
-            localLoad = json.loads(content)
+            localLoad = json5.loads(content)
         except:
             pass
         return localLoad
@@ -207,16 +209,15 @@ class LoadFile:
             print('Error: Illegal local file, quit!')
             LoadFile.ErrorLog()
         
-        #STEP::Write Load.json
+        #STEP::Write Xmas.Sync.json
         updateLoadFile['customSkip'] = customSkipList
         with open(localLoadFileName, 'w', encoding='utf-8') as f:
             json.dump(updateLoadFile, f, indent=4)
         
-        #STEP::Warnning, 文件在本地load.json中包含在skip，但在更新的load.json中没有
-        #STEP::Warnning, Some files is included in 'skip' of the local Load.json, but not in the updated Load.json.
+        #STEP::Warnning, Some files is included in 'skip' of the local Xmas.Sync.json, but not in the updated Xmas.Sync.json.
         if warningList != []:
             print('')
-            print(f'**warning: Some files is included in \'skip\' of the local Load.json, but not in the updated Load.json. These files has been replace or delelte')
+            print(f'**warning: Some files is included in \'skip\' of the local Xmas.Sync.json, but not in the updated Xmas.Sync.json. These files has been replace or delelte')
             for item in warningList:
                 print(f'{Config.logPrefix}- {item}')
             print('')

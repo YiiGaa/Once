@@ -1,0 +1,9 @@
+{
+    "inputSign":"?",
+    "rewaitInput":"[last run command]",
+    "isJudgeExist":false,
+    "isExistBackup":false,
+    "templatePath":{
+        "target.json":"./Template/LastRun/Target.templ"
+    }
+}

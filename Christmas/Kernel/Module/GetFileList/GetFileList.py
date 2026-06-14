@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from Kernel.Config.Config import Config
-import json
+from Kernel.Common.Config.Config import Config
+from Kernel.Common.Logger.Logger import Logger
+import Kernel.Common.Lib.json5 as json
 import os
 import time
 import random
@@ -10,7 +11,7 @@ import os
 
 class GetFileList:
     def ErrorLog():
-        print('Quit! Module GetFileList Error.')
+        Logger.Error('Quit! Module GetFileList Error.')
         exit(-1)
 
     def Find_Check(param, contain, excepts):
