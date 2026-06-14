@@ -107,7 +107,13 @@
         "Christmas/Input/DownloadCode/Update#Module/target.json",
         "Christmas/Input/DownloadCode/Update#Christmas/target.json",
         "Christmas/Input/DownloadCode/Update#Once/target.json",
-        "Christmas/Input/DownloadCode/Get#Module/target.json"
+        "Christmas/Input/DownloadCode/Get#Module/target.json",
+        "Christmas/Readme/data/overview-work-1.jpg",
+        "Christmas/Readme/data/overview-work-2.jpg",
+        "Christmas/Readme/data/overview-work-3.jpg",
+        "Christmas/Readme/data/overview-work-1-en.jpg",
+        "Christmas/Readme/data/overview-work-2-en.jpg",
+        "Christmas/Readme/data/overview-work-3-en.jpg"
     ],
     "customSkip": []
 }
